@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.myweb</groupId>
-    <artifactId>dao.jpa.qyz.video</artifactId>
+    <artifactId>dao.jpa.nxbjxh</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>dao.jpa.qyz.video</name>
+    <name>dao.jpa.nxbjxh</name>
     <url>http://maven.apache.org</url>
 
     <build>
