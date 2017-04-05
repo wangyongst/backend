@@ -42,25 +42,11 @@ public class FrameWorkController {
         return new ModelAndView("home", map);
     }
 
-    //获取Tableinfo
-    @ResponseBody
-    @RequestMapping(value = "/get/menus", method = RequestMethod.GET)
-    public Result getMenus(HttpSession session, @ModelAttribute Menu menu) {
-        return frameWorkService.getMenus(session, menu);
-    }
-
-
-    //获取Tableinfo
-    @ResponseBody
-    @RequestMapping(value = "/get/tableinfos/{tablename}/{notTable}", method = RequestMethod.GET)
-    public Result getTableinfo(HttpSession session, @PathVariable("tablename") String tablename, @PathVariable("notTable") boolean notTable) {
-        return frameWorkService.getTableinfos(session, tablename, notTable);
-    }
-
-    //获取Shuxing
-    @ResponseBody
-    @RequestMapping(value = "/get/shuxings/{name}", method = RequestMethod.GET)
-    public Result getShuxing(HttpSession session, @PathVariable("name") String name) {
-        return frameWorkService.getShuxings(session, name);
+    //退出
+    @RequestMapping(value = "regist", method = RequestMethod.POST)
+    public ModelAndView regist(HttpSession session,@ModelAttribute User user) {
+        Map map = new HashMap();
+        map = frameWorkService.getUserMenuMap(session, map);
+        return new ModelAndView("home", map);
     }
 }
