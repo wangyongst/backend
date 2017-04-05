@@ -84,21 +84,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="framework/home.do"><span>XININGLEYUAN.COM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>西宁乐缘综合养老管理平台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后台管理中心</a>
-            <ul class="user-menu">
-                <li class="dropdown pull-right">
-                    <a href="user/home.do" class="dropdown-toggle" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> ${user.name} <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="${profile.url}"><span class="glyphicon glyphicon-user"></span>${profile.name}  </a>
-                        </li>
-                        <li><a href="${settings.url}"><span class="glyphicon glyphicon-cog"></span> ${settings.name}</a>
-                        </li>
-                        <li><a href="${logout.url}"><span class="glyphicon glyphicon-log-out"></span> ${logout.name}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+            <a class="navbar-brand" href="framework/home.do"><span>宁夏保健学会学习系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习系统</a>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
@@ -110,7 +96,7 @@
         </div>
     </form>
     <ul class="nav menu" id="navmenu">
-        <li class="active"><a href="framework/home.do"><span class="glyphicon glyphicon-dashboard"></span>我的首页</a></li>
+        <li class="active"><a href="framework/home.do"><span class="glyphicon glyphicon-dashboard"></span>远程学习</a></li>
         <li class="parent "></li>
         <li role="presentation" class="divider"></li>
     </ul>

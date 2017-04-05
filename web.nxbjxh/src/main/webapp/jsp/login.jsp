@@ -3,7 +3,7 @@
 <html>
 <head>
     <%@ include file="/jsp/base.jsp" %>
-    <title>西宁乐缘综合养老管理平台-登录</title>
+    <title>宁夏保健学会学习系统-登录</title>
     <script type="text/javascript">
         $(function () {
 
@@ -51,12 +51,8 @@
                         <div class="form-group">
                             <input class="form-control" placeholder="密码" name="password" type="password" value="">
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input name="remember" type="checkbox" value="Remember Me">记住我
-                            </label>
-                        </div>
                         <a id="login" class="btn btn-primary">登录</a>
+                        <a id="login" class="btn btn-primary">注册</a>
                     </fieldset>
                 </form>
             </div>

@@ -13,18 +13,8 @@ public interface FrameWorkService {
 
     Result logout(HttpSession session);
 
-    Result getMenus(HttpSession session, Menu menu);
+    Result register(HttpSession session, User user);
 
-    Map<String, Object> getMyHome(HttpSession session, Map<String, Object> map);
-
-    Map<String, Object> getUserMenuMap(HttpSession session, Map<String, Object> map);
-
-    Map<String, Object> getColumnsNameMap(HttpSession session, Map<String, Object> map, String tableName, String columns, boolean notTable);
-
-    Map<String, Object> getTitleMap(HttpSession session, Map<String, Object> map, String title, String tableTitle);
-
-    Result getShuxings(HttpSession session, String name);
-
-    Result getTableinfos(HttpSession session, String tableName, boolean notTable);
+    Result update(HttpSession session, User user);
 
 }

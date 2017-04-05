@@ -8,7 +8,7 @@
     <base href="<%=basePath%>">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>西宁乐缘综合养老管理平台 - ${title}</title>
+    <title>宁夏保健学会学习系统 - ${title}</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker3.css" rel="stylesheet">
