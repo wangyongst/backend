@@ -30,23 +30,7 @@
             })
 
             $("#register").click(function () {
-                $.ajax({
-                    type: "POST",
-                    cache: "false",
-                    url: "framework/register.do",
-                    data: $('#userForm').serialize(),
-                    dataType: "json",
-                    error: function () {//请求失败时调用函数。
-                        showAlert($("#alertA"), "danger");
-                    },
-                    success: function (result) {
-                        if (result.status == 1) {
-                            window.location.href = "<%=basePath%>framework/home.do";
-                        } else {
-                            showAlert($("#alertA"), "warning", result.message);
-                        }
-                    }
-                });
+               window.open("<%=basePath%>jsp/register.jsp");
             })
 
         });
@@ -61,8 +45,8 @@
 
 
 <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-
+    <div class="col-md-8 col-md-offset-2">
+<p><br><br><br><br></p>
         </div>
     </div><!-- /.col-->
 </div><!-- /.row -->
@@ -114,6 +98,12 @@
     </div><!--/.col-->
 
 
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <p>技术支持：甘肃七言志教育科技有限公司<br>客服电话：4006969296  0931-2111188  QQ：2715528741  QQ群：68638150<br>备案信息：陇ICP备14000281号-1 <br></p>
+    </div>
+</div><!-- /.col-->
 </div><!-- /.row -->
 </body>
 
