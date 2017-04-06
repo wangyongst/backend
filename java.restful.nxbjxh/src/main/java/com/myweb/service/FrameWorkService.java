@@ -1,5 +1,6 @@
 package com.myweb.service;
 
+import com.myweb.pojo.Param;
 import com.myweb.pojo.User;
 import com.myweb.util.Result;
 
@@ -14,5 +15,7 @@ public interface FrameWorkService {
     Result register(HttpSession session, User user);
 
     Result update(HttpSession session, User user);
+
+    public Result listParams(HttpSession session, Param param);
 
 }

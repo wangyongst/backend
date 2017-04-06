@@ -1,6 +1,8 @@
 package com.myweb.service.impl;
 
+import com.myweb.dao.jpa.hibernate.ParamRepository;
 import com.myweb.dao.jpa.hibernate.UserRepository;
+import com.myweb.pojo.Param;
 import com.myweb.pojo.User;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.DateUtils;
@@ -8,6 +10,8 @@ import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +23,9 @@ public class FrameWorkServiceImpl implements FrameWorkService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ParamRepository paramRepository;
 
     @Override
     public Result login(HttpSession session, User user) {
@@ -37,6 +44,7 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     }
 
     @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result register(HttpSession session, User user) {
         user.setTime(DateUtils.getCurrentTimeSecond());
         if(userRepository.save(user) != null) {
@@ -47,6 +55,7 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     }
 
     @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result update(HttpSession session, User user) {
         User updateUser = userRepository.findOne(user.getId());
         if (updateUser != null) {
@@ -55,6 +64,18 @@ public class FrameWorkServiceImpl implements FrameWorkService {
             return ServiceUtils.isCRUDOK("update", new Result(), 1);
         }else{
             return ServiceUtils.isCRUDOK("update", new Result(), 0);
+        }
+    }
+
+    @Override
+    public Result listParams(HttpSession session, Param param) {
+        Result result = new Result();
+        if (param.getName() == null) {
+            if (ServiceUtils.isReseachListOK(result, paramRepository.findAll())) {
+            }
+            return result;
+        }else{
+           return new Result();
         }
     }
 }

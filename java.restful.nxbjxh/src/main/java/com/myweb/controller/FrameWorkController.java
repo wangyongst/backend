@@ -1,5 +1,6 @@
 package com.myweb.controller;
 
+import com.myweb.pojo.Param;
 import com.myweb.pojo.User;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.Result;
@@ -41,14 +42,24 @@ public class FrameWorkController {
     }
 
     //注册
-    @RequestMapping(value = "regist", method = RequestMethod.POST)
+    @ResponseBody
+    @RequestMapping(value = "regist", method = RequestMethod.PUT)
     public Result regist(HttpSession session,@ModelAttribute User user) {
         return frameWorkService.register(session,user);
     }
 
     //修改
+    @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public Result update(HttpSession session,@ModelAttribute User user) {
         return frameWorkService.update(session,user);
     }
+
+    //取参
+    @ResponseBody
+    @RequestMapping(value = "/get/param", method = RequestMethod.GET)
+    public Result getParams(HttpSession session,@ModelAttribute Param param) {
+        return frameWorkService.listParams(session,param);
+    }
+
 }
