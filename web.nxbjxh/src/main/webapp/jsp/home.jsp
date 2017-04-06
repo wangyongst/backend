@@ -5,38 +5,8 @@
     <%@ include file="/jsp/base.jsp" %>
     <script type="text/javascript">
         $(function () {
-            $.ajax({
-                type: "GET",
-                cache: "true",
-                url: "framework/get/menus.do?parent=0",
-                dataType: "json",
-                success: function (result) {
-                    if (result.status == 7) {
-                        result.data.forEach(function (e) {
-                            $("#navmenu").find(".parent").append("<a data-toggle='collapse' href='#sub-item-" + e.id + "'><span class='glyphicon glyphicon-list'></span>" + e.name + "<span data-toggle='collapse' href='#sub-item-" + e.id + "' class= 'icon pull-right'><em class='glyphicon glyphicon-s glyphicon-plus'></em></span></a><ul class='children collapse' id='sub-item-" + e.id + "'></ul>");
-                            createChildren(e.id);
-                        })
-                    }
-                }
-            });
+
         });
-
-
-        function createChildren(parentId) {
-            $.ajax({
-                type: "GET",
-                cache: "true",
-                url: "framework/get/menus.do?parent=" + parentId,
-                dataType: "json",
-                success: function (result) {
-                    if (result.status == 7) {
-                        result.data.forEach(function (e) {
-                            $("#sub-item-" + parentId).append("<li><a class=\"\" href=\"javascript:void(0);\" onclick=\"javascript:getRight('" + e.url + "');\"><span class=\"glyphicon glyphicon-share-alt\"></span>" + e.name + "</a></li>");
-                        });
-                    }
-                }
-            });
-        }
 
         function reinitIframe() {
             var iframe = document.getElementById("right");
@@ -84,23 +54,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="framework/home.do"><span>宁夏保健学会学习系统&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习系统</a>
+            <a class="navbar-brand" href="framework/home.do"><span>宁夏保健学会学习系统</span></a>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
 
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <form role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-        </div>
-    </form>
-    <ul class="nav menu" id="navmenu">
-        <li class="active"><a href="framework/home.do"><span class="glyphicon glyphicon-dashboard"></span>远程学习</a></li>
-        <li class="parent "></li>
+    <ul class="nav menu">
+        <li role="presentation" class="divider"></li>
+        <li><a><span class="glyphicon glyphicon-dashboard"></span> 修改个人信息</a></li>
+        <li role="presentation" class="divider"></li>
+        <li><a ><span class="glyphicon glyphicon-stats"></span> 远程学习</a></li>
         <li role="presentation" class="divider"></li>
     </ul>
-</div><!--/.sidebar-->
+</div>
 
 <iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="menu/myhome.do" width="100%" frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
 <!--/.main-->

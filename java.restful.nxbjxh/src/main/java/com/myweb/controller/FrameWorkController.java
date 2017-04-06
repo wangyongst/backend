@@ -1,6 +1,5 @@
 package com.myweb.controller;
 
-import com.myweb.pojo.Menu;
 import com.myweb.pojo.User;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.Result;
@@ -38,15 +37,18 @@ public class FrameWorkController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         Map map = new HashMap();
-        map = frameWorkService.getUserMenuMap(session, map);
         return new ModelAndView("home", map);
     }
 
-    //退出
+    //注册
     @RequestMapping(value = "regist", method = RequestMethod.POST)
-    public ModelAndView regist(HttpSession session,@ModelAttribute User user) {
-        Map map = new HashMap();
-        map = frameWorkService.getUserMenuMap(session, map);
-        return new ModelAndView("home", map);
+    public Result regist(HttpSession session,@ModelAttribute User user) {
+        return frameWorkService.register(session,user);
+    }
+
+    //修改
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public Result update(HttpSession session,@ModelAttribute User user) {
+        return frameWorkService.update(session,user);
     }
 }

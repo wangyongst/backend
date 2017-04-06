@@ -18,7 +18,7 @@ function showAlert(alert, level, message) {
     if (level == 'danger') {
         $(alert).find("div div").attr("class", "alert bg-danger");
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-exclamation-sign");
-        $(alert).find("div div span").eq(1).text("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
+        $(alert).find("div div span").eq(1).text("操作失败，请检查您的输入，如有问题请联系管理员！");
     } else if (level == 'warning') {
         $(alert).find("div div").attr("class", "alert bg-warning");
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-warning-sign");
@@ -38,6 +38,7 @@ function showAlert(alert, level, message) {
 function hideAlert(alert) {
     $(alert).parent().parent().parent().hide();
 }
+
 function makeAlert(alert) {
     $(alert).html("<div><div><span></span><span></span><a><span></span></a></div></div>");
     $(alert).find("div").attr("class", "col-lg-12");
@@ -50,6 +51,7 @@ function makeAlert(alert) {
             hideAlert($(this))
         });
 }
+
 function makeModalForm(modal, type, id, name, chinese, placeholder) {
     if (type == "select") {
         makeModalFormSelect(modal, id, name, chinese)
@@ -59,6 +61,7 @@ function makeModalForm(modal, type, id, name, chinese, placeholder) {
         makeModalFormInupt(modal, type, id, name, chinese, placeholder);
     }
 }
+
 function makeModalFormInupt(modal, type, id, name, chinese, placeholder) {
     if (id == null) {
         id = name;
@@ -67,61 +70,7 @@ function makeModalFormInupt(modal, type, id, name, chinese, placeholder) {
     $(modal).find(".form-group").append("<input type='" + type + "' class='form-control' id='" + id + "Input' name='" + name + "'>");
     $("#" + id + "Input").attr("placeholder", placeholder)
 }
-function makeModalFormSelect(modal, id, name, chinese) {
-    if (id == null) {
-        id = name;
-    }
-    $(modal).find(".form-group").append("<label for='" + id + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
-    $(modal).find(".form-group").append("<select class='form-control' id='" + id + "Select' name='" + name + "'></select >");
-    $.ajax({
-        type: "GET",
-        cache: "true",
-        url: "framework/get/shuxings/" + name + ".do",
-        dataType: "json",
-        success: function (result) {
-            if (result.status == 7) {
-                result.data.forEach(function (e) {
-                    $("#" + id + "Select").append("<option>" + e.chinesename + "</option>");
-                })
-            }
-        }
-    });
-}
-function makeModalFormCheckbox(modal, id, name, chinese) {
-    if (id == null) {
-        id = name;
-    }
-    $(modal).find(".form-group").append("<label for='" + name + "'class='control-label'id='" + id + "Label'>" + chinese + "</label>");
-    $(modal).find(".form-group").append("<div class='checkbox' id='" + id + "Checkbox'></div >");
-    $.ajax({
-        type: "GET",
-        cache: "true",
-        url: "framework/get/shuxings/" + name + ".do",
-        dataType: "json",
-        success: function (result) {
-            if (result.status == 7) {
-                result.data.forEach(function (e) {
-                    $("#" + id + "Checkbox").append("<label><input name='" + name + "' type='checkbox' value='" + e.chinesename + "'>" + e.chinesename + "</label>");
-                })
-            }
-        }
-    });
-}
-function makeModalColumns(modal, tablename, prefix, placeholder) {
-    $.ajax({
-        type: "GET",
-        cache: "true",
-        url: "framework/get/tableinfos/" + tablename + "/true.do",
-        dataType: "json",
-        success: function (result) {
-            if (result.status == 7) {
-                result.data.forEach(function (e) {
-                    makeModalForm(modal, e.type, prefix + e.columnname, e.columnname, e.chinese, placeholder + e.chinese);
-                })
-            }
-        }
-    });
-}
+
 function makeModal(modal, idPrefix, index) {
     $(modal).attr("class", "modal fade");
     $(modal).attr("tabindex", index);

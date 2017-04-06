@@ -28,6 +28,27 @@
                     }
                 });
             })
+
+            $("#register").click(function () {
+                $.ajax({
+                    type: "POST",
+                    cache: "false",
+                    url: "framework/register.do",
+                    data: $('#userForm').serialize(),
+                    dataType: "json",
+                    error: function () {//请求失败时调用函数。
+                        showAlert($("#alertA"), "danger");
+                    },
+                    success: function (result) {
+                        if (result.status == 1) {
+                            window.location.href = "<%=basePath%>framework/home.do";
+                        } else {
+                            showAlert($("#alertA"), "warning", result.message);
+                        }
+                    }
+                });
+            })
+
         });
 
     </script>
@@ -52,7 +73,7 @@
                             <input class="form-control" placeholder="密码" name="password" type="password" value="">
                         </div>
                         <a id="login" class="btn btn-primary">登录</a>
-                        <a id="login" class="btn btn-primary">注册</a>
+                        <a id="register" class="btn btn-primary">注册</a>
                     </fieldset>
                 </form>
             </div>
