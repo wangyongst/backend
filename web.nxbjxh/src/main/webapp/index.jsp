@@ -9,7 +9,7 @@
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>登陆西宁乐缘综合管理系统</title>
+    <title>宁夏保健学会学习平台</title>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">     
   	$(document).ready(function() {

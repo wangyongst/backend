@@ -30,7 +30,7 @@ public class ServiceUtils {
 
     public static void isNotOK(Result result) {
         result.setStatus(2);
-        result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,Email:331527770@qq.com！");
+        result.setMessage("操作失败，请检查您的输入，如有问题请联系管理员,电话:4006969296 ！");
     }
 
     public static void isMultiSelect(Result result) {

@@ -54,7 +54,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="framework/home.do"><span>宁夏保健学会学习系统</span></a>
+            <a class="navbar-brand" href="framework/home.do"><span>宁夏保健学会学习平台</span></a>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
