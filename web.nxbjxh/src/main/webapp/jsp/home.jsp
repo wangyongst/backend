@@ -5,7 +5,9 @@
     <%@ include file="/jsp/base.jsp" %>
     <script type="text/javascript">
         $(function () {
-
+            $("#update").click(function () {
+                document.getElementById("right").src = "jsp/update.jsp";
+            });
         });
 
         function reinitIframe() {
@@ -25,19 +27,6 @@
             document.getElementById("right").src = url;
         }
 
-        !function ($) {
-            $(document).on("click", "ul.nav li.parent > a", function () {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
-
-        $(window).on('resize', function () {
-            if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-        });
-        $(window).on('resize', function () {
-            if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-        })
 
     </script>
 
@@ -62,9 +51,9 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
     <ul class="nav menu">
         <li role="presentation" class="divider"></li>
-        <li><a><span class="glyphicon glyphicon-dashboard"></span> 修改个人信息</a></li>
+        <li class="active"> <a id="update" class="btn btn-primary">修改个人信息</a></li>
         <li role="presentation" class="divider"></li>
-        <li><a ><span class="glyphicon glyphicon-stats"></span> 远程学习</a></li>
+        <li class="active"> <a id="xuexi" class="btn btn-primary">在线学习</a></li>
         <li role="presentation" class="divider"></li>
     </ul>
 </div>

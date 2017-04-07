@@ -20,4 +20,6 @@ public interface FrameWorkService {
 
     public Result listParams(HttpSession session, Param param);
 
+    public Result getUser(HttpSession session);
+
 }

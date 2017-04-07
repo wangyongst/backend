@@ -48,43 +48,43 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     public Result register(HttpSession session, User user) {
         user.setTime(DateUtils.getCurrentTimeSecond());
         Result result = new Result();
-        if(ServiceUtils.isBlankValue(result,user.getName())){
+        if (ServiceUtils.isBlankValue(result, user.getName())) {
             result.setMessage("注册失败，你输入的的姓名不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getIdentity())){
+        if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
             result.setMessage("注册失败，你输入的的身份证号码不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getPhone())){
+        if (ServiceUtils.isBlankValue(result, user.getPhone())) {
             result.setMessage("注册失败，你输入的的联系电话不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getUsername())){
+        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
             result.setMessage("注册失败，你输入的的用户名不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getPassword())){
+        if (ServiceUtils.isBlankValue(result, user.getPassword())) {
             result.setMessage("注册失败，你输入的的密码不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getDepartment())){
+        if (ServiceUtils.isBlankValue(result, user.getDepartment())) {
             result.setMessage("注册失败，你输入的的科室不能为空！");
             return result;
         }
-        if(ServiceUtils.isReseachListOK(result,userRepository.findByUsername(user.getUsername()))){
+        if (ServiceUtils.isReseachListOK(result, userRepository.findByUsername(user.getUsername()))) {
             result.setMessage("注册失败，你的输入的用户名已经被注册！");
             result.setStatus(2);
             return result;
         }
-        if(ServiceUtils.isReseachListOK(result,userRepository.findByIdentity(user.getIdentity()))){
+        if (ServiceUtils.isReseachListOK(result, userRepository.findByIdentity(user.getIdentity()))) {
             result.setMessage("注册失败，你的输入的身份证号码已经被注册！");
             result.setStatus(2);
             return result;
         }
-        if(userRepository.save(user) != null) {
+        if (userRepository.save(user) != null) {
             return ServiceUtils.isCRUDOK("create", new Result(), 1);
-        }else{
+        } else {
             return ServiceUtils.isCRUDOK("create", new Result(), 0);
         }
     }
@@ -93,32 +93,68 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     @Override
     public Result forget(HttpSession session, User user) {
         Result result = new Result();
-        if(ServiceUtils.isBlankValue(result,user.getName())){
-            result.setMessage("注册失败，你输入的的姓名不能为空！");
+        if (ServiceUtils.isBlankValue(result, user.getName())) {
+            result.setMessage("找回密码失败，你输入的的姓名不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getIdentity())){
-            result.setMessage("注册失败，你输入的的身份证号码不能为空！");
+        if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
+            result.setMessage("找回密码失败，你输入的的身份证号码不能为空！");
             return result;
         }
-        if(ServiceUtils.isBlankValue(result,user.getUsername())){
-            result.setMessage("注册失败，你输入的的用户名不能为空！");
+        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
+            result.setMessage("找回密码失败，你输入的的用户名不能为空！");
+            return result;
+        } else {
+            ServiceUtils.isReseachListOK(result, userRepository.findByNameAndIdentityAndUsername(user.getName(), user.getIdentity(), user.getUsername()));
             return result;
         }
-        ServiceUtils.isReseachListOK(result,userRepository.findByNameAndIdentityAndUsername(user.getName(),user.getIdentity(),user.getUsername()));
-        return result;
-
     }
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result update(HttpSession session, User user) {
+        Result result = new Result();
+        if (ServiceUtils.isBlankValue(result, user.getName())) {
+            result.setMessage("修改失败，你输入的的姓名不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
+            result.setMessage("修改失败，你输入的的身份证号码不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isBlankValue(result, user.getPhone())) {
+            result.setMessage("修改失败，你输入的的联系电话不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
+            result.setMessage("修改失败，你输入的的用户名不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isBlankValue(result, user.getPassword())) {
+            result.setMessage("修改失败，你输入的的密码不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isBlankValue(result, user.getDepartment())) {
+            result.setMessage("修改失败，你输入的的科室不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isReseachListOK(result, userRepository.findByUsernameAndIdNot(user.getUsername(), user.getId()))) {
+            result.setMessage("修改失败，你的输入的用户名已经被注册！");
+            result.setStatus(2);
+            return result;
+        }
+        if (ServiceUtils.isReseachListOK(result, userRepository.findByIdentityAndIdNot(user.getIdentity(), user.getId()))) {
+            result.setMessage("修改失败，你的输入的身份证号码已经被注册！");
+            result.setStatus(2);
+            return result;
+        }
         User updateUser = userRepository.findOne(user.getId());
         if (updateUser != null) {
-            ServiceUtils.copyPropertiesIgnoreNull(user,updateUser);
+            ServiceUtils.copyPropertiesIgnoreNull(user, updateUser);
             userRepository.save(updateUser);
+            session.setAttribute("user", userRepository.findOne(user.getId()));
             return ServiceUtils.isCRUDOK("update", new Result(), 1);
-        }else{
+        } else {
             return ServiceUtils.isCRUDOK("update", new Result(), 0);
         }
     }
@@ -130,8 +166,16 @@ public class FrameWorkServiceImpl implements FrameWorkService {
             if (ServiceUtils.isReseachListOK(result, paramRepository.findAll())) {
             }
             return result;
-        }else{
-           return new Result();
+        } else {
+            return new Result();
         }
+    }
+
+    @Override
+    public Result getUser(HttpSession session) {
+        Result result = new Result();
+        User user = (User) session.getAttribute("user");
+        ServiceUtils.isReseachOK(result, userRepository.findOne(user.getId()));
+        return result;
     }
 }

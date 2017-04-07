@@ -21,10 +21,9 @@
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            //alert(result.data);
-                            showAlert($("#alertA"), "success","注册成功，请用你的密码是:"+result.data.password+",请妥善保管！");
-                        } else {
-                            showAlert($("#alertA"), "warning", result.message);
+                            showAlert($("#alertA"), "success","找回密码成功，请用你的密码是:"+result.data.password+",请妥善保管！");
+                        }else{
+                            showAlert($("#alertA"), "warning",result.message);
                         }
                     }
                 });

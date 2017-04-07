@@ -69,4 +69,11 @@ public class FrameWorkController {
         return frameWorkService.listParams(session,param);
     }
 
+    //取用户
+    @ResponseBody
+    @RequestMapping(value = "/get/user", method = RequestMethod.GET)
+    public Result getUser(HttpSession session) {
+        return frameWorkService.getUser(session);
+    }
+
 }
