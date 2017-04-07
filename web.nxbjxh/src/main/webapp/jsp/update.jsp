@@ -96,7 +96,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-1">
         <div class="panel panel-primary">
-            <div class="panel-heading">宁夏保健学会学习平台修改个人信息</div>
+            <div class="panel-heading">修改个人信息</div>
             <div class="panel-body">
                 <div class="col-md-6 col-md-offset-1">
                     <form role="form" id="userForm">

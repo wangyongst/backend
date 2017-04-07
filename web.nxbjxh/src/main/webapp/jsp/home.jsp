@@ -10,6 +10,12 @@
             });
         });
 
+        $(function () {
+            $("#logout").click(function () {
+                window.location.href="<%=basePath%>framework/logout.do"
+            });
+        });
+
         function reinitIframe() {
             var iframe = document.getElementById("right");
             try {
@@ -54,6 +60,8 @@
         <li class="active"> <a id="update" class="btn btn-primary">修改个人信息</a></li>
         <li role="presentation" class="divider"></li>
         <li class="active"> <a id="xuexi" class="btn btn-primary">在线学习</a></li>
+        <li role="presentation" class="divider"></li>
+        <li class="active"> <a id="logout" class="btn btn-primary">退出学习平台</a></li>
         <li role="presentation" class="divider"></li>
     </ul>
 </div>
