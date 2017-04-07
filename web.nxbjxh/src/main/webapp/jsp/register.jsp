@@ -20,7 +20,6 @@
                 success: function (result) {
                     if (result.status == 1 || result.status == 7) {
                         $.each(result.data.forEach(function(value,index,arr) {
-                            //alert(value.value);
                             if(value.name == "title"){
                                 $("#title").append("<option value='"+value.value+"'>"+value.value+"</option>");
                             }
@@ -29,6 +28,10 @@
                         showAlert($("#alertA"), "warning", result.message);
                     }
                 }
+            });
+
+            $("#close").click(function () {
+                window.close();
             });
 
             $("#register").click(function () {
@@ -47,7 +50,8 @@
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            window.location.href = "<%=basePath%>framework/home.do";
+                            showAlert($("#alertA"), "success","注册成功，请用你注册的账号及密码登录系统学习！");
+                            //window.location.href = "<%=basePath%>framework/home.do";
                         } else {
                             showAlert($("#alertA"), "warning", result.message);
                         }
@@ -71,7 +75,7 @@
             <div class="panel-heading">宁夏保健学会学习平台新用户注册</div>
             <div class="panel-body">
                 <div class="col-md-6 col-md-offset-1">
-                    <form role="form">
+                    <form role="form" id="userForm">
                         <div class="form-group">
                             <label>姓名：</label>
                             <input class="form-control" type="text" name="name" placeholder="请填写正确的中文名称(支持少数名族，不支持英文、拼音、数字)">
@@ -99,6 +103,7 @@
                             </select>
                         </div>
                         <a id="register" class="btn btn-primary">注册</a>
+                        <a id="close" class="btn btn-primary">关闭</a>
                     </form>
                 </div>
             </div>

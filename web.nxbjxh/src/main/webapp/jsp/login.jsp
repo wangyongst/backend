@@ -33,6 +33,10 @@
                window.open("<%=basePath%>jsp/register.jsp");
             })
 
+            $("#forget").click(function () {
+                window.open("<%=basePath%>jsp/forget.jsp");
+            })
+
         });
 
     </script>

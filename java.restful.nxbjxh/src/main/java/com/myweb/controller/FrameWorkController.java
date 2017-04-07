@@ -48,6 +48,13 @@ public class FrameWorkController {
         return frameWorkService.register(session,user);
     }
 
+    //找回密码
+    @ResponseBody
+    @RequestMapping(value = "forget", method = RequestMethod.GET)
+    public Result forget(HttpSession session,@ModelAttribute User user) {
+        return frameWorkService.forget(session,user);
+    }
+
     //修改
     @ResponseBody
     @RequestMapping(value = "update", method = RequestMethod.POST)

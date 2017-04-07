@@ -14,6 +14,8 @@ public interface FrameWorkService {
 
     Result register(HttpSession session, User user);
 
+    Result forget(HttpSession session, User user);
+
     Result update(HttpSession session, User user);
 
     public Result listParams(HttpSession session, Param param);
