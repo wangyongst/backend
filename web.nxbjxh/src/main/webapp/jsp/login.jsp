@@ -37,6 +37,13 @@
                 window.open("<%=basePath%>jsp/forget.jsp");
             })
 
+            $("#authImage").click(function () {
+
+
+                $("#authImage").src="<%=basePath%>authImage.do";
+                alert( $("#authImage"));
+            })
+
         });
 
     </script>
@@ -87,9 +94,17 @@
                                     <div class="form-group">
                                         <input class="form-control" placeholder="密码" name="password" type="password" value="">
                                     </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                        <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="验证码,如看不清，请点击图片刷新" name="authcode" type="text"> </div>
+                                        <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                     <a id="login" class="btn btn-primary">登录</a>
                                     <a id="register" class="btn btn-primary">注册</a>
                                     <a id="forget" class="btn btn-primary">找回密码</a>
+                                    </div>
                                 </fieldset>
                             </form>
                         </div>
