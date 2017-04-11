@@ -53,7 +53,7 @@
     </div><!-- /.col-->
 </div><!-- /.row -->
 
-<div class="row" id="alertA" hidden></div>
+<div class="row col-md-8 col-md-offset-2" id="alertA" hidden></div>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
