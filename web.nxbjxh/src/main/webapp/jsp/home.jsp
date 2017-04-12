@@ -72,8 +72,8 @@
     </ul>
 </div>
 
-<div class="embed-responsive embed-responsive-4by3">
-    <iframe class="col-md-9 col-md-offset-2 embed-responsive-item" src="${right}" id="right"></iframe>
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="col-md-9 col-md-offset-2 main embed-responsive-item" src="${right}" id="right" onload="this.height=800" scrolling="no"></iframe>
 </div>
 <!--/.main-->
 
