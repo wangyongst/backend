@@ -78,8 +78,8 @@
                             </a>
                         </div>
                         <div class="col-md-7 media-body pull-left">
-                            <h4 class="media-heading"><a>警戒素与人体免疫相关研究</a></h4>
-                            <a>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
+                            <h4 class="media-heading"><a href="#">警戒素与人体免疫相关研究</a></h4>
+                            <a href="#">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
                             fringilla. Donec lacinia congue felis in faucibus.</a>
                         </div>
                     </div>
