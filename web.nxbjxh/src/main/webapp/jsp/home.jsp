@@ -6,13 +6,19 @@
     <script type="text/javascript">
         $(function () {
             $("#update").click(function () {
-                document.getElementById("right").src = "jsp/update.jsp";
+                $("#update").parent().attr("class","active");
+                $("#xuexi").parent().attr("class","")
+                getRight("jsp/update.jsp");
             });
-        });
 
-        $(function () {
             $("#logout").click(function () {
                 window.location.href="<%=basePath%>framework/logout.do"
+            });
+
+            $("#xuexi").click(function () {
+                $("#xuexi").parent().attr("class","active");
+                $("#update").parent().attr("class","")
+                getRight("xuexi/home.do");
             });
         });
 
@@ -39,12 +45,12 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#sidebar-collapse">
-                <span class="sr-only"></span>
+                <span class="sr-only">点击展开菜单</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -54,19 +60,21 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+<div id="sidebar-collapse" class="col-md-2 sidebar">
     <ul class="nav menu">
         <li role="presentation" class="divider"></li>
-        <li class="active"> <a id="update" class="btn btn-primary">修改个人信息</a></li>
+        <li><a id="update"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;修改个人信息</a></li>
+
+        <li class="active"><a id="xuexi"><span class="glyphicon glyphicon-folder-open" ></span>&nbsp;&nbsp;在线学习</a></li>
         <li role="presentation" class="divider"></li>
-        <li class="active"> <a id="xuexi" class="btn btn-primary">在线学习</a></li>
-        <li role="presentation" class="divider"></li>
-        <li class="active"> <a id="logout" class="btn btn-primary">退出学习平台</a></li>
+        <li><a id="logout"><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;退出学习平台</a></li>
         <li role="presentation" class="divider"></li>
     </ul>
 </div>
 
-<iframe class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main" src="menu/myhome.do" width="100%" frameborder="0" scrolling="no" id="right" onload="this.height=800"></iframe>
+<div class="embed-responsive embed-responsive-4by3">
+    <iframe class="col-md-9 col-md-offset-2 embed-responsive-item" src="${right}" id="right"></iframe>
+</div>
 <!--/.main-->
 
 </body>

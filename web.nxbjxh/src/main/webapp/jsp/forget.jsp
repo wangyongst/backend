@@ -18,12 +18,15 @@
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         showAlert($("#alertA"), "danger");
+                        $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
                     },
                     success: function (result) {
                         if (result.status == 1) {
                             showAlert($("#alertA"), "success","找回密码成功，请用你的密码是:"+result.data.password+",请妥善保管！");
+                            $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
                         }else{
                             showAlert($("#alertA"), "warning",result.message);
+                            $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
                         }
                     }
                 });
@@ -31,6 +34,10 @@
 
             $("#close").click(function () {
                 window.close();
+            })
+
+            $("#authImage").click(function () {
+                $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
             })
 
         });
@@ -41,7 +48,7 @@
 
 <body>
 
-<div class="row col-md-8 col-md-offset-2" id="alertA" hidden></div>
+<div class="row" id="alertA" hidden></div>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -57,6 +64,11 @@
                             <input class="form-control" type="text"  name="identity" placeholder="请输入你注册的身份证号">
                             <label>用户名：</label>
                             <input class="form-control" type="text" name="username" placeholder="请输入你注册的用户名">
+                            <label>验证码：</label>
+                            <div class="row">
+                                <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="验证码,看不清可点击图片刷新" name="authcode" type="text"> </div>
+                                <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage" style="cursor:pointer;"></div>
+                            </div>
                         </div>
                         <a id="forget" class="btn btn-primary">找回密码</a>
                         <a id="close" class="btn btn-primary">关闭</a>

@@ -28,10 +28,16 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     private ParamRepository paramRepository;
 
     @Override
-    public Result login(HttpSession session, User user) {
-        List<User> userList = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+    public Result login(HttpSession session, User user,String authcode) {
         Result result = new Result();
+        if(!authcode.equals(session.getAttribute("verCode"))){
+            result.setStatus(2);
+            result.setMessage("登录失败，你的验证码输入不正确！");
+            return result;
+        }
+        List<User> userList = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (ServiceUtils.isReseachListOK(result, userList)) {
+            session.removeAttribute("user");
             session.setAttribute("user", userList.get(0));
         }
         return result;
@@ -45,33 +51,16 @@ public class FrameWorkServiceImpl implements FrameWorkService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result register(HttpSession session, User user) {
+    public Result register(HttpSession session, User user,String authcode) {
         user.setTime(DateUtils.getCurrentTimeSecond());
         Result result = new Result();
-        if (ServiceUtils.isBlankValue(result, user.getName())) {
-            result.setMessage("注册失败，你输入的的姓名不能为空！");
+        if(!authcode.equals(session.getAttribute("verCode"))){
+            result.setStatus(2);
+            result.setMessage("注册失败，你的验证码输入不正确！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
-            result.setMessage("注册失败，你输入的的身份证号码不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getPhone())) {
-            result.setMessage("注册失败，你输入的的联系电话不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
-            result.setMessage("注册失败，你输入的的用户名不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getPassword())) {
-            result.setMessage("注册失败，你输入的的密码不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getDepartment())) {
-            result.setMessage("注册失败，你输入的的科室不能为空！");
-            return result;
-        }
+        result = UserRegister.isRegisterOK(result,user);
+        if(result.getStatus() != 1) return result;
         if (ServiceUtils.isReseachListOK(result, userRepository.findByUsername(user.getUsername()))) {
             result.setMessage("注册失败，你的输入的用户名已经被注册！");
             result.setStatus(2);
@@ -91,8 +80,13 @@ public class FrameWorkServiceImpl implements FrameWorkService {
 
 
     @Override
-    public Result forget(HttpSession session, User user) {
+    public Result forget(HttpSession session, User user,String authcode) {
         Result result = new Result();
+        if(!authcode.equals(session.getAttribute("verCode"))){
+            result.setStatus(2);
+            result.setMessage("找回密码失败，你的验证码输入不正确！");
+            return result;
+        }
         if (ServiceUtils.isBlankValue(result, user.getName())) {
             result.setMessage("找回密码失败，你输入的的姓名不能为空！");
             return result;
@@ -114,30 +108,8 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result update(HttpSession session, User user) {
         Result result = new Result();
-        if (ServiceUtils.isBlankValue(result, user.getName())) {
-            result.setMessage("修改失败，你输入的的姓名不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
-            result.setMessage("修改失败，你输入的的身份证号码不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getPhone())) {
-            result.setMessage("修改失败，你输入的的联系电话不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
-            result.setMessage("修改失败，你输入的的用户名不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getPassword())) {
-            result.setMessage("修改失败，你输入的的密码不能为空！");
-            return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getDepartment())) {
-            result.setMessage("修改失败，你输入的的科室不能为空！");
-            return result;
-        }
+        result = UserRegister.isUpdateOK(result,user);
+        if(result.getStatus() != 1) return result;
         if (ServiceUtils.isReseachListOK(result, userRepository.findByUsernameAndIdNot(user.getUsername(), user.getId()))) {
             result.setMessage("修改失败，你的输入的用户名已经被注册！");
             result.setStatus(2);

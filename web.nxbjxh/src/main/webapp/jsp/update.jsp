@@ -111,8 +111,8 @@
                             </select>
                             <label>身份证号：</label>
                             <input class="form-control" type="text"  name="identity" placeholder="身份证号支持15位、18位两种，支持尾数为X">
-                            <label>联系方式：</label>
-                            <input class="form-control" type="tel"  name="phone" placeholder="手机号码为11位数字，电话号码为小于等于20位数字，中间可带-，支持区号、分机号">
+                            <label>联系电话：</label>
+                            <input class="form-control" type="tel"  name="phone" placeholder="手机号码为11位数字，座机号码为小于等于12位数字，区号后可带-">
                             <label>用户名：</label>
                             <input class="form-control" type="text" name="username" placeholder="用户名仅支持字母、数字、下划线，长度为3到16个字符">
                             <label>密 码：</label>
@@ -120,9 +120,9 @@
                             <label>确认密码：</label>
                             <input class="form-control" type="password"  name="password2" placeholder="输入一致的密码">
                             <label>单 位：</label>
-                            <input class="form-control" type="text" name="unit" placeholder="请输入自己的单位">
+                            <input class="form-control" name="unit" placeholder="请输入自己的单位中文名称(不支持英文、拼音、数字)">
                             <label>科 室：</label>
-                            <input class="form-control" type="text" name="department" placeholder="请输入自己的科室">
+                            <input class="form-control" name="department" placeholder="请输入自己的科室中文名称(不支持英文、拼音、数字)">
                             <label>职 称：</label>
                             <select id="title" class="form-control" name="title">
                             </select>

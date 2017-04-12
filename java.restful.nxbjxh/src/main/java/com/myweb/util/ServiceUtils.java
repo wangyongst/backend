@@ -16,12 +16,12 @@ public class ServiceUtils {
     //status说明
     //0，未选择
     //1，正常结果或对象结果
-    //2，系统异常
+    //2，非正常结果
     //3，选择了多条记录
     //4，保存条件己存在
-    //5, 必须值不能为空
-    //6, 查询结果为空
-    //7, List结果
+    //5，必须值不能为空
+    //6，查询结果为空
+    //7，List结果
 
     public static void isNotSelect(Result result) {
         result.setStatus(0);

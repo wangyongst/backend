@@ -23,8 +23,8 @@ public class FrameWorkController {
     //登录
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.PUT)
-    public Result login(HttpSession session, @ModelAttribute User user) {
-        return frameWorkService.login(session, user);
+    public Result login(HttpSession session, @ModelAttribute User user,@RequestParam ( "authcode" ) String authcode) {
+        return frameWorkService.login(session, user,authcode);
     }
 
     //注销
@@ -38,21 +38,22 @@ public class FrameWorkController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         Map map = new HashMap();
+        map.put("right","xuexi/home.do");
         return new ModelAndView("home", map);
     }
 
     //注册
     @ResponseBody
     @RequestMapping(value = "regist", method = RequestMethod.PUT)
-    public Result regist(HttpSession session,@ModelAttribute User user) {
-        return frameWorkService.register(session,user);
+    public Result regist(HttpSession session,@ModelAttribute User user,@RequestParam ( "authcode" ) String authcode) {
+        return frameWorkService.register(session,user,authcode);
     }
 
     //找回密码
     @ResponseBody
     @RequestMapping(value = "forget", method = RequestMethod.GET)
-    public Result forget(HttpSession session,@ModelAttribute User user) {
-        return frameWorkService.forget(session,user);
+    public Result forget(HttpSession session,@ModelAttribute User user,@RequestParam ( "authcode" ) String authcode) {
+        return frameWorkService.forget(session,user,authcode);
     }
 
     //修改

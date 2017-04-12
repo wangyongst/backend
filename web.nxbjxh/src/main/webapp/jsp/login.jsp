@@ -18,12 +18,14 @@
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         showAlert($("#alertA"), "danger");
+                        $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
                     },
                     success: function (result) {
                         if (result.status == 1) {
                             window.location.href = "<%=basePath%>framework/home.do";
                         } else {
                             showAlert($("#alertA"), "warning", result.message);
+                            $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
                         }
                     }
                 });
@@ -38,10 +40,7 @@
             })
 
             $("#authImage").click(function () {
-
-
-                $("#authImage").src="<%=basePath%>authImage.do";
-                alert( $("#authImage"));
+                $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
             })
 
         });
@@ -60,14 +59,14 @@
     </div><!-- /.col-->
 </div><!-- /.row -->
 
-<div class="row col-md-8 col-md-offset-2" id="alertA" hidden></div>
+<div class="row" id="alertA" hidden></div>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
             <div class="panel-heading">宁夏保健学会学习平台</div>
             <div class="panel-body">
-                <div class="col-md-5 col-md-offset-1">
+                <div class="col-md-7 col-md-offset-0">
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             网站公告栏
@@ -89,21 +88,22 @@
                             <form role="form" id="userForm">
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="用户名" name="username" type="text" autofocus="true">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="密码" name="password" type="password" value="">
-                                    </div>
-                                    <div class="form-group">
+                                        <label>用户名：</label>
+                                        <input class="form-control" placeholder="请输入用户名" name="username" type="text" autofocus="true">
+                                        <label>密码：</label>
+                                        <input class="form-control" placeholder="请输入密码" name="password" type="password" value="">
+                                        <label>验证码：</label>
                                         <div class="row">
-                                        <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="验证码,如看不清，请点击图片刷新" name="authcode" type="text"> </div>
-                                        <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage"></div>
+                                        <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="看不清可点击图片刷新" name="authcode" type="text"> </div>
+                                        <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage" style="cursor:pointer;"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                    <a id="login" class="btn btn-primary">登录</a>
-                                    <a id="register" class="btn btn-primary">注册</a>
-                                    <a id="forget" class="btn btn-primary">找回密码</a>
+                                        <div class="row col-md-offset-0">
+                                            <a id="login" class="btn btn-primary">登录</a>
+                                            <a id="register" class="btn btn-primary">注册</a>
+                                            <a id="forget" class="btn btn-primary">找回密码</a>
+                                        </div>
                                     </div>
                                 </fieldset>
                             </form>
