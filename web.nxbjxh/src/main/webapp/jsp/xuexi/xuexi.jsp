@@ -64,7 +64,6 @@
                 <div class="media">
                     <div id='myplayer'></div>
                     <script type='text/javascript'>
-                        alert();
                         jwplayer('myplayer').setup({
                             file: 'http://localhost:81/1.mp4',
                             width: '640',

@@ -1,6 +1,9 @@
 package com.myweb.pojo;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by BHWL on 2017-04-13.
@@ -17,7 +20,6 @@ public class Lesson {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -27,7 +29,7 @@ public class Lesson {
     }
 
     @Basic
-    @Column(name = "course", nullable = true)
+    @Column(name = "course", nullable = false)
     public Integer getCourse() {
         return course;
     }
@@ -91,15 +93,15 @@ public class Lesson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Lesson lession = (Lesson) o;
+        Lesson lesson = (Lesson) o;
 
-        if (id != null ? !id.equals(lession.id) : lession.id != null) return false;
-        if (course != null ? !course.equals(lession.course) : lession.course != null) return false;
-        if (name != null ? !name.equals(lession.name) : lession.name != null) return false;
-        if (teacher != null ? !teacher.equals(lession.teacher) : lession.teacher != null) return false;
-        if (introduce != null ? !introduce.equals(lession.introduce) : lession.introduce != null) return false;
-        if (picture != null ? !picture.equals(lession.picture) : lession.picture != null) return false;
-        if (url != null ? !url.equals(lession.url) : lession.url != null) return false;
+        if (id != null ? !id.equals(lesson.id) : lesson.id != null) return false;
+        if (course != null ? !course.equals(lesson.course) : lesson.course != null) return false;
+        if (name != null ? !name.equals(lesson.name) : lesson.name != null) return false;
+        if (teacher != null ? !teacher.equals(lesson.teacher) : lesson.teacher != null) return false;
+        if (introduce != null ? !introduce.equals(lesson.introduce) : lesson.introduce != null) return false;
+        if (picture != null ? !picture.equals(lesson.picture) : lesson.picture != null) return false;
+        if (url != null ? !url.equals(lesson.url) : lesson.url != null) return false;
 
         return true;
     }

@@ -1,6 +1,9 @@
 package com.myweb.pojo;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created by BHWL on 2017-04-13.
@@ -9,6 +12,7 @@ import javax.persistence.*;
 public class Course {
     private Integer id;
     private String name;
+    private String introduce;
     private String itemno;
     private String picture;
     private String unit;
@@ -16,7 +20,6 @@ public class Course {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -33,6 +36,16 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "introduce", nullable = true, length = 255)
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
     }
 
     @Basic
@@ -84,6 +97,7 @@ public class Course {
 
         if (id != null ? !id.equals(course.id) : course.id != null) return false;
         if (name != null ? !name.equals(course.name) : course.name != null) return false;
+        if (introduce != null ? !introduce.equals(course.introduce) : course.introduce != null) return false;
         if (itemno != null ? !itemno.equals(course.itemno) : course.itemno != null) return false;
         if (picture != null ? !picture.equals(course.picture) : course.picture != null) return false;
         if (unit != null ? !unit.equals(course.unit) : course.unit != null) return false;
@@ -96,6 +110,7 @@ public class Course {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (introduce != null ? introduce.hashCode() : 0);
         result = 31 * result + (itemno != null ? itemno.hashCode() : 0);
         result = 31 * result + (picture != null ? picture.hashCode() : 0);
         result = 31 * result + (unit != null ? unit.hashCode() : 0);
