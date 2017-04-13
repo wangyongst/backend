@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by BHWL on 2017-04-13.
  */
 @Entity
-public class Lesson {
+public class Lession {
     private Integer id;
     private String course;
     private String name;
@@ -102,16 +102,16 @@ public class Lesson {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Lesson lesson = (Lesson) o;
+        Lession lession = (Lession) o;
 
-        if (id != null ? !id.equals(lesson.id) : lesson.id != null) return false;
-        if (course != null ? !course.equals(lesson.course) : lesson.course != null) return false;
-        if (name != null ? !name.equals(lesson.name) : lesson.name != null) return false;
-        if (teacher != null ? !teacher.equals(lesson.teacher) : lesson.teacher != null) return false;
-        if (title != null ? !title.equals(lesson.title) : lesson.title != null) return false;
-        if (introduce != null ? !introduce.equals(lesson.introduce) : lesson.introduce != null) return false;
-        if (picture != null ? !picture.equals(lesson.picture) : lesson.picture != null) return false;
-        if (url != null ? !url.equals(lesson.url) : lesson.url != null) return false;
+        if (id != null ? !id.equals(lession.id) : lession.id != null) return false;
+        if (course != null ? !course.equals(lession.course) : lession.course != null) return false;
+        if (name != null ? !name.equals(lession.name) : lession.name != null) return false;
+        if (teacher != null ? !teacher.equals(lession.teacher) : lession.teacher != null) return false;
+        if (title != null ? !title.equals(lession.title) : lession.title != null) return false;
+        if (introduce != null ? !introduce.equals(lession.introduce) : lession.introduce != null) return false;
+        if (picture != null ? !picture.equals(lession.picture) : lession.picture != null) return false;
+        if (url != null ? !url.equals(lession.url) : lession.url != null) return false;
 
         return true;
     }

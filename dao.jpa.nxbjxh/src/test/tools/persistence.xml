@@ -4,7 +4,7 @@
         <class>com.myweb.pojo.User</class>
         <class>com.myweb.pojo.Course</class>
         <class>com.myweb.pojo.Param</class>
-        <class>com.myweb.pojo.Lesson</class>
+        <class>com.myweb.pojo.Lession</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/web"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
