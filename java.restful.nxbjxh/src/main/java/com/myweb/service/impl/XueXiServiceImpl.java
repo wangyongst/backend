@@ -1,15 +1,13 @@
 package com.myweb.service.impl;
 
-import com.myweb.dao.jpa.hibernate.CourseRepository;
-import com.myweb.dao.jpa.hibernate.LessonRepository;
-import com.myweb.dao.jpa.hibernate.ParamRepository;
-import com.myweb.dao.jpa.hibernate.UserRepository;
-import com.myweb.pojo.Course;
-import com.myweb.pojo.Lesson;
-import com.myweb.pojo.User;
+import com.myweb.dao.jpa.hibernate.*;
+import com.myweb.pojo.*;
+import com.myweb.pojo.Number;
 import com.myweb.service.XueXiService;
+import com.myweb.util.DateUtils;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -17,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 @Service("xueXiService")
@@ -34,6 +33,15 @@ public class XueXiServiceImpl implements XueXiService {
 
     @Autowired
     private ParamRepository paramRepository;
+
+    @Autowired
+    private LessonrecordRepository lessonrecordRepository;
+
+    @Autowired
+    private CourserecordRepository courserecordRepository;
+
+    @Autowired
+    private  NumberRepository numberRepository;
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
@@ -79,10 +87,57 @@ public class XueXiServiceImpl implements XueXiService {
     }
 
     @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Map makeLesson(HttpSession session, Lesson lesson, Map map) {
         Lesson currentLesson = lessonRepository.findOne(lesson.getId());
         map.put("currentLesson",currentLesson);
         map.put("currentCourse",courseRepository.findOne(currentLesson.getCourse()));
+        List lessonrordList = lessonrecordRepository.findByLesson(currentLesson.getId());
+        if(lessonrordList == null || lessonrordList.size() ==0){
+            Lessonrecord lessonrecord = new Lessonrecord();
+            lessonrecord.setLesson(currentLesson.getId());
+            lessonrecord.setBegintime(DateUtils.getCurrentTimeSecond());
+            lessonrecord.setStatus(0);
+            lessonrecordRepository.save(lessonrecord);
+        }
+        List courserecordList = courserecordRepository.findByCourse(currentLesson.getCourse());
+        if(courserecordList == null || courserecordList.size() == 0 ){
+            Courserecord courserecord = new Courserecord();
+            courserecord.setCourse(currentLesson.getCourse());
+            courserecord.setBegintime(DateUtils.getCurrentTimeSecond());
+            courserecordRepository.save(courserecord);
+        }
         return map;
     }
+
+    @Override
+    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    public Result bangding(HttpSession session, Number number) {
+        Result result = new Result();
+        if(StringUtils.isBlank(number.getNumber())){
+            result.setStatus(2);
+            result.setMessage("绑定失败，你的输入的学习卡号为空，请重新输入！");
+            return result;
+        }
+        if (ServiceUtils.isReseachListOK(result, numberRepository.findByNumber(number.getNumber()))) {
+            result.setMessage("绑定失败，你的输入的学习卡号不存在，请重新输入！");
+            result.setStatus(2);
+            return result;
+        }
+        if (ServiceUtils.isReseachListOK(result, userRepository.findByNumber(number.getNumber()))) {
+            result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
+            result.setStatus(2);
+            return result;
+        }
+        User user = (User)session.getAttribute("user");
+        if (user != null) {
+            user.setNumber(number.getNumber());
+            userRepository.save(user);
+            session.setAttribute("user", userRepository.findOne(user.getId()));
+            return ServiceUtils.isCRUDOK("update", new Result(), 1);
+        } else {
+            return ServiceUtils.isCRUDOK("update", new Result(), 0);
+        }
+    }
+
 }

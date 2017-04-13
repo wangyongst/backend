@@ -3,6 +3,7 @@ package com.myweb.service;
 
 import com.myweb.pojo.Course;
 import com.myweb.pojo.Lesson;
+import com.myweb.pojo.Number;
 import com.myweb.pojo.User;
 import com.myweb.util.Result;
 
@@ -20,4 +21,5 @@ public interface XueXiService {
 
     public Map makeLesson(HttpSession session, Lesson lesson, Map map);
 
+    public Result bangding(HttpSession session, Number number);
 }

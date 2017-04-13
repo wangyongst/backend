@@ -58,9 +58,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="xuexi/update.do">修改个人信息 <span class="sr-only">(current)</span></a></li>
+                <li><a href="xuexi/update.do">修改个人信息</a></li>
                 <li><a href="xuexi/home.do">在线学习</a></li>
-                <li><a href="xuexi/xuefen.do">申请学分 </a></li>
+                <li  class="active"><a href="xuexi/xuefen.do">申请学分 <span class="sr-only">(current)</span> </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="framework/logout.do">退出学习平台</a></li>

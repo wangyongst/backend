@@ -1,9 +1,6 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by BHWL on 2017-04-13.
@@ -17,6 +14,7 @@ public class Courserecord {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -26,7 +24,7 @@ public class Courserecord {
     }
 
     @Basic
-    @Column(name = "course", nullable = true)
+    @Column(name = "course", nullable = false)
     public Integer getCourse() {
         return course;
     }

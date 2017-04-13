@@ -1,9 +1,6 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by BHWL on 2017-04-13.
@@ -11,8 +8,10 @@ import javax.persistence.Id;
 @Entity
 public class Lessonrecord {
     private Integer id;
-    private String lesson;
+    private Integer lesson;
     private String begintime;
+    private String endtime;
+    private Integer status;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -25,12 +24,13 @@ public class Lessonrecord {
     }
 
     @Basic
-    @Column(name = "lesson", nullable = true)
-    public String getLesson() {
+    @Column(name = "lesson", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Integer getLesson() {
         return lesson;
     }
 
-    public void setLesson(String lesson) {
+    public void setLesson(Integer lesson) {
         this.lesson = lesson;
     }
 
@@ -44,6 +44,26 @@ public class Lessonrecord {
         this.begintime = begintime;
     }
 
+    @Basic
+    @Column(name = "endtime", nullable = true, length = 255)
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    @Basic
+    @Column(name = "status", nullable = true)
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,6 +74,8 @@ public class Lessonrecord {
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (lesson != null ? !lesson.equals(that.lesson) : that.lesson != null) return false;
         if (begintime != null ? !begintime.equals(that.begintime) : that.begintime != null) return false;
+        if (endtime != null ? !endtime.equals(that.endtime) : that.endtime != null) return false;
+        if (status != null ? !status.equals(that.status) : that.status != null) return false;
 
         return true;
     }
@@ -63,6 +85,8 @@ public class Lessonrecord {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (lesson != null ? lesson.hashCode() : 0);
         result = 31 * result + (begintime != null ? begintime.hashCode() : 0);
+        result = 31 * result + (endtime != null ? endtime.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }
 }
