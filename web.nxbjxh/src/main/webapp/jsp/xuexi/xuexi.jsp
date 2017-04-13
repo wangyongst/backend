@@ -64,7 +64,7 @@
                 <div class="media">
                     <div id='myplayer'></div>
                     <script type='text/javascript'>
-                        alert('${currentLesson.url}')
+                        alert("${currentLesson.url}");
                         jwplayer('myplayer').setup({
                             file: '${currentLesson.url}',
                             width: '640',

@@ -34,6 +34,6 @@ public class XueXiServiceImpl implements XueXiService {
     @Override
     public Map makeLesson(HttpSession session, Lesson lesson, Map map) {
         map.put("currentLesson",lessonRepository.findOne(lesson.getId()));
-        return null;
+        return map;
     }
 }
