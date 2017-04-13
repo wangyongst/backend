@@ -40,4 +40,3 @@
 <script src="js/bootstrap-datepicker.js"></script>
 <script src="js/bootstrap-table.js"></script>
 <script src="js/myJS.js"></script>
-<script src="js/nxbjxh.js"></script>

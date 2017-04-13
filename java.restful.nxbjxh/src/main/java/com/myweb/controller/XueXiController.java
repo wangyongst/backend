@@ -58,7 +58,7 @@ public class XueXiController {
     @RequestMapping(value = "bangding", method = RequestMethod.PUT)
     public Result bangding(HttpSession session, @ModelAttribute Number number) {
         User user = (User)session.getAttribute("user");
-        if(StringUtils.isBlank(user.getNumber())){
+        if(!StringUtils.isBlank(user.getNumber())){
             return new Result();
         }else{
             return xueXiService.bangding(session,number);

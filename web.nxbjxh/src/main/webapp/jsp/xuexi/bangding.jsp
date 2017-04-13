@@ -21,7 +21,6 @@
                         showAlert($("#alertA"), "danger");
                     },
                     success: function (result) {
-                        alert(result.status);
                         if (result.status == 1) {
                             window.location.href="<%=basePath%>xuexi/xuefen.do"
                         } else {
