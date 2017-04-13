@@ -8,15 +8,15 @@ import javax.servlet.http.HttpSession;
 
 public interface FrameWorkService {
 
-    Result login(HttpSession session, User user,String authcode);
+    public Result login(HttpSession session, User user,String authcode);
 
-    Result logout(HttpSession session);
+    public Result logout(HttpSession session);
 
-    Result register(HttpSession session, User user, String authcode);
+    public Result register(HttpSession session, User user, String authcode);
 
-    Result forget(HttpSession session, User user, String authcode);
+    public Result forget(HttpSession session, User user, String authcode);
 
-    Result update(HttpSession session, User user);
+    public Result update(HttpSession session, User user);
 
     public Result listParams(HttpSession session, Param param);
 

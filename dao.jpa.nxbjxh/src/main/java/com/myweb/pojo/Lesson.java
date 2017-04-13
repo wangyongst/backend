@@ -6,12 +6,11 @@ import javax.persistence.*;
  * Created by BHWL on 2017-04-13.
  */
 @Entity
-public class Lession {
+public class Lesson {
     private Integer id;
-    private String course;
+    private Integer course;
     private String name;
     private String teacher;
-    private String title;
     private String introduce;
     private String picture;
     private String url;
@@ -28,12 +27,12 @@ public class Lession {
     }
 
     @Basic
-    @Column(name = "course", nullable = true, length = 255)
-    public String getCourse() {
+    @Column(name = "course", nullable = true)
+    public Integer getCourse() {
         return course;
     }
 
-    public void setCourse(String course) {
+    public void setCourse(Integer course) {
         this.course = course;
     }
 
@@ -55,16 +54,6 @@ public class Lession {
 
     public void setTeacher(String teacher) {
         this.teacher = teacher;
-    }
-
-    @Basic
-    @Column(name = "title", nullable = true, length = 255)
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     @Basic
@@ -102,13 +91,12 @@ public class Lession {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Lession lession = (Lession) o;
+        Lesson lession = (Lesson) o;
 
         if (id != null ? !id.equals(lession.id) : lession.id != null) return false;
         if (course != null ? !course.equals(lession.course) : lession.course != null) return false;
         if (name != null ? !name.equals(lession.name) : lession.name != null) return false;
         if (teacher != null ? !teacher.equals(lession.teacher) : lession.teacher != null) return false;
-        if (title != null ? !title.equals(lession.title) : lession.title != null) return false;
         if (introduce != null ? !introduce.equals(lession.introduce) : lession.introduce != null) return false;
         if (picture != null ? !picture.equals(lession.picture) : lession.picture != null) return false;
         if (url != null ? !url.equals(lession.url) : lession.url != null) return false;
@@ -122,7 +110,6 @@ public class Lession {
         result = 31 * result + (course != null ? course.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (teacher != null ? teacher.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (introduce != null ? introduce.hashCode() : 0);
         result = 31 * result + (picture != null ? picture.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);

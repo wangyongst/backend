@@ -20,6 +20,7 @@ public class XueXiController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         Map map = new HashMap();
+
         return new ModelAndView("xuexi/home", map);
     }
 }
