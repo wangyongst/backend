@@ -1,114 +1,68 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
- * Created by BHWL on 2017-04-06.
+ * Created by BHWL on 2017-04-13.
  */
 @Entity
 public class Course {
-    private String courseId;
-    private String courseName;
-    private String itemNo;
-    private String assignNum;
-    private String mainPeople;
-    private String expert;
-    private String expertUnit;
-    private String assignClass;
-    private String itemUnit;
+    private Integer id;
+    private String name;
+    private String itemno;
+    private String picture;
+    private String unit;
     private String year;
 
     @Id
-    @Column(name = "course_id", nullable = false, length = 50)
-    public String getCourseId() {
-        return courseId;
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    public Integer getId() {
+        return id;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
-
-    @Basic
-    @Column(name = "course_name", nullable = true, length = 255)
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "item_no", nullable = true, length = 255)
-    public String getItemNo() {
-        return itemNo;
+    @Column(name = "name", nullable = true, length = 255)
+    public String getName() {
+        return name;
     }
 
-    public void setItemNo(String itemNo) {
-        this.itemNo = itemNo;
-    }
-
-    @Basic
-    @Column(name = "assign_num", nullable = true, length = 10)
-    public String getAssignNum() {
-        return assignNum;
-    }
-
-    public void setAssignNum(String assignNum) {
-        this.assignNum = assignNum;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
-    @Column(name = "main_people", nullable = true, length = 50)
-    public String getMainPeople() {
-        return mainPeople;
+    @Column(name = "itemno", nullable = true, length = 255)
+    public String getItemno() {
+        return itemno;
     }
 
-    public void setMainPeople(String mainPeople) {
-        this.mainPeople = mainPeople;
-    }
-
-    @Basic
-    @Column(name = "expert", nullable = true, length = 50)
-    public String getExpert() {
-        return expert;
-    }
-
-    public void setExpert(String expert) {
-        this.expert = expert;
+    public void setItemno(String itemno) {
+        this.itemno = itemno;
     }
 
     @Basic
-    @Column(name = "expert_unit", nullable = true, length = 255)
-    public String getExpertUnit() {
-        return expertUnit;
+    @Column(name = "picture", nullable = true, length = 255)
+    public String getPicture() {
+        return picture;
     }
 
-    public void setExpertUnit(String expertUnit) {
-        this.expertUnit = expertUnit;
-    }
-
-    @Basic
-    @Column(name = "assign_class", nullable = true, length = 10)
-    public String getAssignClass() {
-        return assignClass;
-    }
-
-    public void setAssignClass(String assignClass) {
-        this.assignClass = assignClass;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     @Basic
-    @Column(name = "item_unit", nullable = true, length = 255)
-    public String getItemUnit() {
-        return itemUnit;
+    @Column(name = "unit", nullable = true, length = 255)
+    public String getUnit() {
+        return unit;
     }
 
-    public void setItemUnit(String itemUnit) {
-        this.itemUnit = itemUnit;
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     @Basic
@@ -128,15 +82,11 @@ public class Course {
 
         Course course = (Course) o;
 
-        if (courseId != null ? !courseId.equals(course.courseId) : course.courseId != null) return false;
-        if (courseName != null ? !courseName.equals(course.courseName) : course.courseName != null) return false;
-        if (itemNo != null ? !itemNo.equals(course.itemNo) : course.itemNo != null) return false;
-        if (assignNum != null ? !assignNum.equals(course.assignNum) : course.assignNum != null) return false;
-        if (mainPeople != null ? !mainPeople.equals(course.mainPeople) : course.mainPeople != null) return false;
-        if (expert != null ? !expert.equals(course.expert) : course.expert != null) return false;
-        if (expertUnit != null ? !expertUnit.equals(course.expertUnit) : course.expertUnit != null) return false;
-        if (assignClass != null ? !assignClass.equals(course.assignClass) : course.assignClass != null) return false;
-        if (itemUnit != null ? !itemUnit.equals(course.itemUnit) : course.itemUnit != null) return false;
+        if (id != null ? !id.equals(course.id) : course.id != null) return false;
+        if (name != null ? !name.equals(course.name) : course.name != null) return false;
+        if (itemno != null ? !itemno.equals(course.itemno) : course.itemno != null) return false;
+        if (picture != null ? !picture.equals(course.picture) : course.picture != null) return false;
+        if (unit != null ? !unit.equals(course.unit) : course.unit != null) return false;
         if (year != null ? !year.equals(course.year) : course.year != null) return false;
 
         return true;
@@ -144,15 +94,11 @@ public class Course {
 
     @Override
     public int hashCode() {
-        int result = courseId != null ? courseId.hashCode() : 0;
-        result = 31 * result + (courseName != null ? courseName.hashCode() : 0);
-        result = 31 * result + (itemNo != null ? itemNo.hashCode() : 0);
-        result = 31 * result + (assignNum != null ? assignNum.hashCode() : 0);
-        result = 31 * result + (mainPeople != null ? mainPeople.hashCode() : 0);
-        result = 31 * result + (expert != null ? expert.hashCode() : 0);
-        result = 31 * result + (expertUnit != null ? expertUnit.hashCode() : 0);
-        result = 31 * result + (assignClass != null ? assignClass.hashCode() : 0);
-        result = 31 * result + (itemUnit != null ? itemUnit.hashCode() : 0);
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (itemno != null ? itemno.hashCode() : 0);
+        result = 31 * result + (picture != null ? picture.hashCode() : 0);
+        result = 31 * result + (unit != null ? unit.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
         return result;
     }

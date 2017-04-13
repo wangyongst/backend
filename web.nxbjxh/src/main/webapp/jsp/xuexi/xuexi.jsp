@@ -3,8 +3,13 @@
 <html>
 <head>
     <%@ include file="/jsp/base.jsp" %>
+    <script src="jwplayer/jwplayer.js"></script>
+    <script src="jwplayer/jwplayer.loader.swf"></script>
+    <!--这是KEY-->
+    <script>jwplayer.key="K1FkbLwx4yev30aJnbBUge9Yz8CQ25BWxo5a9Q==";</script>
     <title>宁夏保健学会学习平台-在线学习</title>
     <script type="text/javascript">
+
         $(function () {
 
             makeAlert($("#alertA"));
@@ -57,88 +62,14 @@
             <div class="panel-heading">在线学习</div>
             <div class="panel-body">
                 <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 pull-left">
-                            <a>
-                                <img class="media-object" src="picture/default.png" alt="警戒素与人体免疫相关研究">
-                            </a>
-                        </div>
-                        <div class="col-md-8 media-body pull-left">
-                            <h4 class="media-heading">警戒素与人体免疫相关研究</h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                            fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 col-md-offset-1 pull-left">
-                            <a href="#">
-                                <img class="media-object" src="picture/default.png" alt="警戒素与人体免疫相关研究">
-                            </a>
-                        </div>
-                        <div class="col-md-7 media-body pull-left">
-                            <h4 class="media-heading"><a>警戒素与人体免疫相关研究</a></h4>
-                            <a>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                            fringilla. Donec lacinia congue felis in faucibus.</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 col-md-offset-1 pull-left">
-                            <a href="#">
-                                <img class="media-object" src="picture/default.png" alt="警戒素与人体免疫相关研究">
-                            </a>
-                        </div>
-                        <div class="col-md-7 media-body pull-left">
-                            <h4 class="media-heading"><a>警戒素与人体免疫相关研究</a></h4>
-                            <a>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                                fringilla. Donec lacinia congue felis in faucibus.</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 col-md-offset-1 pull-left">
-                            <a href="#">
-                                <img class="media-object" src="picture/default.png" alt="警戒素与人体免疫相关研究">
-                            </a>
-                        </div>
-                        <div class="col-md-7 media-body pull-left">
-                            <h4 class="media-heading"><a>警戒素与人体免疫相关研究</a></h4>
-                            <a>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                                fringilla. Donec lacinia congue felis in faucibus.</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 col-md-offset-1 pull-left">
-                            <a href="#">
-                                <img class="media-object" src="picture/default.png" alt="警戒素与人体免疫相关研究">
-                            </a>
-                        </div>
-                        <div class="col-md-7 media-body pull-left">
-                            <h4 class="media-heading"><a>警戒素与人体免疫相关研究</a></h4>
-                            <a>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                                fringilla. Donec lacinia congue felis in faucibus.</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 col-md-offset-1 pull-left">
-                            <a href="#">
-                                <img class="media-object" src="picture/default.png" alt="警戒素与人体免疫相关研究">
-                            </a>
-                        </div>
-                        <div class="col-md-7 media-body pull-left">
-                            <h4 class="media-heading"><a>警戒素与人体免疫相关研究</a></h4>
-                            <a>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                                fringilla. Donec lacinia congue felis in faucibus.</a>
-                        </div>
-                    </div>
+                    <div id='myplayer'></div>
+                    <script type='text/javascript'>
+                        alert();
+                        jwplayer('myplayer').setup({
+                            file: 'http://localhost:81/1.mp4',
+                            width: '640',
+                            height: '480'});
+                    </script>
                 </div>
             </div>
         </div>

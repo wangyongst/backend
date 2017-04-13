@@ -9,7 +9,7 @@
 
             makeAlert($("#alertA"));
 
-            $("#login").click(function () {
+            function login() {
                 $.ajax({
                     type: "POST",
                     cache: "false",
@@ -18,31 +18,40 @@
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         showAlert($("#alertA"), "danger");
-                        $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
+                        $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
                     },
                     success: function (result) {
                         if (result.status == 1) {
                             window.location.href = "<%=basePath%>framework/home.do";
                         } else {
                             showAlert($("#alertA"), "warning", result.message);
-                            $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
+                            $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
                         }
                     }
                 });
-            })
+            };
+
+            $("#login").click(function () {
+                login();
+            });
+
+            $("#loginPanel").keypress(function (event) {
+                if(event.keyCode==13){
+                    login();
+                }
+            });
 
             $("#register").click(function () {
-               window.open("<%=basePath%>jsp/register.jsp");
-            })
+                window.open("<%=basePath%>jsp/register.jsp");
+            });
 
             $("#forget").click(function () {
                 window.open("<%=basePath%>jsp/forget.jsp");
-            })
+            });
 
             $("#authImage").click(function () {
-                $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
-            })
-
+                $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
+            });
         });
 
     </script>
@@ -54,9 +63,9 @@
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-<p><br><br><br><br></p>
-        </div>
-    </div><!-- /.col-->
+        <p><br><br><br><br></p>
+    </div>
+</div><!-- /.col-->
 </div><!-- /.row -->
 
 <div class="row" id="alertA" hidden></div>
@@ -81,7 +90,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4" id="loginPanel">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">请输入您的用户名及密码！</div>
                         <div class="panel-body">
@@ -94,8 +103,8 @@
                                         <input class="form-control" placeholder="请输入密码" name="password" type="password" value="">
                                         <label>验证码：</label>
                                         <div class="row">
-                                        <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="看不清可点击图片刷新" name="authcode" type="text"> </div>
-                                        <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage" style="cursor:pointer;"></div>
+                                            <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="看不清可点击图片刷新" name="authcode" type="text"></div>
+                                            <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage" style="cursor:pointer;"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -120,7 +129,7 @@
 </div><!-- /.row -->
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <p>技术支持：甘肃七言志教育科技有限公司<br>客服电话：4006969296  0931-2111188 <br>QQ：2715528741<br>QQ群：68638150<br>备案信息：陇ICP备14000281号-1 <br></p>
+        <p>技术支持：甘肃七言志教育科技有限公司<br>客服电话：4006969296 0931-2111188 <br>QQ：2715528741<br>QQ群：68638150<br>备案信息：陇ICP备14000281号-1 <br></p>
     </div>
 </div><!-- /.col-->
 </div><!-- /.row -->
