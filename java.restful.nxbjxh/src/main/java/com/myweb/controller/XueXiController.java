@@ -3,7 +3,9 @@ package com.myweb.controller;
 
 import com.myweb.pojo.Course;
 import com.myweb.pojo.Lesson;
+import com.myweb.pojo.User;
 import com.myweb.service.XueXiService;
+import com.myweb.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,21 @@ public class XueXiController {
 
     @Autowired
     private XueXiService xueXiService;
+
+
+    //修改
+    @ResponseBody
+    @RequestMapping(value = "updateUser", method = RequestMethod.POST)
+    public Result updateUser(HttpSession session, @ModelAttribute User user) {
+        return xueXiService.updateUser(session,user);
+    }
+
+    //修改
+    @RequestMapping(value = "update", method = RequestMethod.GET)
+    public ModelAndView update(HttpSession session) {
+        Map map = new HashMap();
+        return new ModelAndView("xuexi/update",xueXiService.update(session,map));
+    }
 
     //首页
     @RequestMapping(value = "home", method = RequestMethod.GET)

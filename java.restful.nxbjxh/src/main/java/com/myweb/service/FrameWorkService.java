@@ -5,6 +5,7 @@ import com.myweb.pojo.User;
 import com.myweb.util.Result;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 public interface FrameWorkService {
 
@@ -14,12 +15,8 @@ public interface FrameWorkService {
 
     public Result register(HttpSession session, User user, String authcode);
 
+    public Map regist(HttpSession session, Map map);
+
     public Result forget(HttpSession session, User user, String authcode);
-
-    public Result update(HttpSession session, User user);
-
-    public Result listParams(HttpSession session, Param param);
-
-    public Result getUser(HttpSession session);
 
 }

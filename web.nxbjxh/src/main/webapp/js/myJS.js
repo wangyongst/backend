@@ -16,7 +16,7 @@ function select() {
 
 function showAlert(alert, level, message) {
     if (level == 'danger') {
-        $(alert).find("div div").attr("class", "alert alert-danger");
+        $(alert).find("div div").attr("class", "alert alert-danger"); //bg
         $(alert).find("div div span").eq(0).attr("class", "glyphicon glyphicon-exclamation-sign");
         $(alert).find("div div span").eq(1).text("操作失败，请检查您的输入，如有问题请联系管理员，电话：4006969296！");
     } else if (level == 'warning') {

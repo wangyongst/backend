@@ -22,7 +22,7 @@
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            window.location.href = "<%=basePath%>framework/home.do";
+                            window.location.href = "<%=basePath%>xuexi/home.do";
                         } else {
                             showAlert($("#alertA"), "warning", result.message);
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
@@ -42,7 +42,7 @@
             });
 
             $("#register").click(function () {
-                window.open("<%=basePath%>jsp/register.jsp");
+                window.open("<%=basePath%>framework/regist.do");
             });
 
             $("#forget").click(function () {
@@ -67,8 +67,6 @@
     </div>
 </div><!-- /.col-->
 </div><!-- /.row -->
-
-<div class="row" id="alertA" hidden></div>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -119,10 +117,9 @@
                         </div>
                     </div>
                 </div><!-- /.col-->
+                <div class="row" id="alertA" hidden></div>
             </div>
         </div>
-
-
     </div><!--/.col-->
 
 

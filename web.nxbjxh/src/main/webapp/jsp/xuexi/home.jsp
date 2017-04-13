@@ -5,6 +5,7 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-在线学习</title>
+
     <script type="text/javascript">
         $(function () {
         });
@@ -14,54 +15,75 @@
 </head>
 
 <body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">点击展开菜单</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="framework/home.do">宁夏保健学会学习平台</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="xuexi/update.do">修改个人信息 </a></li>
+                <li class="active"><a href="xuexi/home.do">在线学习<span class="sr-only">(current)</span></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="framework/logout.do">退出学习平台</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
 <div class="row">
-    <div class="col-md-8 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary">
             <div class="panel-heading">在线学习</div>
             <div class="panel-body">
-                <div class="media">
-                    <div class="row">
-                        <div class="col-md-1 pull-left">
+                <ul class="media-list">
+                    <li class="media">
+                        <div class="media-left">
                             <a>
                                 <img class="media-object" src="${currentCourse.picture}" alt="${currentCourse.name}">
                             </a>
                         </div>
-                        <div class="col-md-8 media-body pull-left">
+                        <div class="media-body media-right">
                             <h4 class="media-heading">${currentCourse.name}</h4>
-                            ${currentCourse.introduce}
+                            <span class="col-md-8">${currentCourse.introduce}</span>
                         </div>
-                    </div>
-                </div>
-                <c:forEach items="${lessons}" var="lesson">
-                    <div class="media">
-                        <div class="row">
-                            <div class="col-md-1 col-md-offset-1 pull-left">
+                    </li>
+                    <c:forEach items="${lessons}" var="lesson">
+                        <div class="media">
+                            <div class="col-md-1 col-md-offset-1 media-left">
                                 <a href="xuexi/lesson.do?id=${lesson.id}">
                                     <img class="media-object" src="${lesson.picture}" alt="${lesson.name}">
                                 </a>
                             </div>
-                            <div class="col-md-7 media-body pull-left">
+                            <div class="media-body media-right">
                                 <h4 class="media-heading"><a href="xuexi/lesson.do?id=${lesson.id}">${lesson.name}</a></h4>
-                                <a href="xuexi/lesson.do?id=${lesson.id}">${lesson.introduce}.</a>
+                                <span class="col-md-8">${lesson.introduce}</span>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </ul>
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li>
-                            <a href="" aria-label="Previous">
+                            <a  href="xuexi/home.do" aria-label="First">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li><a href=".">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
+                        <c:forEach items="${total}" var="cour">
+                            <li><a href="xuexi/home.do?id=${cour.id}">${cour.id}</a></li>
+                        </c:forEach>
                         <li>
-                            <a href="" aria-label="Next">
+                            <a href="xuexi/home.do?id=${max}" aria-label="Last">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>

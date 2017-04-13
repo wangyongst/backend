@@ -22,7 +22,7 @@
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            showAlert($("#alertA"), "success","找回密码成功，请用你的密码是:"+result.data.password+",请妥善保管！");
+                            showAlert($("#alertA"), "success","找回密码成功，你的密码是:"+result.data.password+",请妥善保管！");
                             $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
                         }else{
                             showAlert($("#alertA"), "warning",result.message);
@@ -48,7 +48,7 @@
 
 <body>
 
-<div class="row" id="alertA" hidden></div>
+
 
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -74,6 +74,7 @@
                         <a id="close" class="btn btn-primary">关闭</a>
                     </form>
                 </div>
+                <div class="row" id="alertA" hidden></div>
             </div>
         </div>
     </div><!--/.col-->

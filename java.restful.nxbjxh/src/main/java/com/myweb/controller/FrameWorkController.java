@@ -34,18 +34,17 @@ public class FrameWorkController {
         return new ModelAndView("login");
     }
 
-    //首页
-    @RequestMapping(value = "home", method = RequestMethod.GET)
-    public ModelAndView home(HttpSession session) {
+    //注册
+    @RequestMapping(value = "regist", method = RequestMethod.GET)
+    public ModelAndView update(HttpSession session) {
         Map map = new HashMap();
-        map.put("right","xuexi/home.do");
-        return new ModelAndView("home", map);
+        return new ModelAndView("register",frameWorkService.regist(session,map));
     }
 
     //注册
     @ResponseBody
-    @RequestMapping(value = "regist", method = RequestMethod.PUT)
-    public Result regist(HttpSession session,@ModelAttribute User user,@RequestParam ( "authcode" ) String authcode) {
+    @RequestMapping(value = "registUser", method = RequestMethod.PUT)
+    public Result registUser(HttpSession session,@ModelAttribute User user,@RequestParam ( "authcode" ) String authcode) {
         return frameWorkService.register(session,user,authcode);
     }
 
@@ -55,26 +54,4 @@ public class FrameWorkController {
     public Result forget(HttpSession session,@ModelAttribute User user,@RequestParam ( "authcode" ) String authcode) {
         return frameWorkService.forget(session,user,authcode);
     }
-
-    //修改
-    @ResponseBody
-    @RequestMapping(value = "update", method = RequestMethod.POST)
-    public Result update(HttpSession session,@ModelAttribute User user) {
-        return frameWorkService.update(session,user);
-    }
-
-    //取参
-    @ResponseBody
-    @RequestMapping(value = "/get/param", method = RequestMethod.GET)
-    public Result getParams(HttpSession session,@ModelAttribute Param param) {
-        return frameWorkService.listParams(session,param);
-    }
-
-    //取用户
-    @ResponseBody
-    @RequestMapping(value = "/get/user", method = RequestMethod.GET)
-    public Result getUser(HttpSession session) {
-        return frameWorkService.getUser(session);
-    }
-
 }
