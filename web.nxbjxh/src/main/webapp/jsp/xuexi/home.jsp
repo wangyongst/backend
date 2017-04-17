@@ -56,7 +56,7 @@
                         </div>
                         <div class="media-body media-right">
                             <h4 class="media-heading">${currentCourse.name}</h4>
-                            <span class="col-md-8">${currentCourse.introduce}</span>
+                            <span class="col-md-11">${currentCourse.introduce}</span>
                         </div>
                     </li>
                     <c:forEach items="${lessons}" var="lesson">
@@ -68,7 +68,7 @@
                             </div>
                             <div class="media-body media-right">
                                 <h4 class="media-heading"><a href="xuexi/lesson.do?id=${lesson.id}">${lesson.name}</a></h4>
-                                <span class="col-md-8">${lesson.introduce}</span>
+                                <span class="col-md-10">${lesson.introduce}</span>
                             </div>
                         </div>
                     </c:forEach>

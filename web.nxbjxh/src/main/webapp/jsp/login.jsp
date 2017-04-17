@@ -4,6 +4,14 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-登录</title>
+
+    <style type="text/css">
+        body {
+            background-image: url("/picture/bj.jpg");
+            background-repeat: repeat
+        }
+    </style>
+
     <script type="text/javascript">
         $(function () {
 
@@ -36,7 +44,7 @@
             });
 
             $("#loginPanel").keypress(function (event) {
-                if(event.keyCode==13){
+                if (event.keyCode == 13) {
                     login();
                 }
             });
@@ -79,11 +87,13 @@
                             网站公告栏
                         </div>
                         <div class="panel-body">
-                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于系统更新，所有学员的登录名请使用身份证号码，密码还是和去年的一样，忘记密码请使用“找回密码”功能，登录后首先请完善个人信息，确认无误后再开始学习，遇到各种问题请咨询4006969296
+                            <p>
+                            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于系统更新，所有学员的登录名请使用身份证号码，密码还是和去年的一样，忘记密码请使用“找回密码”功能，登录后首先请完善个人信息，确认无误后再开始学习，遇到各种问题请咨询4006969296
                                 <br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于系统安全方面的原因，建议使用ie8以上或者谷歌浏览器，否则会出现页面显示不完整，无法完成注册等问题。
                                 <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;升级请点击 </p>
+                                <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;升级请点击 </h3></p>
                         </div>
                     </div>
                 </div>
@@ -118,17 +128,18 @@
                     </div>
                 </div><!-- /.col-->
                 <div class="row" id="alertA" hidden></div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-0">
+                        <p>技术支持：甘肃七言志教育科技有限公司<br>客服电话：4006969296 0931-2111188 <br>QQ：2715528741<br>QQ群：68638150<br>备案信息：陇ICP备14000281号-1 <br></p>
+                    </div>
+                </div><!-- /.col-->
             </div>
         </div>
     </div><!--/.col-->
 
 
 </div><!-- /.row -->
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        <p>技术支持：甘肃七言志教育科技有限公司<br>客服电话：4006969296 0931-2111188 <br>QQ：2715528741<br>QQ群：68638150<br>备案信息：陇ICP备14000281号-1 <br></p>
-    </div>
-</div><!-- /.col-->
+
 </div><!-- /.row -->
 </body>
 

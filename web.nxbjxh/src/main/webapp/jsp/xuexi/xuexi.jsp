@@ -3,6 +3,7 @@
 <html>
 <head>
     <%@ include file="/jsp/base.jsp" %>
+
     <script src="jwplayer/jwplayer.js"></script>
     <script src="jwplayer/jwplayer.loader.swf"></script>
     <!--这是KEY-->
@@ -30,7 +31,7 @@
 
 <body>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
