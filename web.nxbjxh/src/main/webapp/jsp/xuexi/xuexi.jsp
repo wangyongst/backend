@@ -18,9 +18,8 @@
                 $('#jiangyiModal').attr("class","modal fade bs-example-modal-lg");
                 $('#jiangyiModal').children().attr("class","modal-dialog modal-lg");
                 $('#jiangyiModal').find('.modal-body').children().remove();
-                $('#jiangyiModal').find('.modal-body').text('课程讲义');
+                $('#jiangyiModal').find('.modal-body').append('<embed src="${currentLesson.pdf}" width="100%" height="600px"> </embed> ');
                 $('#jiangyiSave').remove();
-                $('').
                 $('#jiangyiModal').modal('toggle');
             });
         });

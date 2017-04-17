@@ -1,9 +1,12 @@
 package com.myweb.pojo;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
- * Created by BHWL on 2017-04-13.
+ * Created by BHWL on 2017-04-17.
  */
 @Entity
 public class Lesson {
@@ -14,10 +17,10 @@ public class Lesson {
     private String introduce;
     private String picture;
     private String url;
+    private String pdf;
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -86,6 +89,16 @@ public class Lesson {
         this.url = url;
     }
 
+    @Basic
+    @Column(name = "pdf", nullable = true, length = 255)
+    public String getPdf() {
+        return pdf;
+    }
+
+    public void setPdf(String pdf) {
+        this.pdf = pdf;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,6 +113,7 @@ public class Lesson {
         if (introduce != null ? !introduce.equals(lesson.introduce) : lesson.introduce != null) return false;
         if (picture != null ? !picture.equals(lesson.picture) : lesson.picture != null) return false;
         if (url != null ? !url.equals(lesson.url) : lesson.url != null) return false;
+        if (pdf != null ? !pdf.equals(lesson.pdf) : lesson.pdf != null) return false;
 
         return true;
     }
@@ -113,6 +127,7 @@ public class Lesson {
         result = 31 * result + (introduce != null ? introduce.hashCode() : 0);
         result = 31 * result + (picture != null ? picture.hashCode() : 0);
         result = 31 * result + (url != null ? url.hashCode() : 0);
+        result = 31 * result + (pdf != null ? pdf.hashCode() : 0);
         return result;
     }
 }
