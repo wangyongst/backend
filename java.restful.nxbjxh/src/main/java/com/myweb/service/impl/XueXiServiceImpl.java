@@ -118,25 +118,20 @@ public class XueXiServiceImpl implements XueXiService {
             result.setStatus(2);
             result.setMessage("绑定失败，你的输入的学习卡号为空，请重新输入！");
             return result;
-        }
-        if (ServiceUtils.isReseachListOK(result, numberRepository.findByNumber(number.getNumber()))) {
+        }else if (!ServiceUtils.isReseachListOK(result, numberRepository.findByNumber(number.getNumber()))) {
             result.setMessage("绑定失败，你的输入的学习卡号不存在，请重新输入！");
             result.setStatus(2);
             return result;
-        }
-        if (ServiceUtils.isReseachListOK(result, userRepository.findByNumber(number.getNumber()))) {
+        }else if (ServiceUtils.isReseachListOK(result, userRepository.findByNumber(number.getNumber()))) {
             result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
             result.setStatus(2);
             return result;
-        }
-        User user = (User)session.getAttribute("user");
-        if (user != null) {
+        } else {
+            User user = (User) session.getAttribute("user");
             user.setNumber(number.getNumber());
             userRepository.save(user);
             session.setAttribute("user", userRepository.findOne(user.getId()));
             return ServiceUtils.isCRUDOK("update", new Result(), 1);
-        } else {
-            return ServiceUtils.isCRUDOK("update", new Result(), 0);
         }
     }
 

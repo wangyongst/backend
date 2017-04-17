@@ -9,9 +9,20 @@
     <script>jwplayer.key = "K1FkbLwx4yev30aJnbBUge9Yz8CQ25BWxo5a9Q==";</script>
     <title>宁夏保健学会学习平台-在线学习</title>
     <script type="text/javascript">
-
         $(function () {
 
+            makeModal($("#jiangyiModal"), "jiangyi", "1");
+
+            $("#jiangyi").click(function () {
+                $('#jiangyiModal').find('.modal-title').text('课程讲义');
+                $('#jiangyiModal').attr("class","modal fade bs-example-modal-lg");
+                $('#jiangyiModal').children().attr("class","modal-dialog modal-lg");
+                $('#jiangyiModal').find('.modal-body').children().remove();
+                $('#jiangyiModal').find('.modal-body').text('课程讲义');
+                $('#jiangyiSave').remove();
+                $('').
+                $('#jiangyiModal').modal('toggle');
+            });
         });
 
     </script>
@@ -80,10 +91,10 @@
                         </div>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success">课程讲义</button>
+                        <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-success">学习测验</button>
+                        <button id="test" type="button" class="btn btn-success">学习测验</button>
                     </div>
                 </div>
             </div>
@@ -91,6 +102,7 @@
     </div>
 </div><!--/.col-->
 </div><!-- /.row -->
+<div id="jiangyiModal"></div><!-- Modal -->
 </body>
 
 </html>

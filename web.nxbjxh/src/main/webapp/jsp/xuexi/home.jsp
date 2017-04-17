@@ -81,7 +81,7 @@
                             </a>
                         </li>
                         <c:forEach items="${total}" var="cour">
-                            <li><a href="xuexi/home.do?id=${cour.id}">${cour.id}</a></li>
+                            <li <c:if test="${cour.id == currentCourse.id}">class="active"</c:if>><a href="xuexi/home.do?id=${cour.id}">${cour.id}</a></li>
                         </c:forEach>
                         <li>
                             <a href="xuexi/home.do?id=${max}" aria-label="Last">
