@@ -51,7 +51,7 @@
                     <li class="media">
                         <div class="media-left">
                             <a>
-                                <img class="media-object" src="${currentCourse.picture}" alt="${currentCourse.name}">
+                                <img class="media-object" src="${currentCourse.picture}" alt="${currentCourse.name}" style="width: 64px;height: 64px">
                             </a>
                         </div>
                         <div class="media-body media-right">
@@ -63,10 +63,10 @@
                         <div class="media">
                             <div class="col-md-1 col-md-offset-1 media-left">
                                 <a href="xuexi/lesson.do?id=${lesson.id}">
-                                    <img class="media-object" src="${lesson.picture}" alt="${lesson.name}">
+                                    <img class="media-object" src="${lesson.picture}" alt="${lesson.name}" style="width: 64px;height: 64px">
                                 </a>
                             </div>
-                            <div class="media-body media-right">
+                            <div class="media-body media-left">
                                 <h4 class="media-heading"><a href="xuexi/lesson.do?id=${lesson.id}">${lesson.name}</a></h4>
                                 <span class="col-md-10">${lesson.introduce}</span>
                             </div>

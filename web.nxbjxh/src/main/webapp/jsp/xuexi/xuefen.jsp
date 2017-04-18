@@ -72,7 +72,7 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary">
-            <div class="panel-heading">学分信息</div>
+            <div class="panel-heading">已获得学分信息</div>
             <div class="panel-body">
                 <div class="col-md-12">
                     <table data-toggle="table" id="table-style" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
