@@ -161,7 +161,7 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary">
-            <div class="panel-heading">在线学习</div>
+            <div class="panel-heading">在线学习--${currentLesson.name}</div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6 media">
