@@ -14,6 +14,10 @@
 
             makeModal($("#jiangyiModal"), "jiangyi", "1");
 
+            makeModal($("#testModal"), "test", "2");
+
+            makeAlert($("#testAlert"));
+
             $("#jiangyi").click(function () {
                 $('#jiangyiModal').find('.modal-title').text('课程讲义');
                 $('#jiangyiModal').attr("class","modal fade bs-example-modal-lg");
@@ -22,6 +26,102 @@
                 $('#jiangyiModal').find('.modal-body').append('<embed src="${currentLesson.pdf}" width="100%" height="600px"> </embed> ');
                 $('#jiangyiSave').remove();
                 $('#jiangyiModal').modal('toggle');
+            });
+
+            function makeTest(value) {
+                $.ajax({
+                    type: "GET",
+                    cache: "false",
+                    url: "xuexi/get/test.do",
+                    data: {id:"${currentLesson.id}",test:value.id},
+                    sync:false,
+                    dataType: "json",
+                    error: function () {//请求失败时调用函数。
+                        showAlert($("#testAlert"), "danger");
+                    },
+                    success: function (result) {
+                        if (result.status == 7) {
+                            $.each(result.data, function (i, val) {
+                                if (value.multi == 0) {
+                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes' value='" + val.id + "'>" + val.name + "</label>");
+                                } else {
+                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes' value='" + val.id + "'>" + val.name + "</label>");
+                                }
+                            });
+                        } else if (result.status == 1) {
+                            if (value.multi == 0) {
+                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes' value='" + result.data.id + "'>" + result.data.name + "</label>");
+                            } else {
+                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes' value='" + result.data.id + "'>" + result.data.name + "</label>");
+                            }
+                        } else {
+                            showAlert($("#testAlert"), "warning", result.message);
+                        }
+                    }
+                });
+            }
+
+            $("#test").click(function () {
+                $('#testModal').find('.modal-title').text('课后测验');
+                $('#testModal').attr("class","modal fade bs-example-modal-lg");
+                $('#testModal').children().attr("class","modal-dialog modal-lg");
+                $('#testSave').text('交卷');
+                $("#testAlert").hide();
+                $.ajax({
+                    type: "GET",
+                    cache: "false",
+                    url: "xuexi/get/test.do",
+                    data: {id:"${currentLesson.id}",test:0},
+                    sync:false,
+                    dataType: "json",
+                    error: function () {//请求失败时调用函数。
+                        showAlert($("#testAlert"), "danger");
+                    },
+                    success: function (result) {
+                        if (result.status == 7) {
+                            $('#testForm').children().remove();
+                            $.each(result.data, function (key, value) {
+                                if(value.multi == 0){
+                                    $('#testForm').append("<div class='form-group'><label>" + value.ord + "." + value.name + "</label><div class='radio' id='idtest"+value.id+"'></div></div>");
+                                }else{
+                                    $('#testForm').append("<div class='form-group'><label>" + value.ord + "." + value.name + "</label><div class='checkbox' id='idtest"+value.id+"'></div></div>");
+                                }
+                                makeTest(value);
+                            });
+                        }else if(result.status == 1 ){
+                            $('#testForm').children().remove();
+                            if(result.data.multi == 0){
+                                $('#testForm').append("<div class='form-group'><label>" + result.data.ord + "." + result.data.name + "</label><div class='radio' id='idtest"+result.data.id+"'></div></div>");
+                            }else{
+                                $('#testForm').append("<div class='form-group'><label>" + result.data.ord + "." + result.data.name + "</label><div class='checkbox' id='idtest"+result.data.id+"'></div></div>");
+                            }
+                            makeTest(result.data);
+                        } else {
+                            showAlert($("#testAlert"), "warning", result.message);
+                        }
+                    }
+                });
+                $('#testModal').modal('toggle');
+            });
+
+            $("#testSave").click(function () {
+                $.ajax({
+                    type: "POST",
+                    cache: "false",
+                    url: "xuexi/post/test.do",
+                    data: {id:"${currentLesson.id}",yes:$('#testForm').serialize().replace(/yes=/g,"").replace(/&/g,",")},
+                    dataType: "json",
+                    error: function () {//请求失败时调用函数。
+                        showAlert($("#testAlert"), "danger");
+                    },
+                    success: function (result) {
+                        if (result.status == 1) {
+                            showAlert($("#testAlert"), "success", result.message);
+                        } else {
+                            showAlert($("#testAlert"), "warning", result.message);
+                        }
+                    }
+                });
             });
         });
 
@@ -49,7 +149,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="xuexi/update.do">修改个人信息 </a></li>
                 <li class="active"><a href="xuexi/home.do">在线学习<span class="sr-only">(current)</span></a></li>
-                <li><a href="xuexi/xuefen.do">申请学分 </a></li>
+                <li><a href="xuexi/xuefen.do">学分记录 </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="framework/logout.do">退出学习平台</a></li>
@@ -94,7 +194,7 @@
                         <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
                     <div class="btn-group" role="group">
-                        <button id="test" type="button" class="btn btn-success">学习测验</button>
+                        <button id="test" type="button" class="btn btn-success">课后测验</button>
                     </div>
                 </div>
             </div>
@@ -103,6 +203,7 @@
 </div><!--/.col-->
 </div><!-- /.row -->
 <div id="jiangyiModal"></div><!-- Modal -->
+<div id="testModal"></div><!-- Modal -->
 </body>
 
 </html>

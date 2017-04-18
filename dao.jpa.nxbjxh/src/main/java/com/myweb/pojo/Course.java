@@ -3,7 +3,7 @@ package com.myweb.pojo;
 import javax.persistence.*;
 
 /**
- * Created by BHWL on 2017-04-13.
+ * Created by BHWL on 2017-04-18.
  */
 @Entity
 public class Course {
@@ -14,6 +14,7 @@ public class Course {
     private String picture;
     private String unit;
     private String year;
+    private Integer score;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -86,6 +87,16 @@ public class Course {
         this.year = year;
     }
 
+    @Basic
+    @Column(name = "score", nullable = false)
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,6 +111,7 @@ public class Course {
         if (picture != null ? !picture.equals(course.picture) : course.picture != null) return false;
         if (unit != null ? !unit.equals(course.unit) : course.unit != null) return false;
         if (year != null ? !year.equals(course.year) : course.year != null) return false;
+        if (score != null ? !score.equals(course.score) : course.score != null) return false;
 
         return true;
     }
@@ -113,6 +125,7 @@ public class Course {
         result = 31 * result + (picture != null ? picture.hashCode() : 0);
         result = 31 * result + (unit != null ? unit.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
+        result = 31 * result + (score != null ? score.hashCode() : 0);
         return result;
     }
 }

@@ -1,13 +1,14 @@
 package com.myweb.service;
 
 
-import com.myweb.pojo.Course;
-import com.myweb.pojo.Lesson;
+import com.myweb.pojo.*;
 import com.myweb.pojo.Number;
-import com.myweb.pojo.User;
 import com.myweb.util.Result;
+import com.myweb.vo.XueFenVo;
+import com.sun.org.apache.regexp.internal.RE;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 public interface XueXiService {
@@ -22,4 +23,10 @@ public interface XueXiService {
     public Map makeLesson(HttpSession session, Lesson lesson, Map map);
 
     public Result bangding(HttpSession session, Number number);
+
+    public Result getTest(HttpSession session, Lesson lesson,Test test);
+
+    public Result postTest(HttpSession session,Lesson lesson,String yes);
+
+    public List<XueFenVo> getXueFen(HttpSession session);
 }

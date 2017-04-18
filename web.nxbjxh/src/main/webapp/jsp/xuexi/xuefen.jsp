@@ -60,7 +60,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="xuexi/update.do">修改个人信息</a></li>
                 <li><a href="xuexi/home.do">在线学习</a></li>
-                <li  class="active"><a href="xuexi/xuefen.do">申请学分 <span class="sr-only">(current)</span> </a></li>
+                <li  class="active"><a href="xuexi/xuefen.do">学分记录 <span class="sr-only">(current)</span> </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="framework/logout.do">退出学习平台</a></li>
@@ -74,9 +74,20 @@
         <div class="panel panel-primary">
             <div class="panel-heading">学分信息</div>
             <div class="panel-body">
-                <div class="col-md-6 col-md-offset-1">
-                    学分：100分
-                    <div class="row" id="alertA" hidden></div>
+                <div class="col-md-12">
+                    <table data-toggle="table" id="table-style" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
+                        <thead>
+                        <tr>
+                            <th data-field="id" data-align="right">序号</th>
+                            <th data-field="name">课程名称</th>
+                            <th data-field="itemno">课程编号</th>
+                            <th data-field="begintime">开始时间</th>
+                            <th data-field="endtime">结束时间</th>
+                            <th data-field="year">年份</th>
+                            <th data-field="score">获得学分</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>

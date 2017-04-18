@@ -1,12 +1,11 @@
 package com.myweb.controller;
 
 
-import com.myweb.pojo.Course;
-import com.myweb.pojo.Lesson;
+import com.myweb.pojo.*;
 import com.myweb.pojo.Number;
-import com.myweb.pojo.User;
 import com.myweb.service.XueXiService;
 import com.myweb.util.Result;
+import com.myweb.vo.XueFenVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -51,6 +51,27 @@ public class XueXiController {
     public ModelAndView lesson(HttpSession session, @ModelAttribute Lesson lesson) {
         Map map = new HashMap();
         return new ModelAndView("xuexi/xuexi", xueXiService.makeLesson(session,lesson,map));
+    }
+
+    //postTest
+    @ResponseBody
+    @RequestMapping(value = "post/test", method = RequestMethod.POST)
+    public Result postTest(HttpSession session, @ModelAttribute Lesson lesson,@RequestParam String yes) {
+        return xueXiService.postTest(session,lesson,yes);
+    }
+
+    //getTest
+    @ResponseBody
+    @RequestMapping(value = "get/test", method = RequestMethod.GET)
+    public Result getTest(HttpSession session, @ModelAttribute Lesson Lesson, @ModelAttribute Test test) {
+        return xueXiService.getTest(session,Lesson,test);
+    }
+
+    //getXueFen
+    @ResponseBody
+    @RequestMapping(value = "get/xuefen", method = RequestMethod.GET)
+    public List<XueFenVo> getXueFen(HttpSession session) {
+        return xueXiService.getXueFen(session);
     }
 
     //绑定

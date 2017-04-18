@@ -12,5 +12,7 @@ import java.util.List;
 @RepositoryDefinition(domainClass = Lessonrecord.class, idClass = Integer.class)
 public interface LessonrecordRepository extends JpaRepository<Lessonrecord,Integer> {
 
-    public List<Lessonrecord> findByLesson(int lesson);
+    public List<Lessonrecord> findByLessonAndUser(int lesson,int user);
+
+    public List<Lessonrecord> findByCourseAndUserAndStatus(int course,int user,int status);
 }

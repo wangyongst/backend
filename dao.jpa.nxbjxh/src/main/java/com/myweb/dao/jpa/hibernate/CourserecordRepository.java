@@ -12,5 +12,5 @@ import java.util.List;
 @RepositoryDefinition(domainClass = Courserecord.class, idClass = Integer.class)
 public interface CourserecordRepository extends JpaRepository<Courserecord,Integer> {
 
-    public List<Courserecord> findByCourse(int course);
+    public List<Courserecord> findByCourseAndUser(int course,int user);
 }
