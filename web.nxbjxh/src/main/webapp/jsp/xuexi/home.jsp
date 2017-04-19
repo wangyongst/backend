@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-在线学习</title>
@@ -53,24 +53,24 @@
                         <li class="media">
                             <div class="media-left">
                                 <a>
-                                    <img class="media-object img-thumbnail" src="${currentCourse.picture}" alt="${currentCourse.name}" style="width: 64px;height: 64px">
+                                    <img class="media-object img-thumbnail" src="${currentCourse.picture}" alt="${currentCourse.name}" style="width: 81px;height: 81px">
                                 </a>
                             </div>
                             <div class="media-body media-right">
                                 <h4 class="media-heading">${currentCourse.name}</h4>
-                                <span class="col-md-12">${currentCourse.introduce}</span>
+                                <span class="col-md-12 text-success">课程简介：${currentCourse.introduce}</span>
                             </div>
                         </li>
                         <c:forEach items="${lessons}" var="lesson">
                             <div class="media">
                                 <div class="col-md-1 col-md-offset-1 media-left">
                                     <a href="xuexi/lesson.do?id=${lesson.id}">
-                                        <img class="media-object img-thumbnail" src="${lesson.picture}" alt="${lesson.name}" style="width: 64px;height: 64px">
+                                        <img class="media-object img-thumbnail" src="${lesson.picture}" alt="${lesson.name}" style="width: 81px;height: 81px">
                                     </a>
                                 </div>
-                                <div class="media-body media-left">
+                                <div class="col-md-offset-0 media-body media-left">
                                     <h4 class="media-heading"><a href="xuexi/lesson.do?id=${lesson.id}">${lesson.name}</a></h4>
-                                    <span class="col-md-12">${lesson.introduce}</span>
+                                    <span class="col-md-12 text-success" >课件简介：${lesson.introduce}</span>
                                 </div>
                             </div>
                         </c:forEach>

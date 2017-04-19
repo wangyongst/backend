@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
 
@@ -157,6 +158,7 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -164,19 +166,19 @@
             <div class="panel-heading">在线学习--${currentLesson.name}</div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6 media">
+                    <div class="col-md-7 media">
                         <div id='myplayer'></div>
                         <script type='text/javascript'>
                             jwplayer('myplayer').setup({
                                 file: '${currentLesson.url}',
-                                width: '640',
+                                width: '100%',
                                 height: '480',
                                 autostart:true
                             });
                         </script>
                     </div>
-                    <div class="col-md-6 panel panel-success">
-                        <div class="panel-heading">课程介绍</div>
+                    <div class="col-md-5 panel panel-success">
+                        <div class="panel-heading">课件介绍</div>
                         <div class="panel-body">
                             <span>主讲人:</span>${currentLesson.teacher}
                             <br>
@@ -187,14 +189,16 @@
                             <span>主讲单位:</span>${currentCourse.unit}
                             <br>
                             <br>
-                            <span>课程介绍:</span>${currentLesson.introduce}
+                            <span>课件介绍:</span>${currentLesson.introduce}
                         </div>
                     </div>
-                    <div class="btn-group" role="group">
+                    <div class="row">
+                    <div class="btn-group col-md-1 col-md-offset-0" role="group">
                         <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
-                    <div class="btn-group" role="group">
+                    <div class="btn-group col-md-1 col-md-offset-0" role="group">
                         <button id="test" type="button" class="btn btn-success">课后测验</button>
+                    </div>
                     </div>
                 </div>
             </div>

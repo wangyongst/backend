@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-注册</title>
