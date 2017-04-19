@@ -5,6 +5,7 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-绑定学习卡</title>
+
     <script type="text/javascript">
         $(function () {
 
@@ -65,6 +66,7 @@
     </div><!-- /.container-fluid -->
 </nav>
 
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary">
@@ -84,6 +86,7 @@
         </div>
     </div><!--/.col-->
 </div><!-- /.row -->
+</div>
 </body>
 
 </html>

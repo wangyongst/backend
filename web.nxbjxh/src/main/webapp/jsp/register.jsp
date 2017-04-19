@@ -4,12 +4,7 @@
 <head>
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-注册</title>
-    <style type="text/css">
-        body {
-            background-image: url("/picture/bj.jpg");
-            background-repeat: repeat
-        }
-    </style>
+
     <script type="text/javascript">
         $(function () {
 
@@ -59,7 +54,7 @@
 
 <body>
 
-
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary">
@@ -115,6 +110,7 @@
 
 
 </div><!-- /.row -->
+</div>
 </body>
 
 </html>

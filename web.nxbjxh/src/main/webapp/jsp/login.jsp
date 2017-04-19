@@ -5,13 +5,6 @@
     <%@ include file="/jsp/base.jsp" %>
     <title>宁夏保健学会学习平台-登录</title>
 
-    <style type="text/css">
-        body {
-            background-image: url("/picture/bj.jpg");
-            background-repeat: repeat
-        }
-    </style>
-
     <script type="text/javascript">
         $(function () {
 
@@ -68,7 +61,7 @@
 
 <body>
 
-
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <p><br><br><br><br></p>
@@ -81,7 +74,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading">宁夏保健学会学习平台</div>
             <div class="panel-body">
-                <div class="col-md-7 col-md-offset-0">
+                <div class="col-md-7">
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             网站公告栏
@@ -93,12 +86,12 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于系统安全方面的原因，建议使用ie8以上或者谷歌浏览器，否则会出现页面显示不完整，无法完成注册等问题。
                                 <br>
                                 <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;升级请点击 </h3></p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>升级请点击</u> </h3></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4" id="loginPanel">
+                <div class="col-md-5" id="loginPanel">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">请输入您的用户名及密码！</div>
                         <div class="panel-body">
@@ -117,9 +110,9 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row col-md-offset-0">
-                                            <a id="login" class="btn btn-primary">登录</a>
-                                            <a id="register" class="btn btn-primary">注册</a>
-                                            <a id="forget" class="btn btn-primary">找回密码</a>
+                                            <a id="login" class="btn btn-primary  col-md-3">登录</a>
+                                            <a id="register" class="btn btn-primary col-md-3 col-md-offset-1">注册</a>
+                                            <a id="forget" class="btn btn-primary col-md-3 col-md-offset-1">找回密码</a>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -141,6 +134,7 @@
 </div><!-- /.row -->
 
 </div><!-- /.row -->
+</div>
 </body>
 
 </html>
