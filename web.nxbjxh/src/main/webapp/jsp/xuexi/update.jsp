@@ -60,7 +60,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="xuexi/update.do">修改个人信息 <span class="sr-only">(current)</span></a></li>
                 <li><a href="xuexi/home.do">在线学习</a></li>
-                <li><a href="xuexi/xuefen.do">学分记录 </a></li>
+                <li><a href="xuexi/xuefen.do">我的学分 </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="framework/logout.do">退出学习平台</a></li>

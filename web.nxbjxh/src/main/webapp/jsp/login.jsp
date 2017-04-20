@@ -106,7 +106,7 @@
                                         <label>验证码：</label>
                                         <div class="row">
                                             <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="看不清可点击图片刷新" name="authcode" type="text"></div>
-                                            <div class="col-md-4"><img src="/authImage.do" align="right" id="authImage" style="cursor:pointer;"></div>
+                                            <div class="col-md-4"><img src="<%=basePath%>authImage.do" align="right" id="authImage" style="cursor:pointer;"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
