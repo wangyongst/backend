@@ -11,7 +11,7 @@
 
             makeAlert($("#alertA"));
 
-            $("#forget").click(function () {
+            function forget() {
                 $.ajax({
                     type: "GET",
                     cache: "false",
@@ -32,15 +32,25 @@
                         }
                     }
                 });
+            }
+
+            $("#forget").click(function () {
+                forget();
             });
 
             $("#close").click(function () {
                 window.close();
-            })
+            });
 
             $("#authImage").click(function () {
                 $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
-            })
+            });
+
+            $("#forgetPanel").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    forget();
+                }
+            });
 
         });
 
@@ -54,18 +64,16 @@
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" id="forgetPanel">
             <div class="panel-heading">宁夏保健学会学习平台找回密码</div>
             <div class="panel-body">
                 <div class="col-md-6 col-md-offset-1">
                     <form role="form" id="userForm">
                         <div class="form-group">
                             <label>姓名：</label>
-                            <input class="form-control" type="text" name="name" placeholder="请输入你注册的姓名">
+                            <input class="form-control" type="text" name="name" placeholder="请输入你注册的姓名" autofocus>
                             <label>身份证号：</label>
                             <input class="form-control" type="text"  name="identity" placeholder="请输入你注册的身份证号">
-                            <label>用户名：</label>
-                            <input class="form-control" type="text" name="username" placeholder="请输入你注册的用户名">
                             <label>验证码：</label>
                             <div class="row">
                                 <div class="col-md-8"><input class="form-control" maxlength="8" placeholder="验证码,看不清可点击图片刷新" name="authcode" type="text"> </div>

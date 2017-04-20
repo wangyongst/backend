@@ -11,7 +11,7 @@
 
             makeAlert($("#alertA"));
 
-            $("#bangding").click(function () {
+            function bangding() {
                 $.ajax({
                     type: "POST",
                     cache: "false",
@@ -29,7 +29,17 @@
                         }
                     }
                 });
-            })
+            }
+
+            $("#bangding").click(function () {
+               bangding();
+            });
+
+            $("#bangdingPanel").keypress(function (event) {
+                if (event.keyCode == 13) {
+                    forget();
+                }
+            });
 
         });
 
@@ -69,14 +79,14 @@
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
-        <div class="panel panel-primary">
+        <div class="panel panel-primary" id="bangdingPanel">
             <div class="panel-heading">你还没有绑定学习卡，请先绑定学习卡</div>
             <div class="panel-body">
                 <div class="col-md-6 col-md-offset-1">
                     <form role="form" id="userForm">
                         <div class="form-group">
                             <label>学习卡号：</label>
-                            <input class="form-control" type="text" name="number" placeholder="请填写你购买的学习卡号">
+                            <input class="form-control" type="text" name="number" placeholder="请填写你购买的学习卡号" autofocus>
                         </div>
                         <a id="bangding" class="btn btn-primary">绑定学习卡</a>
                     </form>

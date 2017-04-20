@@ -16,7 +16,6 @@ public class User {
     private String unit;
     private String department;
     private String title;
-    private String username;
     private String password;
     private String time;
 
@@ -112,16 +111,6 @@ public class User {
     }
 
     @Basic
-    @Column(name = "username", nullable = true, length = 50)
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Basic
     @Column(name = "password", nullable = true, length = 50)
     public String getPassword() {
         return password;
@@ -157,7 +146,6 @@ public class User {
         if (unit != null ? !unit.equals(user.unit) : user.unit != null) return false;
         if (department != null ? !department.equals(user.department) : user.department != null) return false;
         if (title != null ? !title.equals(user.title) : user.title != null) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (time != null ? !time.equals(user.time) : user.time != null) return false;
 
@@ -175,7 +163,6 @@ public class User {
         result = 31 * result + (unit != null ? unit.hashCode() : 0);
         result = 31 * result + (department != null ? department.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;

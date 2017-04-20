@@ -47,15 +47,6 @@ public class UserRegister {
             result.setMessage(method+"失败，你输入的的联系电话不是一个电话号码！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
-            result.setMessage(method+"失败，你输入的用户名不能为空！");
-            return result;
-        }
-        if(user.getUsername().length() <3 ||user.getUsername().length() >16){
-            result.setStatus(2);
-            result.setMessage(method+"失败，你输入的用户名长度不符合要求！");
-            return result;
-        }
         if (ServiceUtils.isBlankValue(result, user.getPassword())) {
             result.setMessage(method+"失败，你输入的密码不能为空！");
             return result;

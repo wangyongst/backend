@@ -36,7 +36,7 @@ public class FrameWorkServiceImpl implements FrameWorkService {
             result.setMessage("登录失败，你的验证码输入不正确！");
             return result;
         }
-        List<User> userList = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        List<User> userList = userRepository.findByIdentityAndPassword(user.getIdentity(), user.getPassword());
         if (ServiceUtils.isReseachListOK(result, userList)) {
             session.removeAttribute("user");
             session.setAttribute("user", userList.get(0));
@@ -62,11 +62,6 @@ public class FrameWorkServiceImpl implements FrameWorkService {
         }
         result = UserRegister.isRegisterOK(result, user);
         if (result.getStatus() != 1) return result;
-        if (ServiceUtils.isReseachListOK(result, userRepository.findByUsername(user.getUsername()))) {
-            result.setMessage("注册失败，你的输入的用户名已经被注册！");
-            result.setStatus(2);
-            return result;
-        }
         if (ServiceUtils.isReseachListOK(result, userRepository.findByIdentity(user.getIdentity()))) {
             result.setMessage("注册失败，你的输入的身份证号码已经被注册！");
             result.setStatus(2);
@@ -101,12 +96,8 @@ public class FrameWorkServiceImpl implements FrameWorkService {
         if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
             result.setMessage("找回密码失败，你输入的的身份证号码不能为空！");
             return result;
-        }
-        if (ServiceUtils.isBlankValue(result, user.getUsername())) {
-            result.setMessage("找回密码失败，你输入的的用户名不能为空！");
-            return result;
         } else {
-            ServiceUtils.isReseachListOK(result, userRepository.findByNameAndIdentityAndUsername(user.getName(), user.getIdentity(), user.getUsername()));
+            ServiceUtils.isReseachListOK(result, userRepository.findByNameAndIdentity(user.getName(), user.getIdentity()));
             return result;
         }
     }

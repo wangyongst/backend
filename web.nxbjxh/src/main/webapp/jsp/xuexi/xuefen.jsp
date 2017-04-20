@@ -8,32 +8,6 @@
     <script type="text/javascript">
         $(function () {
 
-            makeAlert($("#alertA"));
-
-            $("#updateUser").click(function () {
-                if ($("input[name='password']").val() != $("input[name='password2']").val()) {
-                    showAlert($("#alertA"), "warning", "你两次输入的密码不一致，请重新输入！");
-                    return;
-                }
-                $.ajax({
-                    type: "POST",
-                    cache: "false",
-                    url: "xuexi/updateUser.do",
-                    data: $('#userForm').serialize(),
-                    dataType: "json",
-                    error: function () {//请求失败时调用函数。
-                        showAlert($("#alertA"), "danger");
-                    },
-                    success: function (result) {
-                        if (result.status == 1) {
-                            showAlert($("#alertA"), "success", "修改成功，你可以在本平台进行远程学习！");
-                        } else {
-                            showAlert($("#alertA"), "warning", result.message);
-                        }
-                    }
-                });
-            })
-
         });
 
     </script>

@@ -11,17 +11,13 @@ import java.util.List;
 @RepositoryDefinition(domainClass = User.class, idClass = Integer.class)
 public interface UserRepository extends JpaRepository<User,Integer> {
 
-    public List<User> findByUsernameAndPassword(String username, String password);
-
-    public List<User> findByUsername(String username);
+    public List<User> findByIdentityAndPassword(String identity, String password);
 
     public List<User> findByNumber(String number);
 
     public List<User> findByIdentity(String identity);
 
-    public List<User> findByUsernameAndIdNot(String username,int id);
-
     public List<User> findByIdentityAndIdNot(String identity,int id);
 
-    public List<User> findByNameAndIdentityAndUsername(String name,String identity,String username);
+    public List<User> findByNameAndIdentity(String name,String identity);
 }

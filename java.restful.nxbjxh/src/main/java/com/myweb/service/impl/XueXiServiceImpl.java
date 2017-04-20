@@ -59,11 +59,6 @@ public class XueXiServiceImpl implements XueXiService {
         Result result = new Result();
         result = UserRegister.isUpdateOK(result,user);
         if(result.getStatus() != 1) return result;
-        if (ServiceUtils.isReseachListOK(result, userRepository.findByUsernameAndIdNot(user.getUsername(), user.getId()))) {
-            result.setMessage("修改失败，你的输入的用户名已经被注册！");
-            result.setStatus(2);
-            return result;
-        }
         if (ServiceUtils.isReseachListOK(result, userRepository.findByIdentityAndIdNot(user.getIdentity(), user.getId()))) {
             result.setMessage("修改失败，你的输入的身份证号码已经被注册！");
             result.setStatus(2);
