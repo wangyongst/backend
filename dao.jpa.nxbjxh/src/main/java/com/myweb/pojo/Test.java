@@ -1,14 +1,12 @@
 package com.myweb.pojo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by BHWL on 2017-04-18.
  */
 @Entity
+@Table(name = "test")
 public class Test {
     private Integer id;
     private Integer lesson;
