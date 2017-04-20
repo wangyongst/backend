@@ -63,7 +63,7 @@
             }
 
             $("#test").click(function () {
-                $('#testModal').find('.modal-title').text('课后测验');
+                $('#testModal').find('.modal-title').text('在线考试');
                 $('#testModal').attr("class","modal fade bs-example-modal-lg");
                 $('#testModal').children().attr("class","modal-dialog modal-lg");
                 $('#testSave').text('交卷');
@@ -197,7 +197,7 @@
                         <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
                     <div class="btn-group col-md-1 col-md-offset-0" role="group">
-                        <button id="test" type="button" class="btn btn-success">课后测验</button>
+                        <button id="test" type="button" class="btn btn-success">在线考试</button>
                     </div>
                     </div>
                 </div>

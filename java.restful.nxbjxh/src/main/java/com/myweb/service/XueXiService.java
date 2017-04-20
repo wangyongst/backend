@@ -5,6 +5,7 @@ import com.myweb.pojo.*;
 import com.myweb.pojo.Number;
 import com.myweb.util.Result;
 import com.myweb.vo.XueFenVo;
+import com.myweb.vo.XueXiVo;
 import com.sun.org.apache.regexp.internal.RE;
 
 import javax.servlet.http.HttpSession;
@@ -29,4 +30,6 @@ public interface XueXiService {
     public Result postTest(HttpSession session,Lesson lesson,String yes);
 
     public List<XueFenVo> getXueFen(HttpSession session);
+
+    public List<XueXiVo> getXueXi(HttpSession session);
 }

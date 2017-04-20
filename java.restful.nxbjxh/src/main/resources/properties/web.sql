@@ -91,7 +91,7 @@ CREATE TABLE `lessonrecord` (
   `lesson` int(11) NOT NULL,
   `begintime` varchar(255) default NULL COMMENT '开始时间',
   `endtime` varchar(255) default NULL,
-  `status` int(1) unsigned default NULL COMMENT '0为已经学习过未通过测验1为学习完成通过测验',
+  `status` int(1) unsigned default NULL COMMENT '0为已经学习过未通过考试1为学习完成通过考试',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

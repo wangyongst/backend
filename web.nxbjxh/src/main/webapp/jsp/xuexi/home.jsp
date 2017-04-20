@@ -68,9 +68,9 @@
                                         <img class="media-object img-thumbnail" src="${lesson.picture}" alt="${lesson.name}" style="width: 81px;height: 81px">
                                     </a>
                                 </div>
-                                <div class="col-md-offset-0 media-body media-left">
+                                <div class="media-body media-left">
                                     <h4 class="media-heading"><a href="xuexi/lesson.do?id=${lesson.id}">${lesson.name}</a></h4>
-                                    <span class="col-md-12 text-success" >课件简介：${lesson.introduce}</span>
+                                    <span class="col-md-11 text-success">课件简介：${lesson.introduce}</span>
                                 </div>
                             </div>
                         </c:forEach>

@@ -73,10 +73,10 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-primary">
-            <div class="panel-heading">已获得学分信息</div>
+            <div class="panel-heading">已获得学分课程</div>
             <div class="panel-body">
                 <div class="col-md-12">
-                    <table data-toggle="table" id="table-style" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
+                    <table data-toggle="table" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
                         <thead>
                         <tr>
                             <th data-field="id" data-align="right">序号</th>
@@ -94,6 +94,30 @@
         </div>
     </div><!--/.col-->
 </div><!-- /.row -->
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">未获得学分课程 </div>
+                <div class="panel-body">
+                    <div class="col-md-12">
+                        <table data-toggle="table" data-url="xuexi/get/xuexi.do" data-row-style="rowStyle">
+                            <thead>
+                            <tr>
+                                <th data-field="id" data-align="right">序号</th>
+                                <th data-field="cname">课程名称</th>
+                                <th data-field="name">课件名称</th>
+                                <th data-field="begintime">开始时间</th>
+                                <th data-field="endtime">结束时间</th>
+                                <th data-field="yes">考试成绩</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.col-->
+    </div><!-- /.row -->
 </div>
 </body>
 

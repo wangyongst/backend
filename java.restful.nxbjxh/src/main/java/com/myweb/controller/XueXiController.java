@@ -6,6 +6,7 @@ import com.myweb.pojo.Number;
 import com.myweb.service.XueXiService;
 import com.myweb.util.Result;
 import com.myweb.vo.XueFenVo;
+import com.myweb.vo.XueXiVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,6 +73,13 @@ public class XueXiController {
     @RequestMapping(value = "get/xuefen", method = RequestMethod.GET)
     public List<XueFenVo> getXueFen(HttpSession session) {
         return xueXiService.getXueFen(session);
+    }
+
+    //getXueXi
+    @ResponseBody
+    @RequestMapping(value = "get/xuexi", method = RequestMethod.GET)
+    public List<XueXiVo> getXueXi(HttpSession session) {
+        return xueXiService.getXueXi(session);
     }
 
     //绑定

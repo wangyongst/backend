@@ -9,6 +9,7 @@ import com.myweb.util.DateUtils;
 import com.myweb.util.Result;
 import com.myweb.util.ServiceUtils;
 import com.myweb.vo.XueFenVo;
+import com.myweb.vo.XueXiVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -155,7 +156,7 @@ public class XueXiServiceImpl implements XueXiService {
             return result;
         }else {
             result.setStatus(2);
-            result.setMessage("课后测验题获取失败，请联系管理员！");
+            result.setMessage("在线考试题获取失败，请联系管理员！");
             return result;
         }
     }
@@ -174,13 +175,13 @@ public class XueXiServiceImpl implements XueXiService {
         List<Test> testList = testRepository.findByLessonAndYes(lesson.getId(),1);
         if(yeses.length != testList.size()){
             result.setStatus(2);
-            result.setMessage("测试成绩不合格，请重新修改你的答案！");
+            result.setMessage("考试成绩不合格，请重新修改你的答案！");
             return result;
         }
         for(Test test : testList){
             if(!Arrays.asList(yeses).contains(test.getId()+"")){
                 result.setStatus(2);
-                result.setMessage("测试成绩不合格，请重新修改你的答案！");
+                result.setMessage("考试成绩不合格，请重新修改你的答案！");
                 return result;
             }
         }
@@ -193,7 +194,7 @@ public class XueXiServiceImpl implements XueXiService {
             courserecord.setEndtime(DateUtils.getCurrentTimeSecond());
             courserecordRepository.save(courserecord);
         }
-        result.setMessage("恭喜你，你的本课程测试成绩合格！");
+        result.setMessage("恭喜你，你的本课程考试成绩合格！");
         return result;
     }
 
@@ -201,5 +202,11 @@ public class XueXiServiceImpl implements XueXiService {
     public List<XueFenVo> getXueFen(HttpSession session) {
         User user = (User) session.getAttribute("user");
         return myRepository.queryXuefenByUser(user.getId());
+    }
+
+    @Override
+    public List<XueXiVo> getXueXi(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return myRepository.queryXuexiByUser(user.getId());
     }
 }
