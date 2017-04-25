@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50022
 Source Host           : localhost:3306
-Source Database       : web
+Source Database       : nxbjxh
 
 Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2017-04-18 16:49:44
+Date: 2017-04-21 09:49:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,8 +34,8 @@ CREATE TABLE `course` (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', '警戒素与人体免疫相关研究', '警戒素是近年来发现的一类能增强机体免疫功能的内源性物质,广泛 存在于各种细胞内,帮助人体抵抗外界刺激.研究发现,在皮肤病中,多种警戒素表达异常,包括防御素、抗菌肽、嗜酸性粒细胞来源的神经毒素、部分高迁移率族 蛋白等.不同警戒素在不同皮肤病中表达情况各异', '2011-02-07-002 (国)', 'picture/default.png', '宁夏保健学会', '2017', '5');
-INSERT INTO `course` VALUES ('2', '警戒素与人体免疫相关研究2', '警戒素与人体免疫相关研究警戒素与人体免疫相关研究警戒素与人体免疫相关研究警戒素与人体免疫相关研究警戒素与人体免疫相关研究', '2011-02-07-002 (国)', 'picture/default.png', '宁夏保健学会', '2017', '5');
+INSERT INTO `course` VALUES ('1', '项目一：警戒素与人体免疫相关研究', '警戒素是近年来发现的一类能增强机体免疫功能的内源性物质,广泛 存在于各种细胞内,帮助人体抵抗外界刺激.研究发现,在皮肤病中,多种警戒素表达异常,包括防御素、抗菌肽、嗜酸性粒细胞来源的神经毒素、部分高迁移率族 蛋白等.不同警戒素在不同皮肤病中表达情况各异', '2011-02-07-002 (国)', 'picture/default.png', '宁夏保健学会', '2017', '5');
+INSERT INTO `course` VALUES ('2', '项目二：警戒素与人体免疫相关研究2', '警戒素与人体免疫相关研究警戒素与人体免疫相关研究警戒素与人体免疫相关研究警戒素与人体免疫相关研究警戒素与人体免疫相关研究', '2011-02-07-002 (国)', 'picture/default.png', '宁夏保健学会', '2017', '5');
 
 -- ----------------------------
 -- Table structure for courserecord
@@ -53,7 +53,10 @@ CREATE TABLE `courserecord` (
 -- ----------------------------
 -- Records of courserecord
 -- ----------------------------
-INSERT INTO `courserecord` VALUES ('1', '13', '1', '2017-04-18 14:00:19', '2017-04-18 14:23:35');
+INSERT INTO `courserecord` VALUES ('2', '13', '1', '2017-04-18 16:54:01', '2017-04-20 11:59:29');
+INSERT INTO `courserecord` VALUES ('5', '13', '2', '2017-04-20 12:01:32', null);
+INSERT INTO `courserecord` VALUES ('6', '14', '1', '2017-04-20 15:09:01', '2017-04-20 16:39:56');
+INSERT INTO `courserecord` VALUES ('7', '14', '2', '2017-04-20 15:23:35', null);
 
 -- ----------------------------
 -- Table structure for lesson
@@ -74,11 +77,16 @@ CREATE TABLE `lesson` (
 -- ----------------------------
 -- Records of lesson
 -- ----------------------------
-INSERT INTO `lesson` VALUES ('1', '1', '临床常见药源性疾病与防治1', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
-INSERT INTO `lesson` VALUES ('2', '1', '临床常见药源性疾病与防治2', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
-INSERT INTO `lesson` VALUES ('3', '1', '临床常见药源性疾病与防治3', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
-INSERT INTO `lesson` VALUES ('4', '1', '临床常见药源性疾病与防治4', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
-INSERT INTO `lesson` VALUES ('5', '1', '临床常见药源性疾病与防治5', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('1', '1', '第一课：临床常见药源性疾病与防治1', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('2', '1', '第二课：临床常见药源性疾病与防治2', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/2.jpg', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('3', '1', '第三课：临床常见药源性疾病与防治3', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/3.jpg', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('4', '1', '第四课：临床常见药源性疾病与防治4', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/4.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('5', '1', '第五课：临床常见药源性疾病与防治5', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/5.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('6', '2', '第一课：临床常见药源性疾病与防治1', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('7', '2', '第二课：临床常见药源性疾病与防治2', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('8', '2', '第三课：临床常见药源性疾病与防治3', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('9', '2', '第四课：临床常见药源性疾病与防治4', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
+INSERT INTO `lesson` VALUES ('10', '2', '第五课：临床常见药源性疾病与防治5', '王月丹', '药源性疾病是不合理用药的结果.现在药物品种、数量增多,药源性疾病的发生率呈上升趋势,其危害性仅次于血管疾病、恶性肿瘤的感染性疾病之后,医务人员要警惕各类药物可能产生的药源性疾病,控制药源性疾病的发生.药源性病系指药物在用于预防、诊断', 'picture/default.png', 'http://localhost:81/1.mp4', 'pdf/test.pdf');
 
 -- ----------------------------
 -- Table structure for lessonrecord
@@ -91,18 +99,25 @@ CREATE TABLE `lessonrecord` (
   `lesson` int(11) NOT NULL,
   `begintime` varchar(255) default NULL COMMENT '开始时间',
   `endtime` varchar(255) default NULL,
-  `status` int(1) unsigned default NULL COMMENT '0为已经学习过未通过考试1为学习完成通过考试',
+  `status` int(1) unsigned default NULL COMMENT '0为已经学习过未通过测验1为学习完成通过测验',
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of lessonrecord
 -- ----------------------------
-INSERT INTO `lessonrecord` VALUES ('2', '13', '1', '1', '2017-04-18 14:00:19', '2017-04-18 14:23:35', '1');
-INSERT INTO `lessonrecord` VALUES ('3', '13', '1', '2', '2017-04-18 14:01:51', '2017-04-18 14:04:22', '1');
+INSERT INTO `lessonrecord` VALUES ('2', '13', '1', '1', '2017-04-18 14:00:19', '2017-04-18 17:52:24', '1');
+INSERT INTO `lessonrecord` VALUES ('3', '13', '1', '2', '2017-04-18 14:01:51', '2017-04-18 16:58:47', '1');
 INSERT INTO `lessonrecord` VALUES ('4', '13', '1', '3', '2017-04-18 14:05:06', '2017-04-18 14:19:18', '1');
 INSERT INTO `lessonrecord` VALUES ('5', '13', '1', '4', '2017-04-18 14:05:44', '2017-04-18 14:20:43', '1');
-INSERT INTO `lessonrecord` VALUES ('7', '13', '1', '5', '2017-04-18 14:22:55', '2017-04-18 14:23:02', '1');
+INSERT INTO `lessonrecord` VALUES ('7', '13', '1', '5', '2017-04-18 14:22:55', '2017-04-20 11:18:30', '1');
+INSERT INTO `lessonrecord` VALUES ('20', '13', '2', '6', '2017-04-20 12:01:32', '2017-04-20 12:01:36', '1');
+INSERT INTO `lessonrecord` VALUES ('21', '14', '1', '1', '2017-04-20 15:09:01', '2017-04-20 16:39:56', '1');
+INSERT INTO `lessonrecord` VALUES ('22', '14', '1', '2', '2017-04-20 15:18:45', '2017-04-20 15:19:00', '1');
+INSERT INTO `lessonrecord` VALUES ('23', '14', '1', '3', '2017-04-20 15:19:09', '2017-04-20 15:19:22', '1');
+INSERT INTO `lessonrecord` VALUES ('24', '14', '1', '4', '2017-04-20 15:20:22', '2017-04-20 15:21:04', '1');
+INSERT INTO `lessonrecord` VALUES ('25', '14', '1', '5', '2017-04-20 15:20:26', '2017-04-20 15:20:48', '1');
+INSERT INTO `lessonrecord` VALUES ('26', '14', '2', '6', '2017-04-20 15:23:34', null, '0');
 
 -- ----------------------------
 -- Table structure for number
@@ -119,6 +134,7 @@ CREATE TABLE `number` (
 -- ----------------------------
 INSERT INTO `number` VALUES ('1', '10000');
 INSERT INTO `number` VALUES ('2', '20000');
+INSERT INTO `number` VALUES ('3', '30000');
 
 -- ----------------------------
 -- Table structure for param
@@ -313,7 +329,7 @@ INSERT INTO `test` VALUES ('15', '2', '3', 'C.1981-1990年 ', '11', null, null);
 INSERT INTO `test` VALUES ('16', '2', '4', 'D.1999年至今', '11', null, null);
 INSERT INTO `test` VALUES ('17', '3', '1', 'A.证券交易所市场 ', '12', null, '1');
 INSERT INTO `test` VALUES ('18', '3', '2', 'B.OTC市场 ', '12', null, null);
-INSERT INTO `test` VALUES ('19', '3', '3', 'C.地方股权交易中心市场 ', '12', null, '2');
+INSERT INTO `test` VALUES ('19', '3', '3', 'C.地方股权交易中心市场 ', '12', null, '1');
 INSERT INTO `test` VALUES ('20', '3', '4', 'D.A股市场', '12', null, null);
 INSERT INTO `test` VALUES ('21', '4', '5', '[单选题] 我国全国性资本市场的形成和初步发展阶段是（　　）。 ', '0', '0', null);
 INSERT INTO `test` VALUES ('22', '2', '6', '[多选题] \"证券交易市场通常分为（　　）和场外交易市场。 ', '0', '1', null);
@@ -335,6 +351,29 @@ INSERT INTO `test` VALUES ('37', '5', '1', 'A.证券交易所市场 ', '24', nul
 INSERT INTO `test` VALUES ('38', '5', '2', 'B.OTC市场 ', '24', null, '1');
 INSERT INTO `test` VALUES ('39', '5', '3', 'C.地方股权交易中心市场 ', '24', null, null);
 INSERT INTO `test` VALUES ('40', '5', '4', 'D.A股市场', '24', null, null);
+INSERT INTO `test` VALUES ('41', '6', '1', '[单选题] 我国全国性资本市场的形成和初步发展阶段是（　　）。 ', '0', '0', null);
+INSERT INTO `test` VALUES ('42', '6', '1', 'A.1978-1992年 ', '41', null, '1');
+INSERT INTO `test` VALUES ('43', '6', '2', 'B.1993-1998年 ', '41', null, null);
+INSERT INTO `test` VALUES ('44', '6', '3', 'C.1981-1990年 ', '41', null, null);
+INSERT INTO `test` VALUES ('45', '6', '4', 'D.1999年至今', '41', null, null);
+INSERT INTO `test` VALUES ('46', '7', '2', '[多选题] \"证券交易市场通常分为（　　）和场外交易市场。 ', '0', '1', null);
+INSERT INTO `test` VALUES ('47', '7', '1', 'A.证券交易所市场 ', '46', null, '1');
+INSERT INTO `test` VALUES ('48', '7', '2', 'B.OTC市场 ', '46', null, null);
+INSERT INTO `test` VALUES ('49', '7', '3', 'C.地方股权交易中心市场 ', '46', null, null);
+INSERT INTO `test` VALUES ('50', '7', '4', 'D.A股市场', '46', null, '1');
+INSERT INTO `test` VALUES ('51', '8', '4', '[单选题] 我国全国性资本市场的形成和初步发展阶段是（　　）。 ', '0', '0', null);
+INSERT INTO `test` VALUES ('52', '9', '3', '[多选题] \"证券交易市场通常分为（　　）和场外交易市场。 ', '0', '1', null);
+INSERT INTO `test` VALUES ('53', '10', '5', '[单选题] 我国全国性资本市场的形成和初步发展阶段是（　　）。 ', '0', '0', null);
+INSERT INTO `test` VALUES ('54', '10', '1', 'A.1978-1992年 ', '53', null, '1');
+INSERT INTO `test` VALUES ('55', '10', '2', 'B.1993-1998年 ', '53', null, null);
+INSERT INTO `test` VALUES ('56', '9', '4', 'D.A股市场', '12', null, null);
+INSERT INTO `test` VALUES ('57', '9', '3', 'C.地方股权交易中心市场 ', '52', null, '1');
+INSERT INTO `test` VALUES ('58', '9', '2', 'B.OTC市场 ', '52', null, null);
+INSERT INTO `test` VALUES ('59', '9', '1', 'A.证券交易所市场 ', '52', null, '1');
+INSERT INTO `test` VALUES ('60', '8', '4', 'D.1999年至今', '51', null, null);
+INSERT INTO `test` VALUES ('61', '8', '3', 'C.1981-1990年 ', '51', null, null);
+INSERT INTO `test` VALUES ('62', '8', '2', 'B.1993-1998年 ', '51', null, null);
+INSERT INTO `test` VALUES ('63', '8', '1', 'A.1978-1992年 ', '51', null, '1');
 
 -- ----------------------------
 -- Table structure for user
@@ -350,7 +389,6 @@ CREATE TABLE `user` (
   `unit` varchar(50) default NULL COMMENT '单位',
   `department` varchar(50) default NULL COMMENT '科室',
   `title` varchar(50) default NULL COMMENT '职称',
-  `username` varchar(50) default NULL COMMENT '用户名',
   `password` varchar(50) default NULL COMMENT '密码',
   `time` varchar(50) default '0000-00-00 00:00:00' COMMENT '注册时间',
   PRIMARY KEY  (`id`)
@@ -359,7 +397,6 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('4', '', '622425198912151016', '测试', '男', '18693118912', '宁夏自治区第一人民医院', '放射科', '工程师', 'test', 'test', '2014-05-07 14:10:10');
-INSERT INTO `user` VALUES ('5', null, '333', '333', '男', '111111', '2222', '111', '高级工程师', '111', '111', '2017-04-07 13:31:40');
-INSERT INTO `user` VALUES ('13', '10000', '15012519821221568X', '中国', '男', '0931-8449977', '省二院', '儿科', '副主任药师', '333', '333333', '2017-04-07 15:15:45');
-INSERT INTO `user` VALUES ('14', null, '622301198608016059', '汪泳', '男', '18119445588', '中国', '中国', '高级工程师', 'wangyong', 'wangyong', '2017-04-13 15:59:31');
+INSERT INTO `user` VALUES ('4', '20000', '622425198912151016', '222', '男', '18693118912', '宁夏自治区第一人民医院', '放射科', '工程师', '222222', '2014-05-07 14:10:10');
+INSERT INTO `user` VALUES ('13', '10000', '15012519821221568X', '中国', '男', '0931-8449977', '省二院', '儿科', '副主任药师', '333333', '2017-04-07 15:15:45');
+INSERT INTO `user` VALUES ('14', '30000', '333', '张小三', '男', '0931-8449977', '兰大二院', '妇科', '主治医师', '333333', '2017-04-20 15:07:55');
