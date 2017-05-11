@@ -13,4 +13,6 @@ public interface UnitRepository extends JpaRepository<Unit, Integer> {
 
     public List<Unit> findByPidAndType(Integer pid,Integer type);
 
+    public List<Unit> findByName(String name);
+
 }

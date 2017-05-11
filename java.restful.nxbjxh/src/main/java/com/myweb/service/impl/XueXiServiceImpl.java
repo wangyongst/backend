@@ -53,6 +53,9 @@ public class XueXiServiceImpl implements XueXiService {
     @Autowired
     private MyRepository myRepository;
 
+    @Autowired
+    private UnitRepository unitRepository;
+
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result updateUser(HttpSession session, User user) {
@@ -77,7 +80,30 @@ public class XueXiServiceImpl implements XueXiService {
 
     @Override
     public Map update(HttpSession session, Map map) {
+        User user = (User)session.getAttribute("user");
         map.put("titles",paramRepository.findByName("title"));
+        Unit myunit = unitRepository.findByName(user.getUnit()).get(0);
+        map.put("myunit",myunit.getId());
+        map.put("mynuittype",myunit.getType());
+        List<Unit> myunits = unitRepository.findByPidAndType(myunit.getPid(),myunit.getType());
+        map.put("myunits",myunits);
+        if(myunit.getType() == 3){
+            Unit myquxian = unitRepository.findOne(myunits.get(0).getPid());
+            map.put("myquxian",myquxian.getId());
+            List<Unit> myquxians = unitRepository.findByPidAndType(myquxian.getPid(),myquxian.getType());
+            map.put("myquxians",myquxians);
+            if(myquxian.getType() == 6){
+                Unit myshi = unitRepository.findOne(myquxians.get(0).getPid());
+                map.put("myshi",myshi.getId());
+                List<Unit> myshis = unitRepository.findByPidAndType(myshi.getPid(),myshi.getType());
+                map.put("myshis",myshis);
+            }
+        }else if(myunit.getType() == 2){
+            Unit myshi = unitRepository.findOne(myunits.get(0).getPid());
+            map.put("myshi",myshi.getId());
+            List<Unit> myshis = unitRepository.findByPidAndType(myshi.getPid(),myshi.getType());
+            map.put("myshis",myshis);
+        }
         return map;
     }
 
