@@ -1,6 +1,7 @@
 package com.myweb.controller;
 
 import com.myweb.pojo.Param;
+import com.myweb.pojo.Unit;
 import com.myweb.pojo.User;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.Result;
@@ -39,6 +40,13 @@ public class FrameWorkController {
     public ModelAndView update(HttpSession session) {
         Map map = new HashMap();
         return new ModelAndView("register",frameWorkService.regist(session,map));
+    }
+
+    //单位
+    @ResponseBody
+    @RequestMapping(value = "unit", method = RequestMethod.GET)
+    public Result unit(HttpSession session,@ModelAttribute Unit unit) {
+        return frameWorkService.unit(session,unit);
     }
 
     //注册

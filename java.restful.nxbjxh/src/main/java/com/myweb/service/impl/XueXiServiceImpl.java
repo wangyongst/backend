@@ -131,13 +131,13 @@ public class XueXiServiceImpl implements XueXiService {
             result.setMessage("绑定失败，你的输入的学习卡号不存在，请重新输入！");
             result.setStatus(2);
             return result;
-        }else if (ServiceUtils.isReseachListOK(result, userRepository.findByNumber(number.getNumber()))) {
-            result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
-            result.setStatus(2);
-            return result;
-        } else {
+//        }else if (ServiceUtils.isReseachListOK(result, userRepository.findByNumber(number.getNumber()))) {
+//            result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
+//            result.setStatus(2);
+//            return result;
+       } else {
             User user = (User) session.getAttribute("user");
-            user.setNumber(number.getNumber());
+            //user.setNumber(number.getNumber());
             userRepository.save(user);
             session.setAttribute("user", userRepository.findOne(user.getId()));
             return ServiceUtils.isCRUDOK("update", new Result(), 1);

@@ -1,7 +1,9 @@
 package com.myweb.service.impl;
 
 import com.myweb.dao.jpa.hibernate.ParamRepository;
+import com.myweb.dao.jpa.hibernate.UnitRepository;
 import com.myweb.dao.jpa.hibernate.UserRepository;
+import com.myweb.pojo.Unit;
 import com.myweb.pojo.User;
 import com.myweb.service.FrameWorkService;
 import com.myweb.util.DateUtils;
@@ -27,6 +29,9 @@ public class FrameWorkServiceImpl implements FrameWorkService {
 
     @Autowired
     private ParamRepository paramRepository;
+
+    @Autowired
+    private UnitRepository unitRepository;
 
     @Override
     public Result login(HttpSession session, User user, String authcode) {
@@ -76,7 +81,7 @@ public class FrameWorkServiceImpl implements FrameWorkService {
 
     @Override
     public Map regist(HttpSession session, Map map) {
-        map.put("titles",paramRepository.findByName("title"));
+        map.put("titles", paramRepository.findByName("title"));
         return map;
     }
 
@@ -100,6 +105,31 @@ public class FrameWorkServiceImpl implements FrameWorkService {
             ServiceUtils.isReseachListOK(result, userRepository.findByNameAndIdentity(user.getName(), user.getIdentity()));
             return result;
         }
+    }
+
+    @Override
+    public Result unit(HttpSession session, Unit unit) {
+        Result result = new Result();
+        if (unit.getType() != null && unit.getPid() != null && unit.getType() == 1) {
+            ServiceUtils.isReseachListOK(result, unitRepository.findByPidAndType(unit.getPid(), unit.getType()));
+            result.setMessage("1");
+        }else  if (unit.getType() != null && unit.getPid() != null && unit.getType() == 2) {
+            ServiceUtils.isReseachListOK(result, unitRepository.findByPidAndType(unit.getPid(), unit.getType()));
+            result.setMessage("2");
+        }else  if (unit.getType() != null && unit.getPid() != null && unit.getType() == 3) {
+            ServiceUtils.isReseachListOK(result, unitRepository.findByPidAndType(unit.getPid(), unit.getType()));
+            result.setMessage("3");
+        }else  if (unit.getType() != null && unit.getPid() != null && unit.getType() == 4) {
+            ServiceUtils.isReseachListOK(result, unitRepository.findByPidAndType(unit.getPid(), unit.getType()));
+            result.setMessage("4");
+        }else  if (unit.getType() != null && unit.getPid() != null && unit.getType() == 5) {
+            ServiceUtils.isReseachListOK(result, unitRepository.findByPidAndType(unit.getPid(), unit.getType()));
+            result.setMessage("5");
+        }else  if (unit.getType() != null && unit.getPid() != null && unit.getType() == 6) {
+            ServiceUtils.isReseachListOK(result, unitRepository.findByPidAndType(unit.getPid(), unit.getType()));
+            result.setMessage("6");
+        }
+        return result;
     }
 
 

@@ -15,18 +15,14 @@ public class XueFenVo {
     private String begintime;
     private String endtime;
     private Integer score;
-    private String itemno;
-    private String unit;
     private String year;
 
-    public XueFenVo(Integer id, String name, String begintime, String endtime, Integer score, String itemno, String unit, String year) {
+    public XueFenVo(Integer id, String name, String begintime, String endtime, Integer score, String year) {
         this.id = id;
         this.name = name;
         this.begintime = begintime;
         this.endtime = endtime;
         this.score = score;
-        this.itemno = itemno;
-        this.unit = unit;
         this.year = year;
     }
 
@@ -69,22 +65,6 @@ public class XueFenVo {
 
     public void setScore(Integer score) {
         this.score = score;
-    }
-
-    public String getItemno() {
-        return itemno;
-    }
-
-    public void setItemno(String itemno) {
-        this.itemno = itemno;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(String unit) {
-        this.unit = unit;
     }
 
     public String getYear() {

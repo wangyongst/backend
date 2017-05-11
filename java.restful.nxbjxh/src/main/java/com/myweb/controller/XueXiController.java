@@ -87,20 +87,22 @@ public class XueXiController {
     @RequestMapping(value = "bangding", method = RequestMethod.PUT)
     public Result bangding(HttpSession session, @ModelAttribute Number number) {
         User user = (User)session.getAttribute("user");
-        if(!StringUtils.isBlank(user.getNumber())){
-            return new Result();
-        }else{
-            return xueXiService.bangding(session,number);
-        }
+//        if(!StringUtils.isBlank(user.getNumber())){
+//            return new Result();
+//        }else{
+//            return xueXiService.bangding(session,number);
+//        }
+        return null;
     }
 
     //学分
     @RequestMapping(value = "xuefen", method = RequestMethod.GET)
     public ModelAndView xuefen(HttpSession session) {
         User user = (User)session.getAttribute("user");
-        if(StringUtils.isBlank(user.getNumber())) return new ModelAndView("xuexi/bangding");
-        else{
-            return new ModelAndView("xuexi/xuefen");
-        }
+//        if(StringUtils.isBlank(user.getNumber())) return new ModelAndView("xuexi/bangding");
+//        else{
+//            return new ModelAndView("xuexi/xuefen");
+//        }
+        return new ModelAndView("xuexi/xuefen");
     }
 }

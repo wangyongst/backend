@@ -1,6 +1,7 @@
 package com.myweb.service;
 
 import com.myweb.pojo.Param;
+import com.myweb.pojo.Unit;
 import com.myweb.pojo.User;
 import com.myweb.util.Result;
 
@@ -18,5 +19,7 @@ public interface FrameWorkService {
     public Map regist(HttpSession session, Map map);
 
     public Result forget(HttpSession session, User user, String authcode);
+
+    public Result unit(HttpSession session, Unit unit);
 
 }

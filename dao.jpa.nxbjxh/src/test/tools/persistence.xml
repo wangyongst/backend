@@ -9,8 +9,10 @@
         <class>com.myweb.pojo.Lessonrecord</class>
         <class>com.myweb.pojo.Number</class>
         <class>com.myweb.pojo.Test</class>
+        <class>com.myweb.pojo.Unit</class>
+        <class>com.myweb.pojo.Band</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/web"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/nxbjxh"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.connection.username"/>
             <property name="hibernate.connection.password"/>

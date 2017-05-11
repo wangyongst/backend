@@ -13,8 +13,6 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     public List<User> findByIdentityAndPassword(String identity, String password);
 
-    public List<User> findByNumber(String number);
-
     public List<User> findByIdentity(String identity);
 
     public List<User> findByIdentityAndIdNot(String identity,int id);

@@ -12,9 +12,15 @@
             $("#shiselect").hide();
             $("#quxianselect").hide();
 
+            $("#shengradio").prop("checked","true");
+            $("#unitselect").parent().attr("class","col-md-12")
+
+
             makeAlert($("#alertA"));
 
             makeModal($("#alertModal"), "alertB", "1");
+
+            unit(1,1);
 
             function showAlertModal() {
                 $('#alertModal').find('.modal-title').text('注册提示');
@@ -30,23 +36,87 @@
             });
 
             $("#shiradio").click(function () {
+                $("#shiselect").parent().attr("class","col-md-6")
                 $("#shiselect").show();
                 $("#quxianselect").hide();
+                $("#unitselect").parent().attr("class","col-md-6")
+                $("#unitselect").html("<option selected>——请选择单位——</option>");
+                unit(1,5)
             });
 
             $("#shengradio").click(function () {
                 $("#shiselect").hide();
                 $("#quxianselect").hide();
+                $("#unitselect").parent().attr("class","col-md-12")
+                unit(1,1);
             });
 
             $("#quxianradio").click(function () {
                 $("#shiselect").show();
+                $("#shiselect").parent().attr("class","col-md-4")
                 $("#quxianselect").show();
+                $("#quxianselect").parent().attr("class","col-md-4")
+                $("#unitselect").parent().attr("class","col-md-4")
+                $("#unitselect").html("<option selected>——请选择单位——</option>");
+                unit(1,5)
             });
+
+            $("#shiselect").change(
+                function () {
+                    if ($("input[name='unittype']:checked").val()==2) {
+                        unit($(this).children('option:selected').val(), 2);
+                    }
+                    if ($("input[name='unittype']:checked").val()==3) {
+                        unit($(this).children('option:selected').val(), 6);
+                    }
+                }
+            );
+
+            $("#quxianselect").change(
+                function () {
+                    unit($(this).children('option:selected').val(), 3);
+                }
+            );
 
             $("#close").click(function () {
                 window.close();
             });
+
+            function unit(pid,type) {
+                $.ajax({
+                    type: "GET",
+                    cache: "false",
+                    url: "framework/unit.do",
+                    data: {pid:pid,type:type},
+                    dataType: "json",
+                    error: function () {//请求失败时调用函数。
+                        showAlert($("#alertA"), "danger");
+                    },
+                    success: function (result) {
+                        if (result.status == 1 || result.status == 7) {
+                            if (result.message == "1" || result.message == "2" || result.message == "3") {
+                                $("#unitselect").html("<option selected>——请选择单位——</option>");
+                                $.each(result.data, function (key, value) {
+                                    $("#unitselect").append("<option value='" + value.name + "'>" + value.name + "</option>");
+                                })
+                            }else if(result.message == "5"){
+                                $("#shiselect").html("<option selected>——请选择市局——</option>");
+                                $.each(result.data, function (key, value) {
+                                    $("#shiselect").append("<option value='" + value.id + "'>" + value.name + "</option>");
+                                })
+                            }
+                            else if(result.message == "6"){
+                                $("#quxianselect").html("<option selected>——请选择区县局——</option>");
+                                $.each(result.data, function (key, value) {
+                                    $("#quxianselect").append("<option value='" + value.id + "'>" + value.name + "</option>");
+                                })
+                            }
+                        } else {
+                            showAlert($("#alertA"), "warning", result.message);
+                        }
+                    }
+                });
+            }
 
             function register() {
                 if ($("input[name='password']").val() != $("input[name='password2']").val()) {
@@ -111,7 +181,7 @@
                             <input class="form-control" type="text" name="name" placeholder="请填写正确的中文名称(支持少数名族，不支持英文、拼音、数字)" autofocus>
                             <label>性 别：</label>
                             <select class="form-control" name="sex">
-                                <option value="" selected>——请选择性别——</option>
+                                <option selected>——请选择性别——</option>
                                 <option value="男">男</option>
                                 <option value="女">女</option>
                             </select>
@@ -125,20 +195,20 @@
                             <input class="form-control" type="password" name="password2" placeholder="输入一致的密码">
                             <label>单位直属类别：</label>
                             <div class="row col-md-offset-0">
-                                <div class="radio " id="unit">
-                                    <label class="col-md-3">
-                                        <input id="shengradio" type="radio" name="unitType" value="1" checked>省直属
+                                <div class="radio">
+                                    <label class="col-md-4">
+                                        <input id="shengradio" name="unittype" type="radio" value="1">省直属
                                     </label>
-                                    <label class="col-md-3">
-                                        <input id="shiradio" type="radio" name="unitType" value="2">市直属
+                                    <label class="col-md-4">
+                                        <input id="shiradio" name="unittype" type="radio" value="2">市直属
                                     </label>
-                                    <label class="col-md-3">
-                                        <input id="quxianradio" type="radio" name="unitType" value="3">区/县直属
+                                    <label class="col-md-4">
+                                        <input id="quxianradio" name="unittype" type="radio" value="3">区/县直属
                                     </label>
                                 </div>
                             </div>
                             <label>单 位：</label>
-                            <div class="row col-md-offset-0">
+                            <div class="row">
                                      <label>
                                         <select id="shiselect" class="form-control">
                                             <option value="" selected>——请选择市局——</option>
@@ -150,7 +220,7 @@
                                         </select>
                                     </label>
                                     <label>
-                                        <select class="form-control" name="unit">
+                                        <select id="unitselect" class="form-control" name="unit">
                                             <option value="" selected>——请选择单位——</option>
                                         </select>
                                     </label>

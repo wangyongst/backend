@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
     private Integer id;
-    private String number;
     private String identity;
     private String name;
     private String sex;
@@ -29,16 +28,6 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "number", nullable = true, length = 20)
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
     }
 
     @Basic
@@ -139,7 +128,6 @@ public class User {
         User user = (User) o;
 
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (number != null ? !number.equals(user.number) : user.number != null) return false;
         if (identity != null ? !identity.equals(user.identity) : user.identity != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
@@ -156,7 +144,6 @@ public class User {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (number != null ? number.hashCode() : 0);
         result = 31 * result + (identity != null ? identity.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
