@@ -9,7 +9,40 @@
     <script type="text/javascript">
         $(function () {
 
+            $("#shiselect").hide();
+            $("#quxianselect").hide();
+
             makeAlert($("#alertA"));
+
+            makeModal($("#alertModal"), "alertB", "1");
+
+            function showAlertModal() {
+                $('#alertModal').find('.modal-title').text('注册提示');
+                $('#alertModal').attr("class","modal fade");
+                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').find('.modal-body').text("注册成功，请用你注册的用户名及密码登录系统学习！");
+                $('#alertBSave').text("确认");
+                $('#alertModal').modal('toggle');
+            }
+
+            $("#alertBSave").click(function () {
+                window.location.href = "<%=basePath%>jsp/login.jsp";
+            });
+
+            $("#shiradio").click(function () {
+                $("#shiselect").show();
+                $("#quxianselect").hide();
+            });
+
+            $("#shengradio").click(function () {
+                $("#shiselect").hide();
+                $("#quxianselect").hide();
+            });
+
+            $("#quxianradio").click(function () {
+                $("#shiselect").show();
+                $("#quxianselect").show();
+            });
 
             $("#close").click(function () {
                 window.close();
@@ -34,7 +67,7 @@
                         if (result.status == 1) {
                             showAlert($("#alertA"), "success", "注册成功，请用你注册的账号及密码登录系统学习！");
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
-                            //window.location.href = "<%=basePath%>framework/home.do";
+                            showAlertModal();
                         } else {
                             showAlert($("#alertA"), "warning", result.message);
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
@@ -71,13 +104,14 @@
         <div class="panel panel-primary" id="registerPanel">
             <div class="panel-heading">宁夏保健学会学习平台新用户注册</div>
             <div class="panel-body">
-                <div class="col-md-6 col-md-offset-1">
+                <div class="col-md-8 col-md-offset-1">
                     <form role="form" id="userForm">
                         <div class="form-group">
                             <label>姓名：</label>
                             <input class="form-control" type="text" name="name" placeholder="请填写正确的中文名称(支持少数名族，不支持英文、拼音、数字)" autofocus>
                             <label>性 别：</label>
                             <select class="form-control" name="sex">
+                                <option value="" selected>——请选择性别——</option>
                                 <option value="男">男</option>
                                 <option value="女">女</option>
                             </select>
@@ -89,12 +123,43 @@
                             <input class="form-control" type="password" name="password" placeholder="长度为6到22位">
                             <label>确认密码：</label>
                             <input class="form-control" type="password" name="password2" placeholder="输入一致的密码">
+                            <label>单位直属类别：</label>
+                            <div class="row col-md-offset-0">
+                                <div class="radio " id="unit">
+                                    <label class="col-md-3">
+                                        <input id="shengradio" type="radio" name="unitType" value="1" checked>省直属
+                                    </label>
+                                    <label class="col-md-3">
+                                        <input id="shiradio" type="radio" name="unitType" value="2">市直属
+                                    </label>
+                                    <label class="col-md-3">
+                                        <input id="quxianradio" type="radio" name="unitType" value="3">区/县直属
+                                    </label>
+                                </div>
+                            </div>
                             <label>单 位：</label>
-                            <input class="form-control" name="unit" placeholder="请输入自己的单位中文名称(不支持英文、拼音、数字)">
+                            <div class="row col-md-offset-0">
+                                     <label>
+                                        <select id="shiselect" class="form-control">
+                                            <option value="" selected>——请选择市局——</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <select id="quxianselect" class="form-control">
+                                            <option value="" selected>——请选择区县局——</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <select class="form-control" name="unit">
+                                            <option value="" selected>——请选择单位——</option>
+                                        </select>
+                                    </label>
+                            </div>
                             <label>科 室：</label>
                             <input class="form-control" name="department" placeholder="请输入自己的科室中文名称(不支持英文、拼音、数字)">
                             <label>职 称：</label>
                             <select id="title" class="form-control" name="title">
+                                <option value="" selected>——请选择职称——</option>
                                 <c:forEach items="${titles}" var="title">
                                     <option value="${title.value}">${title.value}</option>
                                 </c:forEach>
@@ -119,6 +184,8 @@
 
 
 </div><!-- /.row -->
+
+    <div id="alertModal"></div><!-- Modal -->
 </div>
 </body>
 

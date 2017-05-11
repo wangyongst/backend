@@ -94,13 +94,13 @@
 
                 <div class="col-md-5" id="loginPanel">
                     <div class="login-panel panel panel-default">
-                        <div class="panel-heading">请输入您的身份证号及密码！</div>
+                        <div class="panel-heading">请登录，用户名是你注册的身份证号！</div>
                         <div class="panel-body">
                             <form role="form" id="userForm">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label>身份证号：</label>
-                                        <input class="form-control" placeholder="请输入你的身份证号码" name="identity" type="text" autofocus>
+                                        <label>用户名：</label>
+                                        <input class="form-control" placeholder="请输入你的用户名" name="identity" type="text" autofocus>
                                         <label>密码：</label>
                                         <input class="form-control" placeholder="请输入你的密码" name="password" type="password" value="">
                                         <label>验证码：</label>
