@@ -17,7 +17,9 @@ public interface XueXiService {
 
     public Map update(HttpSession session, Map map);
 
-    public Map makeHome(HttpSession session, Course course, Map map);
+    public Map makeHome(HttpSession session,Map map);
+
+    public Map makeLessons(HttpSession session,Course course,Map map);
 
     public Map makeLesson(HttpSession session, Lesson lesson, Map map);
 

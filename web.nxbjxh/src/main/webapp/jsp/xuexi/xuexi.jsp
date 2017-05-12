@@ -4,7 +4,6 @@
 <html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
-
     <script src="jwplayer/jwplayer.js"></script>
     <script src="jwplayer/jwplayer.loader.swf"></script>
     <!--这是KEY-->
@@ -181,12 +180,6 @@
                         <div class="panel-heading">课件介绍</div>
                         <div class="panel-body">
                             <span>主讲人:</span>${currentLesson.teacher}
-                            <br>
-                            <br>
-                            <span>课程编号:</span>${currentCourse.itemno}
-                            <br>
-                            <br>
-                            <span>主讲单位:</span>${currentCourse.unit}
                             <br>
                             <br>
                             <span>课件介绍:</span>${currentLesson.introduce}

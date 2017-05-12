@@ -42,9 +42,16 @@ public class XueXiController {
 
     //首页
     @RequestMapping(value = "home", method = RequestMethod.GET)
-    public ModelAndView home(HttpSession session, @ModelAttribute Course course) {
+    public ModelAndView home(HttpSession session) {
         Map map = new HashMap();
-        return new ModelAndView("xuexi/home", xueXiService.makeHome(session,course,map));
+        return new ModelAndView("xuexi/home", xueXiService.makeHome(session,map));
+    }
+
+    //Course
+    @RequestMapping(value = "course", method = RequestMethod.GET)
+    public ModelAndView home(HttpSession session,@ModelAttribute Course course) {
+        Map map = new HashMap();
+        return new ModelAndView("xuexi/lessons", xueXiService.makeLessons(session,course,map));
     }
 
     //Lesson

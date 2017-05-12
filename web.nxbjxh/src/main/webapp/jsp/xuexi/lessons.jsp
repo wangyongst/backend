@@ -53,20 +53,21 @@
                         <li class="media">
 
                         </li>
-                        <c:forEach items="${courses}" var="course">
+                            <c:forEach items="${lessons}" var="lesson">
                             <li class="media">
                                 <div class="col-md-1 col-md-offset-1 media-left">
-                                    <a href="xuexi/course.do?id=${course.id}">
-                                        <img class="media-object img-thumbnail" src="${course.picture}" alt="${course.name}" style="width: 81px;height: 81px">
+                                    <a href="xuexi/lesson.do?id=${lesson.id}">
+                                        <img class="media-object img-thumbnail" src="${lesson.picture}" alt="${lesson.name}" style="width: 81px;height: 81px">
                                     </a>
                                 </div>
                                 <div class="media-body media-left">
-                                    <h4 class="media-heading"><a href="xuexi/course.do?id=${course.id}">${course.name}</a></h4>
-                                    <span class="col-md-11 text-success">课件简介：${course.introduce}</span>
+                                    <h4 class="media-heading"><a href="xuexi/lesson.do?id=${lesson.id}">${lesson.name}</a></h4>
+                                    <span class="col-md-11 text-success">课件简介：${lesson.introduce}</span>
                                 </div>
                             </li>
-                        </c:forEach>
+                            </c:forEach>
                     </ul>
+
                 </div>
             </div>
         </div><!--/.col-->

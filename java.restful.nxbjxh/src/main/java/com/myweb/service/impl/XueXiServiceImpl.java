@@ -108,11 +108,13 @@ public class XueXiServiceImpl implements XueXiService {
     }
 
     @Override
-    public Map makeHome(HttpSession session, Course course, Map map) {
-        if(course.getId() == null || course.getId() == 0) course.setId(1);
-        map.put("max",courseRepository.count());
-        map.put("total",courseRepository.findAll());
-        map.put("currentCourse",courseRepository.findOne(course.getId()));
+    public Map makeHome(HttpSession session,Map map) {
+        map.put("courses",courseRepository.findAll());
+        return map;
+    }
+
+    @Override
+    public Map makeLessons(HttpSession session, Course course, Map map) {
         map.put("lessons",lessonRepository.findByCourse(course.getId()));
         return map;
     }
