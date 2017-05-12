@@ -185,7 +185,7 @@ public class XueXiServiceImpl implements XueXiService {
     }
 
     @Override
-    public Result postTest(HttpSession session,Lesson lesson, String yes) {
+    public Result postTest(HttpSession session,Lesson lesson, String yes,String testids) {
         User user = (User)session.getAttribute("user");
         Result result = new Result();
         if(lesson.getId() == null || StringUtils.isBlank(yes)){
@@ -195,15 +195,11 @@ public class XueXiServiceImpl implements XueXiService {
         }
         lesson = lessonRepository.findOne(lesson.getId());
         String[] yeses = yes.split(",");
+        String[] testid =testids.split(",");
         List<Test> testList = testRepository.findByLessonAndYes(lesson.getId(),1);
-        if(yeses.length != testList.size()){
-            result.setStatus(2);
-            result.setMessage("考试成绩不合格，请重新修改你的答案！");
-            return result;
-        }
         for(Test test : testList){
             if(!Arrays.asList(yeses).contains(test.getId()+"")){
-                result.setStatus(2);
+                result.setStatus(9);
                 result.setMessage("考试成绩不合格，请重新修改你的答案！");
                 return result;
             }

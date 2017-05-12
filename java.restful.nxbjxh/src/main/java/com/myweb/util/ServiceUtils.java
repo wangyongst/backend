@@ -22,6 +22,7 @@ public class ServiceUtils {
     //5，必须值不能为空
     //6，查询结果为空
     //7，List结果
+    //9-20, 其它情况
 
     public static void isNotSelect(Result result) {
         result.setStatus(0);

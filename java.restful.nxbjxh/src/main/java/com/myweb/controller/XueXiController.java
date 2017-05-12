@@ -64,8 +64,8 @@ public class XueXiController {
     //postTest
     @ResponseBody
     @RequestMapping(value = "post/test", method = RequestMethod.POST)
-    public Result postTest(HttpSession session, @ModelAttribute Lesson lesson,@RequestParam String yes) {
-        return xueXiService.postTest(session,lesson,yes);
+    public Result postTest(HttpSession session, @ModelAttribute Lesson lesson,@RequestParam String yes,@RequestParam String testids) {
+        return xueXiService.postTest(session,lesson,yes,testids);
     }
 
     //getTest

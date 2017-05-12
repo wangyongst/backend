@@ -13,6 +13,10 @@
 
         $(function () {
 
+            $("#isover").val(0);
+
+            $("#testids").val("");
+
             makeModal($("#jiangyiModal"), "jiangyi", "1");
 
             makeModal($("#testModal"), "test", "2");
@@ -44,16 +48,16 @@
                         if (result.status == 7) {
                             $.each(result.data, function (i, val) {
                                 if (value.multi == 0) {
-                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes' value='" + val.id + "'>" + val.name + "</label>");
+                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes+"+val.id+"' value='" + val.id + "'>" + val.name + "</label>");
                                 } else {
-                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes' value='" + val.id + "'>" + val.name + "</label>");
+                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes+"+val.id+"' value='" + val.id + "'>" + val.name + "</label>");
                                 }
                             });
                         } else if (result.status == 1) {
                             if (value.multi == 0) {
-                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes' value='" + result.data.id + "'>" + result.data.name + "</label>");
+                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes+"+val.id+"' value='" + result.data.id + "'>" + result.data.name + "</label>");
                             } else {
-                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes' value='" + result.data.id + "'>" + result.data.name + "</label>");
+                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes+"+val.id+"' value='" + result.data.id + "'>" + result.data.name + "</label>");
                             }
                         } else {
                             showAlert($("#testAlert"), "warning", result.message);
@@ -62,23 +66,14 @@
                 });
             }
 
-            $("#test").click(function () {
-                if($("#isover").val() != 1){
-                    $('#testModal').find('.modal-title').text('在线考试');
-                    $('#testModal').attr("class","modal fade bs-example-modal-lg");
-                    $('#testModal').children().attr("class","modal-dialog modal-lg");
-                    $('#testSave').remove();
-                    $("#testAlert").hide();
-                    $('#testForm').append("请先观看完视频课程再进行考试！");
-                    $('#testModal').modal('toggle');
-                    return;
-                }
+            function test() {
+                $('#testForm').empty();
                 $('#testModal').find('.modal-title').text('在线考试');
                 $('#testModal').attr("class","modal fade bs-example-modal-lg");
                 $('#testModal').children().attr("class","modal-dialog modal-lg");
                 $('#testSave').text('交卷');
                 $("#testAlert").hide();
-                $('#testForm').empty();
+                $('#testSave').show();
                 $.ajax({
                     type: "GET",
                     cache: "false",
@@ -90,9 +85,11 @@
                         showAlert($("#testAlert"), "danger");
                     },
                     success: function (result) {
+                        $("#testids").val("");
                         if (result.status == 7) {
                             $('#testForm').children().remove();
                             $.each(result.data, function (key, value) {
+                                $("#testids").val( $("#testids").val()+","+value.id);
                                 if(value.multi == 0){
                                     $('#testForm').append("<div class='form-group'><label>" + value.ord + "." + value.name + "</label><div class='radio' id='idtest"+value.id+"'></div></div>");
                                 }else{
@@ -101,6 +98,7 @@
                                 makeTest(value);
                             });
                         }else if(result.status == 1 ){
+                            $("#testids").val( $("#testids").val()+","+value.id);
                             $('#testForm').children().remove();
                             if(result.data.multi == 0){
                                 $('#testForm').append("<div class='form-group'><label>" + result.data.ord + "." + result.data.name + "</label><div class='radio' id='idtest"+result.data.id+"'></div></div>");
@@ -113,6 +111,21 @@
                         }
                     }
                 });
+            }
+
+            $("#test").click(function () {
+                if($("#isover").val() != 1){
+                    $('#testModal').find('.modal-title').text('在线考试');
+                    $('#testModal').attr("class","modal fade bs-example-modal-lg");
+                    $('#testModal').children().attr("class","modal-dialog modal-lg");
+                    $('#testSave').hide();
+                    $("#testAlert").hide();
+                    $('#testForm').empty();
+                    $('#testForm').append("请先观看完视频课程再进行考试！");
+                    $('#testModal').modal('toggle');
+                    return;
+                }
+                test();
                 $('#testModal').modal('toggle');
             });
 
@@ -121,7 +134,7 @@
                     type: "POST",
                     cache: "false",
                     url: "xuexi/post/test.do",
-                    data: {id:"${currentLesson.id}",yes:$('#testForm').serialize().replace(/yes=/g,"").replace(/&/g,",")},
+                    data: {id:"${currentLesson.id}",yes:$('#testForm').serialize().replace(/yes%2B/g,"y").replace(/&/g,","),testids:$("#testids").val()},
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         showAlert($("#testAlert"), "danger");
@@ -205,6 +218,7 @@
                     </div>
                     <div class="row">
                         <input id="isover" value="0" hidden>
+                        <input id="testids">
                     <div class="btn-group col-md-1 col-md-offset-0" role="group">
                         <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
