@@ -218,7 +218,7 @@
                     </div>
                     <div class="row">
                         <input id="isover" value="0" hidden>
-                        <input id="testids">
+                        <input id="testids" hidden>
                     <div class="btn-group col-md-1 col-md-offset-0" role="group">
                         <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
