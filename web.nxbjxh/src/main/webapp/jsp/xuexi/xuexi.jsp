@@ -10,6 +10,7 @@
     <script>jwplayer.key = "K1FkbLwx4yev30aJnbBUge9Yz8CQ25BWxo5a9Q==";</script>
     <title>宁夏保健学会学习平台-在线学习</title>
     <script type="text/javascript">
+
         $(function () {
 
             makeModal($("#jiangyiModal"), "jiangyi", "1");
@@ -62,11 +63,22 @@
             }
 
             $("#test").click(function () {
+                if($("#isover").val() != 1){
+                    $('#testModal').find('.modal-title').text('在线考试');
+                    $('#testModal').attr("class","modal fade bs-example-modal-lg");
+                    $('#testModal').children().attr("class","modal-dialog modal-lg");
+                    $('#testSave').remove();
+                    $("#testAlert").hide();
+                    $('#testForm').append("请先观看完视频课程再进行考试！");
+                    $('#testModal').modal('toggle');
+                    return;
+                }
                 $('#testModal').find('.modal-title').text('在线考试');
                 $('#testModal').attr("class","modal fade bs-example-modal-lg");
                 $('#testModal').children().attr("class","modal-dialog modal-lg");
                 $('#testSave').text('交卷');
                 $("#testAlert").hide();
+                $('#testForm').empty();
                 $.ajax({
                     type: "GET",
                     cache: "false",
@@ -172,7 +184,13 @@
                                 file: '${currentLesson.url}',
                                 width: '100%',
                                 height: '480',
-                                autostart:true
+                                autostart:true,
+                                image: '${currentLesson.picture}',
+                                events : {
+                                    onComplete : function () {
+                                       $("#isover").val(1);
+                                    }
+                                }
                             });
                         </script>
                     </div>
@@ -186,6 +204,7 @@
                         </div>
                     </div>
                     <div class="row">
+                        <input id="isover" value="0" hidden>
                     <div class="btn-group col-md-1 col-md-offset-0" role="group">
                         <button id="jiangyi" type="button" class="btn btn-success">课程讲义</button>
                     </div>
