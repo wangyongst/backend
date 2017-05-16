@@ -58,8 +58,7 @@
                             <th data-field="endtime">结束时间</th>
                             <th data-field="year">年份</th>
                             <th data-field="score">学分</th>
-                            <th data-field="stat">学习状态</th>
-                            <th data-field="band">操作</th>
+                            <th data-field="xuefen">学习状态</th>
                         </tr>
                         </thead>
                     </table>

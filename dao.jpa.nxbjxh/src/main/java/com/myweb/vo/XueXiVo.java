@@ -5,6 +5,7 @@ package com.myweb.vo;
  */
 
 public class XueXiVo {
+    private Integer id;
     private String name;
     private String begintime;
     private String endtime;
@@ -12,6 +13,7 @@ public class XueXiVo {
     private String yes;
 
     public XueXiVo(Integer id, String name, String begintime, String endtime, Integer status, String cname) {
+        this.id = id;
         this.name = name;
         this.begintime = begintime;
         this.endtime = endtime;
@@ -21,6 +23,14 @@ public class XueXiVo {
         }else{
             this.yes = "考试合格";
         }
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {

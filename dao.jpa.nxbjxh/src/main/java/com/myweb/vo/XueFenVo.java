@@ -1,10 +1,5 @@
 package com.myweb.vo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
 /**
  * Created by BHWL on 2017-04-18.
  */
@@ -16,14 +11,23 @@ public class XueFenVo {
     private String endtime;
     private Integer score;
     private String year;
+    private Integer status;
+    private String xuefen;
 
-    public XueFenVo(Integer id, String name, String begintime, String endtime, Integer score, String year) {
+    public XueFenVo(Integer id, String name, String begintime, String endtime, Integer score, String year, Integer status) {
         this.id = id;
         this.name = name;
         this.begintime = begintime;
         this.endtime = endtime;
         this.score = score;
         this.year = year;
+        if (status != null && status == 3) {
+            this.xuefen = "已获得学分";
+        } else if (status != null && status == 2) {
+            this.xuefen = "学习完毕";
+        } else {
+            this.xuefen = "学习中";
+        }
     }
 
     public Integer getId() {
@@ -73,5 +77,21 @@ public class XueFenVo {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getXuefen() {
+        return xuefen;
+    }
+
+    public void setXuefen(String xuefen) {
+        this.xuefen = xuefen;
     }
 }
