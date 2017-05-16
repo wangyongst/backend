@@ -23,7 +23,7 @@ public interface XueXiService {
 
     public Map makeLesson(HttpSession session, Lesson lesson, Map map);
 
-    public Result bangding(HttpSession session, Number number);
+    public Result postBand(HttpSession session, Number number);
 
     public Result getTest(HttpSession session, Lesson lesson,Test test);
 

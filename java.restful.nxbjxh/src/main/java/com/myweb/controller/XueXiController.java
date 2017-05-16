@@ -91,15 +91,9 @@ public class XueXiController {
 
     //绑定
     @ResponseBody
-    @RequestMapping(value = "bangding", method = RequestMethod.PUT)
-    public Result bangding(HttpSession session, @ModelAttribute Number number) {
-        User user = (User)session.getAttribute("user");
-//        if(!StringUtils.isBlank(user.getNumber())){
-//            return new Result();
-//        }else{
-//            return xueXiService.bangding(session,number);
-//        }
-        return null;
+    @RequestMapping(value = "post/band", method = RequestMethod.POST)
+    public Result postBand(HttpSession session, @ModelAttribute Number number) {
+        return xueXiService.postBand(session,number);
     }
 
     //学分

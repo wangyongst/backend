@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Band {
     private Integer id;
     private Integer user;
-    private Integer number;
+    private String number;
     private String time;
 
     @Id
@@ -36,11 +36,11 @@ public class Band {
 
     @Basic
     @Column(name = "number", nullable = true)
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

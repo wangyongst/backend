@@ -12,5 +12,5 @@ import java.util.List;
 @RepositoryDefinition(domainClass = Number.class, idClass = Integer.class)
 public interface NumberRepository extends JpaRepository<Number,Integer> {
 
-    public List<Number> findByNumber(String number);
+    public List<Number> findByNumberAndPassword(String number,String passwod);
 }

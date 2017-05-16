@@ -54,6 +54,9 @@ public class XueXiServiceImpl implements XueXiService {
     @Autowired
     private UnitRepository unitRepository;
 
+    @Autowired
+    private BandRepository bandRepository;
+
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result updateUser(HttpSession session, User user) {
@@ -147,26 +150,35 @@ public class XueXiServiceImpl implements XueXiService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result bangding(HttpSession session, Number number) {
+    public Result postBand(HttpSession session, Number number) {
         Result result = new Result();
-        if(StringUtils.isBlank(number.getNumber())){
+        User user = (User) session.getAttribute("user");
+        if(StringUtils.isBlank(number.getNumber()) || StringUtils.isBlank(number.getPassword())){
             result.setStatus(2);
-            result.setMessage("绑定失败，你的输入的学习卡号为空，请重新输入！");
+            result.setMessage("绑定失败，你的输入的学习卡号或学习卡密码为空，请重新输入！");
             return result;
-        }else if (!ServiceUtils.isReseachListOK(result, numberRepository.findByNumber(number.getNumber()))) {
-            result.setMessage("绑定失败，你的输入的学习卡号不存在，请重新输入！");
+        }else if (!ServiceUtils.isReseachListOK(result, numberRepository.findByNumberAndPassword(number.getNumber(),number.getPassword()))) {
+            result.setMessage("绑定失败，你的输入的学习卡号不存在或密码不正确，请重新输入！");
             result.setStatus(2);
             return result;
-//        }else if (ServiceUtils.isReseachListOK(result, userRepository.findByNumber(number.getNumber()))) {
-//            result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
-//            result.setStatus(2);
-//            return result;
-       } else {
-            User user = (User) session.getAttribute("user");
-            //user.setNumber(number.getNumber());
-            userRepository.save(user);
-            session.setAttribute("user", userRepository.findOne(user.getId()));
-            return ServiceUtils.isCRUDOK("update", new Result(), 1);
+        }else if (ServiceUtils.isReseachListOK(result, bandRepository.findByNumber(number.getNumber()))) {
+           result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
+            result.setStatus(2);
+            return result;
+       }else if (ServiceUtils.isReseachListOK(result, bandRepository.findByUser(user.getId()))) {
+            result.setMessage("绑定失败，你已经绑定了一个学习卡，不能重复绑定！");
+            result.setStatus(2);
+            return result;
+        }
+        else {
+            Band band = new Band();
+            band.setUser(user.getId());
+            band.setNumber(number.getNumber());
+            band.setTime(DateUtils.getCurrentTimeSecond());
+            bandRepository.save(band);
+            result.setMessage("绑定学习卡成功，你已经获得学分，请在我的学分中查看具体信息！");
+            result.setStatus(1);
+            return result;
         }
     }
 
@@ -229,17 +241,18 @@ public class XueXiServiceImpl implements XueXiService {
         String[] yeses = yes.split(",");
         for(String ye : yeses){
             String[] ans = ye.split("=");
-            List<Test> yesorno = testRepository.findByIdAndTestAndYes(Integer.parseInt(ans[1]),Integer.parseInt(ans[2]),1);
+            List<Test> yesorno = testRepository.findByIdAndYes(Integer.parseInt(ans[1]),1);
             if(yesorno == null || yesorno.size() == 0){
-                notRight.add(testRepository.findOne(Integer.parseInt(ans[1])));
+                notRight.add(testRepository.findOne(Integer.parseInt(ans[0])));
             }
         }
         if(notRight.size() > 0){
             result.setStatus(9);
-            result.setMessage("你的考试成绩不合格，有以下题目答题错误！");
+            result.setMessage("你的考试成绩不合格，有以下题目答题错误，共答错"+notRight.size()+"题！");
             result.setData(notRight);
             return result;
         }
+        lesson = lessonRepository.findOne(lesson.getId());
         Lessonrecord lessonrecord = lessonrecordRepository.findByLessonAndUser(lesson.getId(),user.getId()).get(0);
         lessonrecord.setStatus(1);
         lessonrecord.setEndtime(DateUtils.getCurrentTimeSecond());
