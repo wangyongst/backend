@@ -24,7 +24,7 @@ public class XueFenVo {
         if (status != null && status == 3) {
             this.xuefen = "已获得学分";
         } else if (status != null && status == 2) {
-            this.xuefen = "学习完毕";
+            this.xuefen = "学习完毕&nbsp;&nbsp;<button id=\"bandXueFen\" type=\"button\" class=\"btn btn-success\">申请学分</button>";
         } else {
             this.xuefen = "学习中";
         }
