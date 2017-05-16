@@ -14,6 +14,6 @@ public interface TestRepository extends JpaRepository<Test,Integer> {
 
     public List<Test> findByLessonAndTestOrderByOrdAsc(int lesson, int test);
 
-    public List<Test> findByLessonAndYes(int lesson, int yes);
+    public List<Test> findByIdAndTestAndYes(int id,int test, int yes);
 
 }

@@ -1,5 +1,7 @@
 package com.myweb.pojo;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "test")
-public class Test {
+public class Test implements Comparable<Test>{
     private Integer id;
     private Integer lesson;
     private Integer ord;
@@ -114,5 +116,10 @@ public class Test {
         result = 31 * result + (multi != null ? multi.hashCode() : 0);
         result = 31 * result + (yes != null ? yes.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NotNull Test o) {
+        return this.ord - o.ord;
     }
 }

@@ -18,9 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("xueXiService")
 @Transactional(value = "myTM", readOnly = true)
@@ -175,7 +173,7 @@ public class XueXiServiceImpl implements XueXiService {
     @Override
     public Result getTest(HttpSession session, Lesson lesson,Test test) {
         Result result = new Result();
-        if(ServiceUtils.isReseachListOK(result,testRepository.findByLessonAndTestOrderByOrdAsc(lesson.getId(),test.getTest()))){
+        if(ServiceUtils.isReseachListOK(result,randomTopic(testRepository.findByLessonAndTestOrderByOrdAsc(lesson.getId(),test.getTest()),10))){
             return result;
         }else {
             result.setStatus(2);
@@ -184,8 +182,43 @@ public class XueXiServiceImpl implements XueXiService {
         }
     }
 
+    // 从List中随机出count个对象
+    private List<Test> randomTopic(List<Test> list, int count) {
+        // 创建一个长度为count(count<=list)的数组,用于存随机数
+        if(list.size() < count) count = list.size();
+        int[] a = new int[count];
+        // 利于此数组产生随机数
+        int[] b = new int[list.size()];
+        int size = list.size();
+
+        // 取样填充至数组a满
+        for (int i = 0; i < count; i++) {
+            int num = (int) (Math.random() * size); // [0,size)
+            int where = -1;
+            for (int j = 0; j < b.length; j++) {
+                if (b[j] != -1) {
+                    where++;
+                    if (where == num) {
+                        b[j] = -1;
+                        a[i] = j;
+                    }
+                }
+            }
+            size = size - 1;
+        }
+        // a填满后 将数据加载到rslist
+        List<Test> rslist = new ArrayList<Test>();
+        for (int i = 0; i < count; i++) {
+            Test df = (Test) list.get(a[i]);
+            rslist.add(df);
+        }
+        Collections.sort(rslist);
+        return rslist;
+    }
+
     @Override
-    public Result postTest(HttpSession session,Lesson lesson, String yes,String testids) {
+    public Result postTest(HttpSession session,Lesson lesson, String yes) {
+        List<Test> notRight = new ArrayList<Test>();
         User user = (User)session.getAttribute("user");
         Result result = new Result();
         if(lesson.getId() == null || StringUtils.isBlank(yes)){
@@ -193,16 +226,19 @@ public class XueXiServiceImpl implements XueXiService {
             result.setMessage("你还没有做题，请先完成题目后再交卷！");
             return result;
         }
-        lesson = lessonRepository.findOne(lesson.getId());
         String[] yeses = yes.split(",");
-        String[] testid =testids.split(",");
-        List<Test> testList = testRepository.findByLessonAndYes(lesson.getId(),1);
-        for(Test test : testList){
-            if(!Arrays.asList(yeses).contains(test.getId()+"")){
-                result.setStatus(9);
-                result.setMessage("考试成绩不合格，请重新修改你的答案！");
-                return result;
+        for(String ye : yeses){
+            String[] ans = ye.split("=");
+            List<Test> yesorno = testRepository.findByIdAndTestAndYes(Integer.parseInt(ans[1]),Integer.parseInt(ans[2]),1);
+            if(yesorno == null || yesorno.size() == 0){
+                notRight.add(testRepository.findOne(Integer.parseInt(ans[1])));
             }
+        }
+        if(notRight.size() > 0){
+            result.setStatus(9);
+            result.setMessage("你的考试成绩不合格，有以下题目答题错误！");
+            result.setData(notRight);
+            return result;
         }
         Lessonrecord lessonrecord = lessonrecordRepository.findByLessonAndUser(lesson.getId(),user.getId()).get(0);
         lessonrecord.setStatus(1);
@@ -212,6 +248,7 @@ public class XueXiServiceImpl implements XueXiService {
             Courserecord courserecord = courserecordRepository.findByCourseAndUser(lesson.getCourse(),user.getId()).get(0);
             courserecord.setEndtime(DateUtils.getCurrentTimeSecond());
             courserecordRepository.save(courserecord);
+            result.setStatus(10);
         }
         result.setMessage("恭喜你，你的本课程考试成绩合格！");
         return result;

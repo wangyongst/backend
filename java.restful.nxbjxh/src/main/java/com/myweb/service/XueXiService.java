@@ -27,7 +27,7 @@ public interface XueXiService {
 
     public Result getTest(HttpSession session, Lesson lesson,Test test);
 
-    public Result postTest(HttpSession session,Lesson lesson,String yes,String testids);
+    public Result postTest(HttpSession session,Lesson lesson,String yes);
 
     public List<XueFenVo> getXueFen(HttpSession session);
 
