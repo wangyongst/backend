@@ -16,7 +16,7 @@ public class XueFenVo {
 
     public XueFenVo(Integer id, String name, String begintime, String endtime, Integer score, String year, Integer status) {
         this.id = id;
-        this.name = "<a href=\"javascript:makeXuexi("+id+");\">" + name + "</a>";
+        this.name = "<a href=\"javascript:makeXuexi(" + id + ");\">" + name + "</a>";
         this.begintime = begintime;
         this.endtime = endtime;
         this.score = score;
