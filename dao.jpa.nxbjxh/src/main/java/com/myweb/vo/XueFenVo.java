@@ -16,7 +16,7 @@ public class XueFenVo {
 
     public XueFenVo(Integer id, String name, String begintime, String endtime, Integer score, String year, Integer status) {
         this.id = id;
-        this.name = name;
+        this.name = "<a href=\"javascript:makeXuexi("+id+");\">" + name + "</a>";
         this.begintime = begintime;
         this.endtime = endtime;
         this.score = score;
@@ -24,7 +24,7 @@ public class XueFenVo {
         if (status != null && status == 3) {
             this.xuefen = "已获得学分";
         } else if (status != null && status == 2) {
-            this.xuefen = "学习完毕&nbsp;&nbsp;<button id=\"bandXueFen\" type=\"button\" class=\"btn btn-success\">申请学分</button>";
+            this.xuefen = "学习完毕&nbsp;&nbsp;&nbsp;&nbsp;<button onclick=\"show()\" type=\"button\" class=\"btn btn-success\">申请学分</button>";
         } else {
             this.xuefen = "学习中";
         }
