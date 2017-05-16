@@ -143,6 +143,7 @@ public class XueXiServiceImpl implements XueXiService {
             courserecord.setCourse(currentLesson.getCourse());
             courserecord.setBegintime(DateUtils.getCurrentTimeSecond());
             courserecord.setUser(user.getId());
+            courserecord.setStatus(1);
             courserecordRepository.save(courserecord);
         }
         return map;
@@ -176,6 +177,11 @@ public class XueXiServiceImpl implements XueXiService {
             band.setNumber(number.getNumber());
             band.setTime(DateUtils.getCurrentTimeSecond());
             bandRepository.save(band);
+            List<Courserecord> courserecordList = courserecordRepository.findByUser(user.getId());
+            for (Courserecord cc:courserecordList) {
+                cc.setStatus(3);
+                courserecordRepository.save(cc);
+            }
             result.setMessage("绑定学习卡成功，你已经获得学分，请在我的学分中查看具体信息！");
             result.setStatus(1);
             return result;
@@ -260,6 +266,7 @@ public class XueXiServiceImpl implements XueXiService {
         if(lessonrecordRepository.findByCourseAndUserAndStatus(lesson.getCourse(),user.getId(),1).size() == lessonRepository.findByCourse(lesson.getCourse()).size()){
             Courserecord courserecord = courserecordRepository.findByCourseAndUser(lesson.getCourse(),user.getId()).get(0);
             courserecord.setEndtime(DateUtils.getCurrentTimeSecond());
+            courserecord.setStatus(2);
             courserecordRepository.save(courserecord);
             result.setStatus(10);
         }

@@ -13,6 +13,7 @@ public class Courserecord {
     private Integer course;
     private String begintime;
     private String endtime;
+    private Integer status;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -89,5 +90,15 @@ public class Courserecord {
         result = 31 * result + (begintime != null ? begintime.hashCode() : 0);
         result = 31 * result + (endtime != null ? endtime.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "status", nullable = true)
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

@@ -53,13 +53,13 @@
                     <table data-toggle="table" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
                         <thead>
                         <tr>
-                            <th data-field="id" data-align="right">序号</th>
                             <th data-field="name">课程名称</th>
-                            <th data-field="itemno">课程编号</th>
                             <th data-field="begintime">开始时间</th>
                             <th data-field="endtime">结束时间</th>
                             <th data-field="year">年份</th>
-                            <th data-field="score">获得学分</th>
+                            <th data-field="score">学分</th>
+                            <th data-field="stat">学习状态</th>
+                            <th data-field="band">操作</th>
                         </tr>
                         </thead>
                     </table>
@@ -78,8 +78,6 @@
                         <table data-toggle="table" data-url="xuexi/get/xuexi.do" data-row-style="rowStyle">
                             <thead>
                             <tr>
-                                <th data-field="id" data-align="right">序号</th>
-                                <th data-field="cname">课程名称</th>
                                 <th data-field="name">课件名称</th>
                                 <th data-field="begintime">开始时间</th>
                                 <th data-field="endtime">结束时间</th>
