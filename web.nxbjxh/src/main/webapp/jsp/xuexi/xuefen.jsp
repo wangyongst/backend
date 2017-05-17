@@ -52,7 +52,7 @@
         };
 
         function makeXuexi(id) {
-alert(id);
+            alert(id);
         }
 
     </script>

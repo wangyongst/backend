@@ -13,4 +13,5 @@ import java.util.List;
 public interface BandRepository extends JpaRepository<Band,Integer> {
 
     public List<Band> findByNumber(String number);
+
 }
