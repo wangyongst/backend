@@ -40,6 +40,7 @@
             $('#bandModal').find('.modal-title').text('申请学分');
             $('#bandModal').attr("class","modal fade bs-example-modal-lg");
             $('#bandModal').children().attr("class","modal-dialog modal-lg");
+            $('#bandForm').empty();
             $('#bandForm').append("恭喜你已经完成本课程所有课件学习，你已经获得本课程学分，你可以绑定你的学习卡领取学分证书！<br>");
             $('#bandForm').append("请输入你的学习卡和密码，并点击申请学习！<br><br>");
             $('#bandForm').append("<label>学习卡号：</label><input class='form-control' type='text' name='number' placeholder='请填写你购买的学习卡卡号' autofocus>");

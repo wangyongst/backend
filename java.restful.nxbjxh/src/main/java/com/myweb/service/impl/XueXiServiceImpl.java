@@ -166,12 +166,7 @@ public class XueXiServiceImpl implements XueXiService {
            result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
             result.setStatus(2);
             return result;
-       }else if (ServiceUtils.isReseachListOK(result, bandRepository.findByUser(user.getId()))) {
-            result.setMessage("绑定失败，你已经绑定了一个学习卡，不能重复绑定！");
-            result.setStatus(2);
-            return result;
-        }
-        else {
+       }else {
             Band band = new Band();
             band.setUser(user.getId());
             band.setNumber(number.getNumber());
