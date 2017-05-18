@@ -143,7 +143,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-text" href="framework/home.do"><h2>宁夏保健学会学习平台</h2></a>
+            <p class="navbar-text"><h2>宁夏保健学会学习平台</h2></p>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
