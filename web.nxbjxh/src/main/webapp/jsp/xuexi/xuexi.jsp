@@ -155,6 +155,7 @@
                             $('#bandModal').children().attr("class","modal-dialog modal-lg");
                             $('#bandForm').append("恭喜你已经完成本课程所有课件学习，你已经获得本课程学分，你可以绑定你的学习卡领取学分证书！<br>");
                             $('#bandForm').append("请输入你的学习卡和密码，并点击申请学习！<br><br>");
+                            $('#bandForm').append("<input type='text' name='course'  value='${currentLesson.course}' hidden>")
                             $('#bandForm').append("<label>学习卡号：</label><input class='form-control' type='text' name='number' placeholder='请填写你购买的学习卡卡号' autofocus>");
                             $('#bandForm').append("<label>学习卡密码：</label><input class='form-control' type='password' name='password' placeholder='请填写你购买的学习卡密码'>")
                             $('#bandSave').text('申请学分');

@@ -12,6 +12,7 @@ public class Band {
     private Integer user;
     private String number;
     private String time;
+    private Integer course;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -35,7 +36,7 @@ public class Band {
     }
 
     @Basic
-    @Column(name = "number", nullable = true)
+    @Column(name = "number", nullable = true, length = 20)
     public String getNumber() {
         return number;
     }
@@ -76,5 +77,15 @@ public class Band {
         result = 31 * result + (number != null ? number.hashCode() : 0);
         result = 31 * result + (time != null ? time.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "course", nullable = true)
+    public Integer getCourse() {
+        return course;
+    }
+
+    public void setCourse(Integer course) {
+        this.course = course;
     }
 }

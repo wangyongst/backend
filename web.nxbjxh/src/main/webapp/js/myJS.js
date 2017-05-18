@@ -106,6 +106,7 @@ function makeModal(modal, idPrefix, index) {
     $(modal).find(".modal-footer").find("button").eq(0).attr("type", "button");
     $(modal).find(".modal-footer").find("button").eq(0).attr("class", "btn btn-default");
     $(modal).find(".modal-footer").find("button").eq(0).attr("data-dismiss", "modal");
+    $(modal).find(".modal-footer").find("button").eq(0).attr("id", idPrefix + "Close");
     $(modal).find(".modal-footer").find("button").eq(0).text("关闭");
     $(modal).find(".modal-footer").find("button").eq(1).attr("type", "button");
     $(modal).find(".modal-footer").find("button").eq(1).attr("class", "btn btn-primary");

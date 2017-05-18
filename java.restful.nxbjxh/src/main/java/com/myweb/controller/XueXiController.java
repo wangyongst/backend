@@ -92,18 +92,13 @@ public class XueXiController {
     //绑定
     @ResponseBody
     @RequestMapping(value = "post/band", method = RequestMethod.POST)
-    public Result postBand(HttpSession session, @ModelAttribute Number number) {
-        return xueXiService.postBand(session,number);
+    public Result postBand(HttpSession session, @ModelAttribute Number number, @RequestParam ( "course" )  Integer course) {
+        return xueXiService.postBand(session,number,course);
     }
 
     //学分
     @RequestMapping(value = "xuefen", method = RequestMethod.GET)
     public ModelAndView xuefen(HttpSession session) {
-        User user = (User)session.getAttribute("user");
-//        if(StringUtils.isBlank(user.getNumber())) return new ModelAndView("xuexi/bangding");
-//        else{
-//            return new ModelAndView("xuexi/xuefen");
-//        }
         return new ModelAndView("xuexi/xuefen");
     }
 }

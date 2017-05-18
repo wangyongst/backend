@@ -14,4 +14,6 @@ public interface BandRepository extends JpaRepository<Band,Integer> {
 
     public List<Band> findByNumber(String number);
 
+    public List<Band> findByUserAndCourse(int user,int course);
+
 }

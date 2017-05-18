@@ -151,7 +151,7 @@ public class XueXiServiceImpl implements XueXiService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result postBand(HttpSession session, Number number) {
+    public Result postBand(HttpSession session, Number number,Integer course) {
         Result result = new Result();
         User user = (User) session.getAttribute("user");
         if(StringUtils.isBlank(number.getNumber()) || StringUtils.isBlank(number.getPassword())){
@@ -168,11 +168,12 @@ public class XueXiServiceImpl implements XueXiService {
             return result;
        }else {
             Band band = new Band();
+            band.setCourse(course);
             band.setUser(user.getId());
             band.setNumber(number.getNumber());
             band.setTime(DateUtils.getCurrentTimeSecond());
             bandRepository.save(band);
-            List<Courserecord> courserecordList = courserecordRepository.findByUser(user.getId());
+            List<Courserecord> courserecordList = courserecordRepository.findByCourseAndUser(course,user.getId());
             for (Courserecord cc:courserecordList) {
                 cc.setStatus(3);
                 courserecordRepository.save(cc);
