@@ -266,7 +266,7 @@ public class XueXiServiceImpl implements XueXiService {
             courserecordRepository.save(courserecord);
             result.setStatus(10);
         }
-        result.setMessage("恭喜你，你的本课程考试成绩合格！");
+        result.setMessage("恭喜你，你的本课件考试成绩合格，请继续学习其它课件！");
         return result;
     }
 
