@@ -250,7 +250,7 @@ public class XueXiServiceImpl implements XueXiService {
         }
         if(notRight.size() > 0){
             result.setStatus(9);
-            result.setMessage("你的考试成绩不合格，有以下题目答题错误，共答错"+notRight.size()+"题！");
+            result.setMessage("你的考试成绩不合格，共答错"+notRight.size()+"题，有以下题目答题错误！");
             result.setData(notRight);
             return result;
         }
