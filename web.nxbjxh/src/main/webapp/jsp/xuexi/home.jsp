@@ -29,13 +29,6 @@
             <p class="navbar-text"><h2>宁夏保健学会学习平台</h2></p>
         </div>
 
-
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="container-fluid">
-    <div class="row">
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -47,6 +40,13 @@
                 <li><a href="framework/logout.do">退出学习平台</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="container-fluid">
+    <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-primary">
                 <div class="panel-heading">在线学习</div>
