@@ -85,8 +85,8 @@ public class XueXiController {
     //getXueXi
     @ResponseBody
     @RequestMapping(value = "get/xuexi", method = RequestMethod.GET)
-    public List<XueXiVo> getXueXi(HttpSession session) {
-        return xueXiService.getXueXi(session);
+    public List<XueXiVo> getXueXi(HttpSession session, @ModelAttribute Lessonrecord lessonrecord) {
+        return xueXiService.getXueXi(session,lessonrecord);
     }
 
     //绑定

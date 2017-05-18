@@ -55,7 +55,14 @@
         };
 
         function makeXuexi(id) {
-            alert(id);
+            //alert(id);
+            $('#xuexiTable').bootstrapTable(
+                "refresh",
+                {
+                    url:"xuexi/get/xuexi.do?course="+id,
+                }
+            );
+            $('#myModal').modal('toggle');
         }
 
     </script>
@@ -118,11 +125,25 @@
 
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-primary">
-                <div class="panel-heading">未获得学分课程</div>
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <table data-toggle="table" data-url="xuexi/get/xuexi.do" data-row-style="rowStyle">
+
+        </div><!--/.col-->
+    </div><!-- /.row -->
+</div>
+
+<div id="bandModal"></div><!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="3" role="dialog" aria-labelledby="ModalLabelEditByYong">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">课程学习记录</div>
+                    <div class="panel-body">
+                        <table data-toggle="table" data-url="" data-row-style="rowStyle" id="xuexiTable">
                             <thead>
                             <tr>
                                 <th data-field="name">课件名称</th>
@@ -135,11 +156,12 @@
                     </div>
                 </div>
             </div>
-        </div><!--/.col-->
-    </div><!-- /.row -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
 </div>
-
-<div id="bandModal"></div><!-- Modal -->
 
 </body>
 

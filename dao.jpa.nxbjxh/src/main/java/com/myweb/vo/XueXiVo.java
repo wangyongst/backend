@@ -12,7 +12,7 @@ public class XueXiVo {
     private Integer status;
     private String yes;
 
-    public XueXiVo(Integer id, String name, String begintime, String endtime, Integer status, String cname) {
+    public XueXiVo(Integer id, String name, String begintime, String endtime, Integer status) {
         this.id = id;
         this.name = name;
         this.begintime = begintime;

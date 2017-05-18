@@ -31,5 +31,5 @@ public interface XueXiService {
 
     public List<XueFenVo> getXueFen(HttpSession session);
 
-    public List<XueXiVo> getXueXi(HttpSession session);
+    public List<XueXiVo> getXueXi(HttpSession session,Lessonrecord lessonrecord);
 }

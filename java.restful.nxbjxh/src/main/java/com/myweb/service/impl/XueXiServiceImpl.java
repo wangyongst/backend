@@ -277,8 +277,8 @@ public class XueXiServiceImpl implements XueXiService {
     }
 
     @Override
-    public List<XueXiVo> getXueXi(HttpSession session) {
+    public List<XueXiVo> getXueXi(HttpSession session,Lessonrecord lessonrecord) {
         User user = (User) session.getAttribute("user");
-        return myRepository.queryXuexiByUser(user.getId());
+        return myRepository.queryXuexiByUserAndCourse(user.getId(),lessonrecord.getCourse());
     }
 }
