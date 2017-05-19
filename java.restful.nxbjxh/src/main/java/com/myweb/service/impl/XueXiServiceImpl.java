@@ -235,7 +235,7 @@ public class XueXiServiceImpl implements XueXiService {
         List<Test> notRight = new ArrayList<Test>();
         User user = (User)session.getAttribute("user");
         Result result = new Result();
-        if(lesson.getId() == null || StringUtils.isBlank(yes)){
+        if(lesson.getId() == null || StringUtils.isBlank(yes) || yes.split(",").length < 10){
             result.setStatus(2);
             result.setMessage("你还没有做题，请先完成题目后再交卷！");
             return result;
