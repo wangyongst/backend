@@ -205,9 +205,9 @@
                             <label>联系电话：</label>
                             <input class="form-control" type="tel" name="phone" placeholder="手机号码为11位数字，座机号码为小于等于12位数字，区号后可带-" value="${user.phone}">
                             <label>密 码：</label>
-                            <input class="form-control" type="text" name="password" placeholder="长度为6到22位" value="${user.password}">
+                            <input class="form-control" type="password" name="password" placeholder="长度为6到22位" value="${user.password}">
                             <label>确认密码：</label>
-                            <input class="form-control" type="text" name="password2" placeholder="输入一致的密码" value="${user.password}">
+                            <input class="form-control" type="password" name="password2" placeholder="输入一致的密码" value="${user.password}">
                             <label>单位直属类别：</label>
                             <div class="row col-md-offset-0">
                                 <div class="radio">
