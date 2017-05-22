@@ -9,7 +9,24 @@
         $(function () {
             makeModal($("#bandModal"), "band", "1");
 
-            makeAlert($("#bandAlert"));
+            makeModal($("#alertModal"), "alertB", "4");
+
+            function showAlertModal(message,type) {
+                $('#alertModal').find('.modal-title').text('注册提示');
+                $('#alertModal').attr("class","modal fade");
+                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').find('.modal-body').text(message);
+                if(type == 1){
+                    $('#alertBSave').text("确定");
+                    $('#alertBSave').show();
+                    $('#alertBClose').hide();
+                }else{
+                    $('#alertBClose').show();
+                    $('#alertBSave').hide();
+                }
+
+                $('#alertModal').modal('toggle');
+            }
 
             $("#bandSave").click(function () {
                 $.ajax({
@@ -19,15 +36,10 @@
                     data: $('#bandForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#bandAlert"), "danger");
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
-                        if (result.status == 1) {
-                            showAlert($("#bandAlert"), "success", result.message);
-                        }
-                        else {
-                            showAlert($("#bandAlert"), "warning", result.message);
-                        }
+                        showAlertModal(result.message,0);
                     }
                 });
             });
@@ -122,15 +134,11 @@
             </div>
         </div><!--/.col-->
     </div><!-- /.row -->
-
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-
-        </div><!--/.col-->
-    </div><!-- /.row -->
 </div>
 
 <div id="bandModal"></div><!-- Modal -->
+
+<div id="alertModal"></div><!-- Modal -->
 
 <div class="modal fade" id="myModal" tabindex="3" role="dialog" aria-labelledby="ModalLabelEditByYong">
     <div class="modal-dialog modal-lg">

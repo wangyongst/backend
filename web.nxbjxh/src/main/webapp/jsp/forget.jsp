@@ -9,7 +9,24 @@
     <script type="text/javascript">
         $(function () {
 
-            makeAlert($("#alertA"));
+            makeModal($("#alertModal"), "alertB", "1");
+
+            function showAlertModal(message,type) {
+                $('#alertModal').find('.modal-title').text('注册提示');
+                $('#alertModal').attr("class","modal fade");
+                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').find('.modal-body').text(message);
+                if(type == 1){
+                    $('#alertBSave').text("确定");
+                    $('#alertBSave').show();
+                    $('#alertBClose').hide();
+                }else{
+                    $('#alertBClose').show();
+                    $('#alertBSave').hide();
+                }
+
+                $('#alertModal').modal('toggle');
+            }
 
             function forget() {
                 $.ajax({
@@ -19,20 +36,24 @@
                     data: $('#userForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#alertA"), "danger");
                         $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            showAlert($("#alertA"), "success","找回密码成功，你的密码是:"+result.data.password+",请妥善保管！");
                             $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
+                            showAlertModal("找回密码成功，你的密码是:"+result.data.password+",请妥善保管！",1);
                         }else{
-                            showAlert($("#alertA"), "warning",result.message);
                             $("#authImage").attr("src","<%=basePath%>authImage.do?time="+new Date().getTime());
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
             }
+
+            $("#alertBSave").click(function () {
+                window.location.href = "<%=basePath%>jsp/login.jsp";
+            });
 
             $("#forget").click(function () {
                 forget();
@@ -84,11 +105,11 @@
                         <a id="close" class="btn btn-primary">关闭</a>
                     </form>
                 </div>
-                <div class="row" id="alertA" hidden></div>
             </div>
         </div>
     </div><!--/.col-->
 </div><!-- /.row -->
+    <div id="alertModal"></div><!-- Modal -->
 </div>
 </body>
 

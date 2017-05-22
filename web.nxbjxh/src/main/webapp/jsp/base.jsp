@@ -4,6 +4,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+    session.setMaxInactiveInterval(60);
 %>
 <base href="<%=basePath%>">
 <meta charset="utf-8">

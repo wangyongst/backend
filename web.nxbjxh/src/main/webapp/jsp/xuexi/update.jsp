@@ -8,7 +8,24 @@
     <script type="text/javascript">
         $(function () {
 
-            makeAlert($("#alertA"));
+            makeModal($("#alertModal"), "alertB", "1");
+
+            function showAlertModal(message,type) {
+                $('#alertModal').find('.modal-title').text('注册提示');
+                $('#alertModal').attr("class","modal fade");
+                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').find('.modal-body').text(message);
+                if(type == 1){
+                    $('#alertBSave').text("确定");
+                    $('#alertBSave').show();
+                    $('#alertBClose').hide();
+                }else{
+                    $('#alertBClose').show();
+                    $('#alertBSave').hide();
+                }
+
+                $('#alertModal').modal('toggle');
+            }
 
             var myunittype = "${mynuittype}";
 
@@ -29,7 +46,7 @@
                     data: {pid:pid,type:type},
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#alertA"), "danger");
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 1 || result.status == 7) {
@@ -51,7 +68,7 @@
                                 })
                             }
                         } else {
-                            showAlert($("#alertA"), "warning", result.message);
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
@@ -103,7 +120,7 @@
 
             $("#updateUser").click(function () {
                 if ($("input[name='password']").val() != $("input[name='password2']").val()) {
-                    showAlert($("#alertA"), "warning", "你两次输入的密码不一致，请重新输入！");
+                    showAlertModal("你两次输入的密码不一致，请重新输入！",0);
                     return;
                 }
                 $.ajax({
@@ -113,13 +130,13 @@
                     data: $('#userForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#alertA"), "danger");
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            showAlert($("#alertA"), "success", "修改成功，你可以在本平台进行远程学习！");
+                            showAlertModal("修改成功，你可以在本平台进行远程学习！",0);
                         } else {
-                            showAlert($("#alertA"), "warning", result.message);
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
@@ -262,12 +279,12 @@
                         </div>
                         <a id="updateUser" class="btn btn-primary">修改</a>
                     </form>
-                    <div class="row" id="alertA" hidden></div>
                 </div>
             </div>
         </div>
     </div><!--/.col-->
 </div><!-- /.row -->
+    <div id="alertModal"></div><!-- Modal -->
 </div>
 </body>
 

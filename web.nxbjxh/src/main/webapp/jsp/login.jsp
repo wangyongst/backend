@@ -9,7 +9,24 @@
     <script type="text/javascript">
         $(function () {
 
-            makeAlert($("#alertA"));
+            makeModal($("#alertModal"), "alertB", "1");
+
+            function showAlertModal(message,type) {
+                $('#alertModal').find('.modal-title').text('注册提示');
+                $('#alertModal').attr("class","modal fade");
+                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').find('.modal-body').text(message);
+                if(type == 1){
+                    $('#alertBSave').text("确定");
+                    $('#alertBSave').show();
+                    $('#alertBClose').hide();
+                }else{
+                    $('#alertBClose').show();
+                    $('#alertBSave').hide();
+                }
+
+                $('#alertModal').modal('toggle');
+            }
 
             function login() {
                 $.ajax({
@@ -19,15 +36,15 @@
                     data: $('#userForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#alertA"), "danger");
                         $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 1) {
                             window.location.href = "<%=basePath%>xuexi/home.do";
                         } else {
-                            showAlert($("#alertA"), "warning", result.message);
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
@@ -121,7 +138,6 @@
                         </div>
                     </div>
                 </div><!-- /.col-->
-                <div class="row" id="alertA" hidden></div>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-0">
                         <p>技术支持：甘肃七言志教育科技有限公司<br>客服电话：4006969296 0931-2111188 <br>QQ：2715528741<br>QQ群：68638150<br>备案信息：陇ICP备14000281号-1 <br></p>
@@ -135,6 +151,8 @@
 </div><!-- /.row -->
 
 </div><!-- /.row -->
+
+<div id="alertModal"></div><!-- Modal -->
 </div>
 </body>
 
