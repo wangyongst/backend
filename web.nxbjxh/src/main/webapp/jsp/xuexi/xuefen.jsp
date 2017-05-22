@@ -12,7 +12,7 @@
             makeModal($("#alertModal"), "alertB", "4");
 
             function showAlertModal(message,type) {
-                $('#alertModal').find('.modal-title').text('注册提示');
+                $('#alertModal').find('.modal-title').text('申请学分提示');
                 $('#alertModal').attr("class","modal fade");
                 $('#alertModal').children().attr("class","modal-dialog");
                 $('#alertModal').find('.modal-body').text(message);

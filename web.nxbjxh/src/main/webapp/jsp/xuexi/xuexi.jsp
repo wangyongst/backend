@@ -21,9 +21,24 @@
 
             makeModal($("#bandModal"), "band", "3");
 
-            makeAlert($("#testAlert"));
+            makeModal($("#alertModal"), "alertB", "4");
 
-            makeAlert($("#bandAlert"));
+            function showAlertModal(message,type) {
+                $('#alertModal').find('.modal-title').text('在线考试提示');
+                $('#alertModal').attr("class","modal fade");
+                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').find('.modal-body').text(message);
+                if(type == 1){
+                    $('#alertBSave').text("确定");
+                    $('#alertBSave').show();
+                    $('#alertBClose').hide();
+                }else{
+                    $('#alertBClose').show();
+                    $('#alertBSave').hide();
+                }
+
+                $('#alertModal').modal('toggle');
+            }
 
             $("#jiangyi").click(function () {
                 $('#jiangyiModal').find('.modal-title').text('课程讲义');
@@ -44,7 +59,7 @@
                     sync:false,
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#testAlert"), "danger");
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 7) {
@@ -62,7 +77,7 @@
                                 $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes+"+value.id+"' value='" + result.data.id + "'>" + result.data.name + "</label>");
                             }
                         } else {
-                            showAlert($("#testAlert"), "warning", result.message);
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
@@ -81,7 +96,7 @@
                     sync:false,
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#testAlert"), "danger");
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 7) {
@@ -101,7 +116,7 @@
                             }
                             makeTest(result.data);
                         } else {
-                            showAlert($("#testAlert"), "warning", result.message);
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
@@ -112,11 +127,7 @@
                 $('#testModal').attr("class","modal fade bs-example-modal-lg");
                 $('#testModal').children().attr("class","modal-dialog modal-lg");
                 if($("#isover").val() != 1){
-                    $('#testSave').hide();
-                    $("#testAlert").hide();
-                    $('#testForm').empty();
-                    $('#testForm').append("请先观看完视频课程再进行考试！");
-                    $('#testModal').modal('toggle');
+                    showAlertModal("请先观看完视频课程再进行考试！",0);
                     return;
                 }
                 test();
@@ -135,11 +146,11 @@
                     data: {id:"${currentLesson.id}",yes:$('#testForm').serialize().replace(/yes%2B/g,"").replace(/&/g,",")},
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlert($("#testAlert"), "danger");
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            showAlert($("#testAlert"), "success", result.message);
+                            showAlertModal(result.message,0);
                         }else if(result.status == 9){
                             $('#testForm').empty();
                             $('#testForm').append(result.message);
@@ -164,7 +175,7 @@
                             $('#bandModal').modal('toggle');
                         }
                         else {
-                            showAlert($("#testAlert"), "warning", result.message);
+                            showAlertModal(result.message,0);
                         }
                     }
                 });
@@ -181,12 +192,7 @@
                         showAlert($("#bandAlert"), "danger");
                     },
                     success: function (result) {
-                        if (result.status == 1) {
-                            showAlert($("#bandAlert"), "success", result.message);
-                        }
-                        else {
-                            showAlert($("#bandAlert"), "warning", result.message);
-                        }
+                        showAlertModal(result.message,0);
                     }
                 });
             });
@@ -277,6 +283,7 @@
 <div id="jiangyiModal"></div><!-- Modal -->
 <div id="testModal"></div><!-- Modal -->
 <div id="bandModal"></div><!-- Modal -->
+<div id="alertModal"></div><!-- Modal -->
 </body>
 
 </html>

@@ -9,8 +9,8 @@
     <script type="text/javascript">
         $(function () {
 
-            $("#shiselect").hide();
-            $("#quxianselect").hide();
+            $("#shiselect").parent().hide();
+            $("#quxianselect").parent().hide();
 
             $("#shengradio").prop("checked","true");
             $("#unitselect").parent().attr("class","col-md-12");
@@ -41,28 +41,35 @@
             });
 
             $("#shiradio").click(function () {
-                $("#shiselect").parent().attr("class","col-md-6")
-                $("#shiselect").show();
-                $("#quxianselect").hide();
-                $("#unitselect").parent().attr("class","col-md-6")
+                $("#shiselect").html("<option selected>——请选择市局——</option>");
+                $("#quxianselect").html("<option selected>——请选择区县局——</option>");
                 $("#unitselect").html("<option selected>——请选择单位——</option>");
+                $("#quxianselect").parent().hide();
+                $("#shiselect").parent().attr("class","col-md-6");
+                $("#unitselect").parent().attr("class","col-md-6");
+                $("#shiselect").parent().show();
                 unit(1,5)
             });
 
             $("#shengradio").click(function () {
-                $("#shiselect").hide();
-                $("#quxianselect").hide();
-                $("#unitselect").parent().attr("class","col-md-12")
+                $("#shiselect").html("<option selected>——请选择市局——</option>");
+                $("#quxianselect").html("<option selected>——请选择区县局——</option>");
+                $("#unitselect").html("<option selected>——请选择单位——</option>");
+                $("#shiselect").parent().hide();
+                $("#quxianselect").parent().hide();
+                $("#unitselect").parent().attr("class","col-md-12");
                 unit(1,1);
             });
 
             $("#quxianradio").click(function () {
-                $("#shiselect").show();
-                $("#shiselect").parent().attr("class","col-md-4")
-                $("#quxianselect").show();
-                $("#quxianselect").parent().attr("class","col-md-4")
-                $("#unitselect").parent().attr("class","col-md-4")
+                $("#shiselect").html("<option selected>——请选择市局——</option>");
+                $("#quxianselect").html("<option selected>——请选择区县局——</option>");
                 $("#unitselect").html("<option selected>——请选择单位——</option>");
+                $("#shiselect").parent().attr("class","col-md-4");
+                $("#quxianselect").parent().attr("class","col-md-4");
+                $("#unitselect").parent().attr("class","col-md-4");
+                $("#quxianselect").parent().show();
+                $("#shiselect").parent().show();
                 unit(1,5)
             });
 
@@ -100,18 +107,15 @@
                     success: function (result) {
                         if (result.status == 1 || result.status == 7) {
                             if (result.message == "1" || result.message == "2" || result.message == "3") {
-                                $("#unitselect").html("<option selected>——请选择单位——</option>");
                                 $.each(result.data, function (key, value) {
                                     $("#unitselect").append("<option value='" + value.name + "'>" + value.name + "</option>");
                                 })
                             }else if(result.message == "5"){
-                                $("#shiselect").html("<option selected>——请选择市局——</option>");
                                 $.each(result.data, function (key, value) {
                                     $("#shiselect").append("<option value='" + value.id + "'>" + value.name + "</option>");
                                 })
                             }
                             else if(result.message == "6"){
-                                $("#quxianselect").html("<option selected>——请选择区县局——</option>");
                                 $.each(result.data, function (key, value) {
                                     $("#quxianselect").append("<option value='" + value.id + "'>" + value.name + "</option>");
                                 })
@@ -213,17 +217,17 @@
                             </div>
                             <label>单 位：</label>
                             <div class="row">
-                                     <label>
+                                     <label hidden>
                                         <select id="shiselect" class="form-control">
                                             <option value="" selected>——请选择市局——</option>
                                         </select>
                                     </label>
-                                    <label>
+                                    <label hidden>
                                         <select id="quxianselect" class="form-control">
                                             <option value="" selected>——请选择区县局——</option>
                                         </select>
                                     </label>
-                                    <label>
+                                    <label class=" col-md-12">
                                         <select id="unitselect" class="form-control" name="unit">
                                             <option value="" selected>——请选择单位——</option>
                                         </select>
