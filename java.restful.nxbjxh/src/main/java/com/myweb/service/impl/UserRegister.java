@@ -16,7 +16,7 @@ public class UserRegister {
     }
 
     public static Result isUpdateOK(Result result, User user){
-        return isAnyBlank(result,user,"修改个人信息");
+        return isAnyBlank(result,user,"修改用户资料");
     }
 
     public static Result isAnyBlank(Result result,User user,String method){
@@ -67,6 +67,10 @@ public class UserRegister {
         }
         if (ServiceUtils.isBlankValue(result, user.getDepartment())) {
             result.setMessage(method+"失败，你输入的科室不能为空！");
+            return result;
+        }
+        if (ServiceUtils.isBlankValue(result, user.getTitle())) {
+            result.setMessage(method+"失败，你输入的职称不能为空！");
             return result;
         }
         if(!Pattern.matches("^[\\u4e00-\\u9fa5]{1,20}$",user.getDepartment())){

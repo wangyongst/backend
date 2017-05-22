@@ -130,6 +130,7 @@
             function register() {
                 if ($("input[name='password']").val() != $("input[name='password2']").val()) {
                     showAlertModal("你两次输入的密码不一致，请重新输入！",0);
+                    $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
                     return;
                 }
                 $.ajax({
@@ -145,7 +146,7 @@
                     success: function (result) {
                         if (result.status == 1) {
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
-                            showAlertModal("注册成功，请用你注册的账号及密码登录系统学习！",1);
+                            showAlertModal("注册成功，请用你注册的账号及密码登录平台学习！",1);
                         } else {
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
                             showAlertModal(result.message,0);
@@ -189,7 +190,6 @@
                             <input class="form-control" type="text" name="name" placeholder="请填写正确的中文名称(支持少数名族，不支持英文、拼音、数字)" autofocus>
                             <label>性 别：</label>
                             <select class="form-control" name="sex">
-                                <option selected>——请选择性别——</option>
                                 <option value="男">男</option>
                                 <option value="女">女</option>
                             </select>
