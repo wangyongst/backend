@@ -32,9 +32,12 @@
             $("input[name='unittype'][value='"+ myunittype +"']").prop("checked",true);
 
             if(myunittype == 1){
+                $("#unitselect").parent().attr("class","col-md-12");
                 $("#shiselect").parent().hide();
                 $("#quxianselect").parent().hide();
             }else if(myunittype == 2){
+                $("#shiselect").parent().attr("class","col-md-6");
+                $("#unitselect").parent().attr("class","col-md-6");
                 $("#quxianselect").parent().hide();
             }
 
@@ -202,9 +205,9 @@
                             <label>联系电话：</label>
                             <input class="form-control" type="tel" name="phone" placeholder="手机号码为11位数字，座机号码为小于等于12位数字，区号后可带-" value="${user.phone}">
                             <label>密 码：</label>
-                            <input class="form-control" type="password" name="password" placeholder="长度为6到22位" value="${user.password}">
+                            <input class="form-control" type="text" name="password" placeholder="长度为6到22位" value="${user.password}">
                             <label>确认密码：</label>
-                            <input class="form-control" type="password" name="password2" placeholder="输入一致的密码" value="${user.password}">
+                            <input class="form-control" type="text" name="password2" placeholder="输入一致的密码" value="${user.password}">
                             <label>单位直属类别：</label>
                             <div class="row col-md-offset-0">
                                 <div class="radio">
@@ -221,7 +224,7 @@
                             </div>
                             <label>单 位：</label>
                             <div class="row">
-                                <label>
+                                <label class="col-md-4">
                                     <select id="shiselect" class="form-control">
                                         <c:forEach items="${myshis}" var="myshis">
                                             <c:choose>
@@ -235,7 +238,7 @@
                                         </c:forEach>
                                     </select>
                                 </label>
-                                <label>
+                                <label class="col-md-4">
                                     <select id="quxianselect" class="form-control">
                                         <c:forEach items="${myquxians}" var="myquxians">
                                             <c:choose>
@@ -249,7 +252,7 @@
                                         </c:forEach>
                                     </select>
                                 </label>
-                                <label>
+                                <label class="col-md-4">
                                     <select id="unitselect" class="form-control" name="unit">
                                         <c:forEach items="${myunits}" var="myunits">
                                             <c:choose>
