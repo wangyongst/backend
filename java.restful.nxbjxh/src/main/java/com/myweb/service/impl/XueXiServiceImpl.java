@@ -156,14 +156,14 @@ public class XueXiServiceImpl implements XueXiService {
         User user = (User) session.getAttribute("user");
         if(StringUtils.isBlank(number.getNumber()) || StringUtils.isBlank(number.getPassword())){
             result.setStatus(2);
-            result.setMessage("绑定失败，你的输入的学习卡号或学习卡密码为空，请重新输入！");
+            result.setMessage("申请学分失败，你的输入的学习卡号或学习卡密码为空，请重新输入！");
             return result;
         }else if (!ServiceUtils.isReseachListOK(result, numberRepository.findByNumberAndPassword(number.getNumber(),number.getPassword()))) {
-            result.setMessage("绑定失败，你的输入的学习卡号不存在或密码不正确，请重新输入！");
+            result.setMessage("申请学分失败，你的输入的学习卡号不存在或密码不正确，请重新输入！");
             result.setStatus(2);
             return result;
         }else if (ServiceUtils.isReseachListOK(result, bandRepository.findByNumber(number.getNumber()))) {
-           result.setMessage("绑定失败，你的输入的学习卡号已经被绑定，不能重复使用！");
+           result.setMessage("申请学分失败，你的输入的学习卡号已经被绑定，不能重复使用！");
             result.setStatus(2);
             return result;
        }else {
@@ -178,7 +178,7 @@ public class XueXiServiceImpl implements XueXiService {
                 cc.setStatus(3);
                 courserecordRepository.save(cc);
             }
-            result.setMessage("绑定学习卡成功，你已经获得学分，请在我的学分中查看具体信息！");
+            result.setMessage("申请学分成功，你已经获得学分，请在我的学分中查看具体信息！");
             result.setStatus(1);
             return result;
         }
@@ -237,7 +237,7 @@ public class XueXiServiceImpl implements XueXiService {
         Result result = new Result();
         if(lesson.getId() == null || StringUtils.isBlank(yes) || yes.split(",").length < 10){
             result.setStatus(2);
-            result.setMessage("你还没有做题，请先完成题目后再交卷！");
+            result.setMessage("你还没有做完考试题，请先完成全部题目后再交卷！");
             return result;
         }
         String[] yeses = yes.split(",");
