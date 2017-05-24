@@ -104,7 +104,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于系统安全方面的原因，建议使用ie8以上或者谷歌浏览器，否则会出现页面显示不完整，无法完成注册等问题。
                                 <br>
                                 <br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>升级请点击</u> </h3></p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://42.81.54.48/softdl.360tpcdn.com/Chromestable/Chromestable_58.0.3029.110.exe">升级请点击</a> </h3></p>
                         </div>
                     </div>
                 </div>

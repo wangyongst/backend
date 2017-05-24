@@ -50,7 +50,7 @@
 <script src="js/myJS.js"></script>
 <style type="text/css">
     body {
-        background-image: url("/picture/bj.jpg");
+        background-image: url("<%=basePath%>picture/bj.jpg");
         background-repeat: repeat
     }
 </style>

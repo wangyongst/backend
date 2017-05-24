@@ -11,16 +11,16 @@
 
             makeModal($("#alertModal"), "alertB", "4");
 
-            function showAlertModal(message,type) {
+            function showAlertModal(message, type) {
                 $('#alertModal').find('.modal-title').text('申请学分提示');
-                $('#alertModal').attr("class","modal fade");
-                $('#alertModal').children().attr("class","modal-dialog");
+                $('#alertModal').attr("class", "modal fade");
+                $('#alertModal').children().attr("class", "modal-dialog");
                 $('#alertModal').find('.modal-body').text(message);
-                if(type == 1){
+                if (type == 1) {
                     $('#alertBSave').text("确定");
                     $('#alertBSave').show();
                     $('#alertBClose').hide();
-                }else{
+                } else {
                     $('#alertBClose').show();
                     $('#alertBSave').hide();
                 }
@@ -36,10 +36,10 @@
                     data: $('#bandForm').serialize(),
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
-                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
+                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！", 0);
                     },
                     success: function (result) {
-                        showAlertModal(result.message,0);
+                        showAlertModal(result.message, 0);
                     }
                 });
             });
@@ -71,7 +71,7 @@
             $('#xuexiTable').bootstrapTable(
                 "refresh",
                 {
-                    url:"xuexi/get/xuexi.do?course="+id,
+                    url: "xuexi/get/xuexi.do?course=" + id,
                 }
             );
             $('#myModal').modal('toggle');
@@ -100,7 +100,7 @@
             <li role="presentation" class="divider"></li>
             <li><a href="xuexi/update.do">修改个人信息 </a></li>
             <li role="presentation" class="divider"></li>
-            <li ><a href="xuexi/home.do">在线学习</a></li>
+            <li><a href="xuexi/home.do">在线学习</a></li>
             <li role="presentation" class="divider"></li>
             <li class="active"><a href="xuexi/xuefen.do">我的学分 </a></li>
             <li role="presentation" class="divider"></li>
@@ -115,64 +115,65 @@
         <div class="container-fluid xyz">
             <div class="row">
                 <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">已获得学分课程</div>
-                <div class="panel-body">
-                    <div class="col-md-12">
-                        <table data-toggle="table" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
-                            <thead>
-                            <tr>
-                                <th data-field="name">课程名称</th>
-                                <th data-field="begintime">开始时间</th>
-                                <th data-field="endtime">结束时间</th>
-                                <th data-field="year">年份</th>
-                                <th data-field="score">学分</th>
-                                <th data-field="xuefen">学习状态</th>
-                            </tr>
-                            </thead>
-                        </table>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">已获得学分课程</div>
+                        <div class="panel-body">
+                            <div class="col-md-12">
+                                <table data-toggle="table" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
+                                    <thead>
+                                    <tr>
+                                        <th data-field="name">课程名称</th>
+                                        <th data-field="begintime">开始时间</th>
+                                        <th data-field="endtime">结束时间</th>
+                                        <th data-field="year">年份</th>
+                                        <th data-field="score">学分</th>
+                                        <th data-field="xuefen">学习状态</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div><!--/.col-->
-    </div><!-- /.row -->
-</div>
+                </div><!--/.col-->
+            </div><!-- /.row -->
+        </div>
 
-<div id="bandModal"></div><!-- Modal -->
+        <div id="bandModal"></div><!-- Modal -->
 
-<div id="alertModal"></div><!-- Modal -->
+        <div id="alertModal"></div><!-- Modal -->
 
-<div class="modal fade" id="myModal" tabindex="3" role="dialog" aria-labelledby="ModalLabelEditByYong">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
-            </div>
-            <div class="modal-body">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">课程学习记录</div>
-                    <div class="panel-body">
-                        <table data-toggle="table" data-url="" data-row-style="rowStyle" id="xuexiTable">
-                            <thead>
-                            <tr>
-                                <th data-field="name">课件名称</th>
-                                <th data-field="begintime">开始时间</th>
-                                <th data-field="endtime">结束时间</th>
-                                <th data-field="yes">考试成绩</th>
-                            </tr>
-                            </thead>
-                        </table>
+        <div class="modal fade" id="myModal" tabindex="3" role="dialog" aria-labelledby="ModalLabelEditByYong">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel"></h4>
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
+                    <div class="modal-body">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">课程学习记录</div>
+                            <div class="panel-body">
+                                <table data-toggle="table" data-url="" data-row-style="rowStyle" id="xuexiTable">
+                                    <thead>
+                                    <tr>
+                                        <th data-field="name">课件名称</th>
+                                        <th data-field="begintime">开始时间</th>
+                                        <th data-field="endtime">结束时间</th>
+                                        <th data-field="yes">考试成绩</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
+    </div>
 </div>
-
 </body>
 
 </html>

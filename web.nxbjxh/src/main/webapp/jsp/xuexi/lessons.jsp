@@ -75,6 +75,8 @@
         </div><!--/.col-->
     </div><!-- /.row -->
 </div>
+    </div>
+</div>
 </body>
 
 </html>
