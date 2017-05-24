@@ -26,26 +26,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <p class="navbar-text"><h2>宁夏保健学会学习平台</h2></p>
+            <p class="navbar-text">
+            <h2>宁夏保健学会学习平台</h2></p>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="xuexi/update.do">修改个人信息 </a></li>
-                <li class="active"><a href="xuexi/home.do">在线学习<span class="sr-only">(current)</span></a></li>
-                <li><a href="xuexi/xuefen.do">我的学分 </a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="framework/logout.do">退出学习平台</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="bs-example-navbar-collapse-1">
+            <li role="presentation" class="divider"></li>
+            <li><a href="xuexi/update.do">修改个人信息 </a></li>
+            <li role="presentation" class="divider"></li>
+            <li class="active"><a href="xuexi/home.do">在线学习</a></li>
+            <li role="presentation" class="divider"></li>
+            <li><a href="xuexi/xuefen.do">我的学分 </a></li>
+            <li role="presentation" class="divider"></li>
+            <li><a href="framework/logout.do">退出学习平台</a></li>
+            <li role="presentation" class="divider"></li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid xyz">
+            <div class="row">
+                <div class="col-md-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">在线学习</div>
                 <div class="panel-body">
