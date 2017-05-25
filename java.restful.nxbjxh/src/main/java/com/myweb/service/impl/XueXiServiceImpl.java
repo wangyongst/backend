@@ -241,13 +241,11 @@ public class XueXiServiceImpl implements XueXiService {
             return result;
         }
         String[] yeses = yes.split(",");
-        for(int i = 0; i< yeses.length ; i ++){
-            String[] ans = yeses[i].split("=");
+        for(String ye : yeses){
+            String[] ans = ye.split("=");
             List<Test> yesorno = testRepository.findByIdAndYes(Integer.parseInt(ans[1]),1);
             if(yesorno == null || yesorno.size() == 0){
-                Test test = testRepository.findOne(Integer.parseInt(ans[0]));
-                test.setOrd(i+1);
-                notRight.add(test);
+                notRight.add(testRepository.findOne(Integer.parseInt(ans[0])));
             }
         }
         if(notRight.size() > 0){
