@@ -103,17 +103,17 @@
                             $.each(result.data, function (key, value) {
                                 var order = key + 1;
                                 if (value.multi == 0) {
-                                    $('#testForm').append("<div class='form-group'><label>" + order + "." + value.name + "</label><div class='radio' id='idtest" + value.id + "'></div></div>");
+                                    $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + order + "." + value.name + "</label><div class='radio' id='idtest" + value.id + "'></div></div></div>");
                                 } else {
-                                    $('#testForm').append("<div class='form-group'><label>" + order+ "." + value.name + "</label><div class='checkbox' id='idtest" + value.id + "'></div></div>");
+                                    $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + order+ "." + value.name + "</label><div class='checkbox' id='idtest" + value.id + "'></div></div></div>");
                                 }
                                 makeTest(value);
                             });
                         } else if (result.status == 1) {
                             if (result.data.multi == 0) {
-                                $('#testForm').append("<div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='radio' id='idtest" + result.data.id + "'></div></div>");
+                                $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='radio' id='idtest" + result.data.id + "'></div></div></div>");
                             } else {
-                                $('#testForm').append("<div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='checkbox' id='idtest" + result.data.id + "'></div></div>");
+                                $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='checkbox' id='idtest" + result.data.id + "'></div></div></div>");
                             }
                             makeTest(result.data);
                         } else {
