@@ -101,18 +101,19 @@
                     success: function (result) {
                         if (result.status == 7) {
                             $.each(result.data, function (key, value) {
+                                var order = key + 1;
                                 if (value.multi == 0) {
-                                    $('#testForm').append("<div class='form-group'><label>" + value.ord + "." + value.name + "</label><div class='radio' id='idtest" + value.id + "'></div></div>");
+                                    $('#testForm').append("<div class='form-group'><label>" + order + "." + value.name + "</label><div class='radio' id='idtest" + value.id + "'></div></div>");
                                 } else {
-                                    $('#testForm').append("<div class='form-group'><label>" + value.ord + "." + value.name + "</label><div class='checkbox' id='idtest" + value.id + "'></div></div>");
+                                    $('#testForm').append("<div class='form-group'><label>" + order+ "." + value.name + "</label><div class='checkbox' id='idtest" + value.id + "'></div></div>");
                                 }
                                 makeTest(value);
                             });
                         } else if (result.status == 1) {
                             if (result.data.multi == 0) {
-                                $('#testForm').append("<div class='form-group'><label>" + result.data.ord + "." + result.data.name + "</label><div class='radio' id='idtest" + result.data.id + "'></div></div>");
+                                $('#testForm').append("<div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='radio' id='idtest" + result.data.id + "'></div></div>");
                             } else {
-                                $('#testForm').append("<div class='form-group'><label>" + result.data.ord + "." + result.data.name + "</label><div class='checkbox' id='idtest" + result.data.id + "'></div></div>");
+                                $('#testForm').append("<div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='checkbox' id='idtest" + result.data.id + "'></div></div>");
                             }
                             makeTest(result.data);
                         } else {
@@ -155,7 +156,7 @@
                             $('#testForm').empty();
                             $('#testForm').append(result.message);
                             $.each(result.data, function (i, value) {
-                                $('#testForm').append("<br><br>" + value.ord + "." + value.name);
+                                $('#testForm').append("<br><br>" +  value.name);
                                 $('#testSave').text("重新考试");
                                 $("#testAlert").hide();
                             });
