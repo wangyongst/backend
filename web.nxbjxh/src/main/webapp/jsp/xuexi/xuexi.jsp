@@ -156,7 +156,8 @@
                             $('#testForm').empty();
                             $('#testForm').append(result.message);
                             $.each(result.data, function (i, value) {
-                                $('#testForm').append("<br><br>" + value.ord + "." + value.name);
+                                var order = i + 1;
+                                $('#testForm').append("<br><br>" + order + "." + value.name);
                                 $('#testSave').text("重新考试");
                                 $("#testAlert").hide();
                             });
