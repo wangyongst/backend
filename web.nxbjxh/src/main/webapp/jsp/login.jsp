@@ -32,14 +32,14 @@
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
-                        alert("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
+                        alert("程序异常，请联系管理员（电话：4006969296）处理，谢谢！");
                     },
                     success: function (result) {
                         if (result.status == 1) {
                             window.location.href = "<%=basePath%>xuexi/home.do";
                         } else {
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
-                            alert(result.message,0);
+                            alert(result.message);
                         }
                     }
                 });
@@ -177,7 +177,7 @@
                         </p>
                     </blockquote>
                     <h2>
-                        <span style="color:#FFFFFF;font-family:Simsun;font-size:medium;"><span><strong>&nbsp;</strong></span></span><span style="font-weight:normal;color:#FFFFFF;font-family:Simsun;font-size:medium;"><a href="<%=basePath%>jsp/forget.jsp" target="_blank"><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></a></span><span style="font-weight:normal;font-size:medium;line-height:36px;"><a href="http://115.28.152.137/cmedu/front/findPass?d=ningxia" target="_blank"><u><span style="color:#E53333;"><strong>找回密码</strong></span></u></a><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></span><span style="color:#FFFFFF;font-family:Simsun;font-size:medium;font-weight:normal;line-height:1.5;"><strong>&nbsp;</strong></span>
+                        <span style="color:#FFFFFF;font-family:Simsun;font-size:medium;"><span><strong>&nbsp;</strong></span></span><span style="font-weight:normal;color:#FFFFFF;font-family:Simsun;font-size:medium;"><a href="<%=basePath%>jsp/forget.jsp" target="_blank"><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></a></span><span style="font-weight:normal;font-size:medium;line-height:36px;"><a href="<%=basePath%>jsp/forget.jsp" target="_blank"><u><span style="color:#E53333;"><strong>找回密码</strong></span></u></a><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></span><span style="color:#FFFFFF;font-family:Simsun;font-size:medium;font-weight:normal;line-height:1.5;"><strong>&nbsp;</strong></span>
                     </h2>
                     <h1>
                         <span style="font-family:SimHei;color:#e53333;font-size:18px;"></span>
