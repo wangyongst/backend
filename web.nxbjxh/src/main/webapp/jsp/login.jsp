@@ -17,41 +17,10 @@
     <title>宁夏远程继续医学教育平台-登录</title>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-        $(function showBg() {
-            var bh = $(document).height();
-            var bw = $(document).width();
-            $("#fullbg").css({
-                height:bh,
-                width:bw,
-                display:"block"
-            });
-            $("#dialog").fadeIn(1000);
-        } );
-        //关闭灰色 jQuery 遮罩
-
-        function closeBg() {
-            $("#fullbg,#dialog").hide();
-        }
-    </script>
-    <script type="text/javascript">
         $(function () {
-            makeModal($("#alertModal"), "alertB", "1");
 
-            function showAlertModal(message,type) {
-                $('#alertModal').find('.modal-title').text('登录提示');
-                $('#alertModal').attr("class","modal fade");
-                $('#alertModal').children().attr("class","modal-dialog");
-                $('#alertModal').find('.modal-body').text(message);
-                if(type == 1){
-                    $('#alertBSave').text("确定");
-                    $('#alertBSave').show();
-                    $('#alertBClose').hide();
-                }else{
-                    $('#alertBClose').show();
-                    $('#alertBSave').hide();
-                }
-
-                $('#alertModal').modal('toggle');
+            if($(window).height() < 780){
+                $(".infos").removeClass(".infos").addClass("infos2");
             }
 
             function login() {
@@ -63,14 +32,14 @@
                     dataType: "json",
                     error: function () {//请求失败时调用函数。
                         $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
-                        showAlertModal("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
+                        alert("程序异常，请联系管理员（电话：4006969296）处理，谢谢！",0);
                     },
                     success: function (result) {
                         if (result.status == 1) {
                             window.location.href = "<%=basePath%>xuexi/home.do";
                         } else {
                             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
-                            showAlertModal(result.message,0);
+                            alert(result.message,0);
                         }
                     }
                 });
@@ -80,24 +49,33 @@
                 login();
             });
 
-            $("#loginPanel").keypress(function (event) {
-                if (event.keyCode == 13) {
+            document.onkeydown=function(event){
+                e = event ? event :(window.event ? window.event : null);
+                if(e.keyCode==13){
+                    //执行的方法
                     login();
                 }
-            });
-
-            $("#register").click(function () {
-                window.open("<%=basePath%>framework/regist.do");
-            });
-
-            $("#forget").click(function () {
-                window.open("<%=basePath%>jsp/forget.jsp");
-            });
+            }
 
             $("#authImage").click(function () {
                 $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
             });
         });
+
+        function showBg() {
+            var bh = $(document).height();
+            var bw = $(document).width();
+            $("#fullbg").css({
+                height:bh,
+                width:bw,
+                display:"block"
+            });
+            $("#dialog").fadeIn(1000);
+        }
+
+        function closeBg() {
+            $("#fullbg,#dialog").hide();
+        }
 
         function reloadCode() {
             $("#authImage").attr("src", "<%=basePath%>authImage.do?time=" + new Date().getTime());
@@ -186,7 +164,7 @@
 <!-- end 弹出框 -->
 
 
-<form action="front/doLogin" method="post" name="loginForm">
+<form id="userForm">
     <div class="content">
         <div class="infos">
             <div class="projectName"><img src="<%=basePath%>picture/loginTitleNx.png" width="646" height="48" /></div>
@@ -199,7 +177,7 @@
                         </p>
                     </blockquote>
                     <h2>
-                        <span style="color:#FFFFFF;font-family:Simsun;font-size:medium;"><span><strong>&nbsp;</strong></span></span><span style="font-weight:normal;color:#FFFFFF;font-family:Simsun;font-size:medium;"><a href="http://115.28.152.137/cmedu/front/findPass?d=ningxia" target="_blank"><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></a></span><span style="font-weight:normal;font-size:medium;line-height:36px;"><a href="http://115.28.152.137/cmedu/front/findPass?d=ningxia" target="_blank"><u><span style="color:#E53333;"><strong>找回密码</strong></span></u></a><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></span><span style="color:#FFFFFF;font-family:Simsun;font-size:medium;font-weight:normal;line-height:1.5;"><strong>&nbsp;</strong></span>
+                        <span style="color:#FFFFFF;font-family:Simsun;font-size:medium;"><span><strong>&nbsp;</strong></span></span><span style="font-weight:normal;color:#FFFFFF;font-family:Simsun;font-size:medium;"><a href="<%=basePath%>jsp/forget.jsp" target="_blank"><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></a></span><span style="font-weight:normal;font-size:medium;line-height:36px;"><a href="http://115.28.152.137/cmedu/front/findPass?d=ningxia" target="_blank"><u><span style="color:#E53333;"><strong>找回密码</strong></span></u></a><u><span style="color:#E53333;"><strong>&nbsp;</strong></span></u></span><span style="color:#FFFFFF;font-family:Simsun;font-size:medium;font-weight:normal;line-height:1.5;"><strong>&nbsp;</strong></span>
                     </h2>
                     <h1>
                         <span style="font-family:SimHei;color:#e53333;font-size:18px;"></span>
@@ -211,19 +189,18 @@
                 <div class="loginTitle"></div>
 
                 <div class="forms">
-                    <input type="hidden" value="ningxia" name="domain"/>
-                    登录名：<input type="text" name="username" size="30" /><br />
-                    密  码：<input type="password" name="password" size="30" /><br />
-                    验证码：<input type="text" name="code" size="30" /><br />
+                    登录名：<input placeholder="登录名是你注册身份证号" name="identity" type="text" size="30" autofocus/><br />
+                    密  码：<input placeholder="你注册时填写的密码" name="password" type="password" size="30" /><br />
+                    验证码：<input name="authcode" type="text" size="30" /><br />
                     <div>
                         <img id="authImage" src="<%=basePath%>authImage.do" width="104" height="22">
                         <a href="javascript:reloadCode();">换一张</a>
                     </div>
                     <div class="buttonS">
-                        <a href="javascript:check();"> 登 陆 </a>
-                        <a href="front/regist?d=ningxia" target="_blank"> 注 册 </a>
+                        <a id="login"> 登 陆 </a>
+                        <a id="register" href="<%=basePath%>framework/regist.do" target="_blank"> 注 册 </a>
                     </div>
-                    <p><a href="front/findPass?d=ningxia" target="_blank">找回密码</a></p><br/>
+                    <p><a id="forget" href="<%=basePath%>jsp/forget.jsp" target="_blank">找回密码</a></p><br/>
 
                 </div>
             </div>
