@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
-    <title>宁夏保健学会学习平台-找回密码</title>
+    <title>宁夏远程继续医学教育平台-找回密码</title>
 
     <script type="text/javascript">
         $(function () {
@@ -86,7 +86,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-primary" id="forgetPanel">
-            <div class="panel-heading">宁夏保健学会学习平台找回密码</div>
+            <div class="panel-heading">宁夏远程继续医学教育平台--找回密码</div>
             <div class="panel-body">
                 <div class="col-md-6 col-md-offset-1">
                     <form role="form" id="userForm">

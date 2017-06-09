@@ -9,7 +9,7 @@
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>宁夏保健学会学习平台</title>
+    <title>宁夏远程继续医学教育平台</title>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">     
   	$(document).ready(function() {

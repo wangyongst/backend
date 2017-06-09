@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
-    <title>宁夏保健学会学习平台-在线学习</title>
+    <title>宁夏远程继续医学教育平台-在线学习</title>
 
 
     <script type="text/javascript">
@@ -21,7 +21,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <p class="navbar-text">
-            <h2>宁夏保健学会学习平台</h2></p>
+            <h2>宁夏远程继续医学教育平台</h2></p>
         </div>
     </div><!-- /.container-fluid -->
 </nav>

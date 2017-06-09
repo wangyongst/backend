@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=9" />
-<title>宁夏保健学会学习平台 - ${title}</title>
+<title>宁夏远程继续医学教育平台 - ${title}</title>
 <!--
 <link href="css/bootstrap.min.css" rel="stylesheet">
 -->

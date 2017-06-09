@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
     <%@ include file="/jsp/base.jsp" %>
-    <title>宁夏保健学会学习平台-注册</title>
+    <title>宁夏远程继续医学教育平台-注册</title>
     <script type="text/javascript">
         $(function () {
             makeModal($("#bandModal"), "band", "1");
@@ -88,7 +88,7 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <p class="navbar-text">
-            <h2>宁夏保健学会学习平台</h2></p>
+            <h2>宁夏远程继续医学教育平台</h2></p>
         </div>
     </div><!-- /.container-fluid -->
 </nav>
