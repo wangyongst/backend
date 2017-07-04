@@ -15,4 +15,6 @@ public interface LessonrecordRepository extends JpaRepository<Lessonrecord,Integ
     public List<Lessonrecord> findByLessonAndUser(int lesson,int user);
 
     public List<Lessonrecord> findByCourseAndUserAndStatus(int course,int user,int status);
+
+    public List<Lessonrecord> findByLessonAndUserAndStatus(int lesson,int user,int status);
 }

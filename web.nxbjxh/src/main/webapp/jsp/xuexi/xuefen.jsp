@@ -116,7 +116,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">已获得学分课程</div>
+                        <div class="panel-heading">我的学习记录</div>
                         <div class="panel-body">
                             <div class="col-md-12">
                                 <table data-toggle="table" data-url="xuexi/get/xuefen.do" data-row-style="rowStyle">
@@ -151,7 +151,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">课程学习记录</div>
+                            <div class="panel-heading">课件学习记录</div>
                             <div class="panel-body">
                                 <table data-toggle="table" data-url="" data-row-style="rowStyle" id="xuexiTable">
                                     <thead>

@@ -65,17 +65,19 @@
                         if (result.status == 7) {
                             $.each(result.data, function (i, val) {
                                 if (value.multi == 0) {
-                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes+" + value.id + "' value='" + val.id + "'>" + val.name + "</label>");
+                                    if (i == 0) {
+                                        $("#idtest" + value.id).append("<label><input type='radio' name='yes+" + value.id + "' value='" + val.id + "'>" + val.name + "<lable>");
+                                    } else {
+                                        $("#idtest" + value.id).append("<br><label><input type='radio' name='yes+" + value.id + "' value='" + val.id + "'>" + val.name + "<lable>");
+                                    }
                                 } else {
-                                    $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes+" + value.id + "' value='" + val.id + "'>" + val.name + "</label>");
+                                    if(i == 0){
+                                    $("#idtest" + value.id).append("<label><input type='checkbox' name='yes+" + value.id + "' value='" + val.id + "'>" + val.name + "<lable>");
+                                    }else{
+                                        $("#idtest" + value.id).append("<br><label><input type='checkbox' name='yes+" + value.id + "' value='" + val.id + "'>" + val.name + "<lable>");
+                                    }
                                 }
                             });
-                        } else if (result.status == 1) {
-                            if (value.multi == 0) {
-                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='radio' name='yes+" + value.id + "' value='" + result.data.id + "'>" + result.data.name + "</label>");
-                            } else {
-                                $("#idtest" + value.id).append("<label class='col-md-3'><input type='checkbox' name='yes+" + value.id + "' value='" + result.data.id + "'>" + result.data.name + "</label>");
-                            }
                         } else {
                             showAlertModal(result.message, 0);
                         }
@@ -103,19 +105,12 @@
                             $.each(result.data, function (key, value) {
                                 var order = key + 1;
                                 if (value.multi == 0) {
-                                    $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + order + "." + value.name + "</label><div class='radio' id='idtest" + value.id + "'></div></div></div>");
+                                    $('#testForm').append("<div class='form-group'><label>" + order + "." + value.name + "</label><div class='radio' id='idtest" + value.id + "'></div></div>");
                                 } else {
-                                    $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + order+ "." + value.name + "</label><div class='checkbox' id='idtest" + value.id + "'></div></div></div>");
+                                    $('#testForm').append("<div class='form-group'><label>" + order + "." + value.name + "</label><div class='checkbox' id='idtest" + value.id + "'></div></div>");
                                 }
                                 makeTest(value);
                             });
-                        } else if (result.status == 1) {
-                            if (result.data.multi == 0) {
-                                $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='radio' id='idtest" + result.data.id + "'></div></div></div>");
-                            } else {
-                                $('#testForm').append("<div class='row col-md-offset-0'><div class='form-group'><label>" + 1 + "." + result.data.name + "</label><div class='checkbox' id='idtest" + result.data.id + "'></div></div></div>");
-                            }
-                            makeTest(result.data);
                         } else {
                             showAlertModal(result.message, 0);
                         }
@@ -140,6 +135,9 @@
                     test();
                     return;
                 }
+                if ($("#testSave").text() == "返回主页") {
+                    window.location.href="<%=basePath%>xuexi/home.do";
+                }
                 $.ajax({
                     type: "POST",
                     cache: "false",
@@ -151,7 +149,10 @@
                     },
                     success: function (result) {
                         if (result.status == 1) {
-                            showAlertModal(result.message, 0);
+                            $('#testForm').empty();
+                            $('#testForm').append(result.message);
+                            $('#testSave').text("返回主页");
+                            $("#testAlert").hide();
                         } else if (result.status == 9) {
                             $('#testForm').empty();
                             $('#testForm').append(result.message);
@@ -166,6 +167,7 @@
                             $('#bandModal').find('.modal-title').text('申请学分');
                             $('#bandModal').attr("class", "modal fade bs-example-modal-lg");
                             $('#bandModal').children().attr("class", "modal-dialog modal-lg");
+                            $('#bandForm').empty();
                             $('#bandForm').append("恭喜你已经完成本课程所有课件学习，你已经获得本课程学分，你可以绑定你的学习卡领取学分证书！<br>");
                             $('#bandForm').append("请输入你的学习卡和密码，并点击申请学习！<br><br>");
                             $('#bandForm').append("<input type='text' name='course'  value='${currentLesson.course}' hidden>")

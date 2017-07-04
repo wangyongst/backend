@@ -44,7 +44,14 @@ public class XueXiController {
     @RequestMapping(value = "home", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
         Map map = new HashMap();
-        return new ModelAndView("xuexi/home", xueXiService.makeHome(session,map));
+        return new ModelAndView("xuexi/home");
+    }
+
+    //首页
+    @RequestMapping(value = "courses", method = RequestMethod.GET)
+    public ModelAndView coursehome(HttpSession session) {
+        Map map = new HashMap();
+        return new ModelAndView("xuexi/courses", xueXiService.makeHome(session,map));
     }
 
     //Course

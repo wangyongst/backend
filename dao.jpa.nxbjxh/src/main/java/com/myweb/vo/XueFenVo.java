@@ -24,9 +24,9 @@ public class XueFenVo {
         if (status != null && status == 3) {
             this.xuefen = "已获得学分";
         } else if (status != null && status == 2) {
-            this.xuefen = "学习完毕&nbsp;&nbsp;&nbsp;&nbsp;<button onclick=\"show(" + id + ")\" type=\"button\" class=\"btn btn-success\">申请学分</button>";
+            this.xuefen = "学习完毕&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick=\"show(" + id + ")\" type=\"button\" class=\"btn btn-success\">申请学分</button>";
         } else {
-            this.xuefen = "学习中";
+            this.xuefen = "学习中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick='javascript: window.location.href=\"xuexi/course.do?id=" + id + "\";' type=\"button\" class=\"btn btn-success\">继续学习</button>";
         }
     }
 
