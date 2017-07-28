@@ -1,4 +1,4 @@
-group 'com.framework'
+group 'com.myweb'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -45,7 +45,7 @@ dependencies {
 
     compile("javax.servlet:javax.servlet-api")
 
-    compile("com.framework:java.restful.nxbjxh:1.0-SNAPSHOT")
-
     compile("com.framework:boot.servlet3:1.0-SNAPSHOT")
+
+    compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT")
 }

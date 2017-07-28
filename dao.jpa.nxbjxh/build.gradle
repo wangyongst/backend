@@ -1,4 +1,4 @@
-group 'com.framework'
+group 'com.myweb'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
