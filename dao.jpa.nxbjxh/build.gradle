@@ -39,5 +39,5 @@ targetCompatibility = 1.8
 
 dependencies {
 
-    compile("com.framework:dao.jpa.nxbjxh:1.0-SNAPSHOT")
+    compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
 }

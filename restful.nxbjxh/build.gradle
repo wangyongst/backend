@@ -45,5 +45,5 @@ dependencies {
 
     compile("javax.servlet:javax.servlet-api")
 
-    compile("com.framework:dao.jpa.nxbjxh:1.0-SNAPSHOT")
+    compile("com.myweb:dao.jpa.nxbjxh:1.0-SNAPSHOT")
 }
