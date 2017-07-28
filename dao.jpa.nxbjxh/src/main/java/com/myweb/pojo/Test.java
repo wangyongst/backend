@@ -1,7 +1,5 @@
 package com.myweb.pojo;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.persistence.*;
 
 /**
@@ -119,7 +117,7 @@ public class Test implements Comparable<Test>{
     }
 
     @Override
-    public int compareTo(@NotNull Test o) {
+    public int compareTo(Test o) {
         return this.ord - o.ord;
     }
 }

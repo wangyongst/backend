@@ -157,7 +157,7 @@ public class ServiceUtils {
             for (Field f : object.getClass().getDeclaredFields()) {
                 f.setAccessible(true);
                 try {
-                    if (f.getName().equals("id") && (int) f.get(object) != 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
+                    if (f.getName().equals("id") && (Integer) f.get(object) != 0) { //判断字段是否为空，并且对象属性中的基本都会转为对象类型来判断
                         result.setData(object);
                         return true;
                     }
