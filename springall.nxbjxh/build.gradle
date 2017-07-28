@@ -1,0 +1,54 @@
+group 'com.myweb'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+
+repositories {
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+    imports {
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR3'
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
+
+dependencies {
+
+    compile("mysql:mysql-connector-java")
+
+    compile("javax.servlet:jstl",
+            "javax.servlet:javax.servlet-api")
+
+    compile("javax.servlet.jsp:javax.servlet.jsp-api")
+
+    compile("com.framework:boot.servlet3:1.0-SNAPSHOT")
+
+    compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
+
+}
