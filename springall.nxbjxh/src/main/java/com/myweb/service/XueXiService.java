@@ -1,9 +1,9 @@
 package com.myweb.service;
 
 
+import com.framework.utils.Result;
 import com.myweb.pojo.*;
 import com.myweb.pojo.Number;
-import com.myweb.util.Result;
 import com.myweb.vo.XueFenVo;
 import com.myweb.vo.XueXiVo;
 import javax.servlet.http.HttpSession;

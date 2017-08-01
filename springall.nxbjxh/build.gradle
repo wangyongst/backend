@@ -51,4 +51,5 @@ dependencies {
 
     compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
 
+    compile("com.framework:base.utils:1.0-SNAPSHOT")
 }

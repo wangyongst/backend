@@ -1,8 +1,8 @@
 package com.myweb.service.impl;
 
 import com.myweb.pojo.User;
-import com.myweb.util.Result;
-import com.myweb.util.ServiceUtils;
+import com.framework.utils.Result;
+import com.framework.utils.ServiceUtils;
 
 import java.util.regex.Pattern;
 
