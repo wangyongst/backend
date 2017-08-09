@@ -1,13 +1,13 @@
 package com.myweb.service.impl;
 
+import com.framework.utils.DateUtil;
+import com.framework.utils.Result;
 import com.myweb.dao.jpa.MyRepository;
 import com.myweb.dao.jpa.hibernate.*;
 import com.myweb.pojo.*;
 import com.myweb.pojo.Number;
+import com.myweb.service.ServiceUtil;
 import com.myweb.service.XueXiService;
-import com.framework.utils.DateUtils;
-import com.framework.utils.Result;
-import com.myweb.util.ServiceUtils;
 import com.myweb.vo.LessonVo;
 import com.myweb.vo.XueFenVo;
 import com.myweb.vo.XueXiVo;
@@ -19,12 +19,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("xueXiService")
+@SuppressWarnings("All")
 @Transactional(value = "myTM", readOnly = true)
 public class XueXiServiceImpl implements XueXiService {
 
@@ -67,19 +65,19 @@ public class XueXiServiceImpl implements XueXiService {
         Result result = new Result();
         result = UserRegister.isUpdateOK(result, user);
         if (result.getStatus() != 1) return result;
-        if (ServiceUtils.isReseachListOK(result, userRepository.findByIdentityAndIdNot(user.getIdentity(), user.getId()))) {
+        if (ServiceUtil.isReseachListOK(result, userRepository.findByIdentityAndIdNot(user.getIdentity(), user.getId()))) {
             result.setMessage("修改失败，你的输入的身份证号码已经被注册！");
             result.setStatus(2);
             return result;
         }
         User updateUser = userRepository.findOne(user.getId());
         if (updateUser != null) {
-            ServiceUtils.copyPropertiesIgnoreNull(user, updateUser);
+            ServiceUtil.copyPropertiesIgnoreNull(user, updateUser);
             userRepository.save(updateUser);
             session.setAttribute("user", userRepository.findOne(user.getId()));
-            return ServiceUtils.isCRUDOK("update", new Result(), 1);
+            return ServiceUtil.isCRUDOK("update", new Result(), 1);
         } else {
-            return ServiceUtils.isCRUDOK("update", new Result(), 0);
+            return ServiceUtil.isCRUDOK("update", new Result(), 0);
         }
     }
 
@@ -149,7 +147,7 @@ public class XueXiServiceImpl implements XueXiService {
             Lessonrecord lessonrecord = new Lessonrecord();
             lessonrecord.setLesson(currentLesson.getId());
             lessonrecord.setCourse(currentLesson.getCourse());
-            lessonrecord.setBegintime(DateUtils.getCurrentTimeSecond());
+            lessonrecord.setBegintime(DateUtil.formatDateTime(new Date()));
             lessonrecord.setStatus(0);
             lessonrecord.setUser(user.getId());
             lessonrecordRepository.save(lessonrecord);
@@ -158,7 +156,7 @@ public class XueXiServiceImpl implements XueXiService {
         if (courserecordList == null || courserecordList.size() == 0) {
             Courserecord courserecord = new Courserecord();
             courserecord.setCourse(currentLesson.getCourse());
-            courserecord.setBegintime(DateUtils.getCurrentTimeSecond());
+            courserecord.setBegintime(DateUtil.formatDateTime(new Date()));
             courserecord.setUser(user.getId());
             courserecord.setStatus(1);
             courserecordRepository.save(courserecord);
@@ -175,11 +173,11 @@ public class XueXiServiceImpl implements XueXiService {
             result.setStatus(2);
             result.setMessage("申请学分失败，你的输入的学习卡号或学习卡密码为空，请重新输入！");
             return result;
-        } else if (!ServiceUtils.isReseachListOK(result, numberRepository.findByNumberAndPassword(number.getNumber(), number.getPassword()))) {
+        } else if (!ServiceUtil.isReseachListOK(result, numberRepository.findByNumberAndPassword(number.getNumber(), number.getPassword()))) {
             result.setMessage("申请学分失败，你的输入的学习卡号不存在或密码不正确，请重新输入！");
             result.setStatus(2);
             return result;
-        } else if (ServiceUtils.isReseachListOK(result, bandRepository.findByNumber(number.getNumber()))) {
+        } else if (ServiceUtil.isReseachListOK(result, bandRepository.findByNumber(number.getNumber()))) {
             result.setMessage("申请学分失败，你的输入的学习卡号已经被绑定，不能重复使用！");
             result.setStatus(2);
             return result;
@@ -188,7 +186,7 @@ public class XueXiServiceImpl implements XueXiService {
             band.setCourse(course);
             band.setUser(user.getId());
             band.setNumber(number.getNumber());
-            band.setTime(DateUtils.getCurrentTimeSecond());
+            band.setTime(DateUtil.formatDateTime(new Date()));
             bandRepository.save(band);
             List<Courserecord> courserecordList = courserecordRepository.findByCourseAndUser(course, user.getId());
             for (Courserecord cc : courserecordList) {
@@ -204,14 +202,16 @@ public class XueXiServiceImpl implements XueXiService {
     @Override
     public Result getTest(HttpSession session, Lesson lesson, Test test) {
         Result result = new Result();
-        if (ServiceUtils.isReseachListOK(result, randomTopic(testRepository.findByLessonAndTestOrderByOrdAsc(lesson.getId(), test.getTest()), 10))) {
+        if (ServiceUtil.isReseachListOK(result, randomTopic(testRepository.findByLessonAndTestOrderByOrdAsc(lesson.getId(), test.getTest()), 10))) {
             return result;
         } else {
             result.setStatus(2);
             result.setMessage("在线考试题获取失败，请联系管理员！");
+
             return result;
         }
     }
+
 
     // 从List中随机出count个对象
     private List<Test> randomTopic(List<Test> list, int count) {
@@ -274,18 +274,18 @@ public class XueXiServiceImpl implements XueXiService {
         lesson = lessonRepository.findOne(lesson.getId());
         Lessonrecord lessonrecord = lessonrecordRepository.findByLessonAndUser(lesson.getId(), user.getId()).get(0);
         lessonrecord.setStatus(1);
-        lessonrecord.setEndtime(DateUtils.getCurrentTimeSecond());
+        lessonrecord.setEndtime(DateUtil.formatDateTime(new Date()));
         lessonrecordRepository.save(lessonrecord);
         if (lessonrecordRepository.findByCourseAndUserAndStatus(lesson.getCourse(), user.getId(), 1).size() == lessonRepository.findByCourse(lesson.getCourse()).size()) {
             Courserecord courserecord = courserecordRepository.findByCourseAndUser(lesson.getCourse(), user.getId()).get(0);
-            courserecord.setEndtime(DateUtils.getCurrentTimeSecond());
+            courserecord.setEndtime(DateUtil.formatDateTime(new Date()));
             courserecord.setStatus(2);
             courserecordRepository.save(courserecord);
             result.setStatus(10);
         }
         String outString = "";
         for (Lesson le : lessonRepository.findAll()) {
-            if(lessonrecordRepository.findByLessonAndUserAndStatus(le.getId(), user.getId(), 1).size() == 0) {
+            if (lessonrecordRepository.findByLessonAndUserAndStatus(le.getId(), user.getId(), 1).size() == 0) {
                 outString = outString + "<div class='row'><div class='col-md-4'><label><h4>" + le.getName() + "</h4></label></div><div class='col-md-2'><button type='button' class='btn btn-success' onclick='javascript: window.location.href=\"xuexi/lesson.do?id=" + le.getId() + "\";'>继续学习</button></div></div>";
             }
         }

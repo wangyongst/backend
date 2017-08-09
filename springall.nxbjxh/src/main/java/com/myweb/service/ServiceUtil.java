@@ -1,7 +1,7 @@
-package com.myweb.util;
+package com.myweb.service;
 
+import com.framework.utils.NumberUtil;
 import com.framework.utils.Result;
-import com.framework.utils.lang.NumberFormatUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by BHWL on 2016-11-30.
  */
-public class ServiceUtils {
+public class ServiceUtil {
 
     //status说明
     //0，未选择
@@ -123,7 +123,7 @@ public class ServiceUtils {
 
     public static boolean isUpdateOK(Result result, int count) {
         if (count != 0) {
-            result.setMessage("您修改/更新了" + NumberFormatUtils.formatInteger(count) + "条记录");
+            result.setMessage("您修改/更新了" + NumberUtil.formatInteger(count) + "条记录");
         } else {
             isNotOK(result);
             return false;
@@ -133,7 +133,7 @@ public class ServiceUtils {
 
     public static boolean isCreateOK(Result result, int count) {
         if (count != 0) {
-            result.setMessage("您添加/创建了" + NumberFormatUtils.formatInteger(count) + "条记录");
+            result.setMessage("您添加/创建了" + NumberUtil.formatInteger(count) + "条记录");
         } else {
             isNotOK(result);
             return false;
@@ -143,7 +143,7 @@ public class ServiceUtils {
 
     public static boolean isDeleteOK(Result result, int count) {
         if (count != 0) {
-            result.setMessage("您删除了" + NumberFormatUtils.formatInteger(count) + "条记录");
+            result.setMessage("您删除了" + NumberUtil.formatInteger(count) + "条记录");
         } else {
             isNotOK(result);
             return false;

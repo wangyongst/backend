@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
+import static javax.swing.text.StyleConstants.ModelAttribute;
+
 @Controller
 @RequestMapping(value = "/framework")
 public class FrameWorkController {

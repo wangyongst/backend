@@ -47,7 +47,9 @@ dependencies {
 
     compile("javax.servlet.jsp:javax.servlet.jsp-api")
 
-    compile("com.framework:boot.servlet3:1.0-SNAPSHOT")
+    compile("com.framework:boot.spring:1.0-SNAPSHOT")
+
+    compile("com.framework:boot.login:1.0-SNAPSHOT")
 
     compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
 

@@ -1,8 +1,9 @@
 package com.myweb.service.impl;
 
+import com.framework.utils.Validator;
 import com.myweb.pojo.User;
 import com.framework.utils.Result;
-import com.myweb.util.ServiceUtils;
+import com.myweb.service.ServiceUtil;
 
 import java.util.regex.Pattern;
 
@@ -20,25 +21,25 @@ public class UserRegister {
     }
 
     public static Result isAnyBlank(Result result,User user,String method){
-        if (ServiceUtils.isBlankValue(result, user.getName())) {
+        if (ServiceUtil.isBlankValue(result, user.getName())) {
             result.setMessage(method+"失败，你输入的的姓名不能为空！");
             return result;
         }
-        if(!Pattern.matches("^[\\u4e00-\\u9fa5]{2,20}$",user.getName())){
+        if(!Validator.isChinese(user.getName())){
             result.setStatus(2);
             result.setMessage(method+"失败，你输入的姓名不是一个姓名！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getIdentity())) {
+        if (ServiceUtil.isBlankValue(result, user.getIdentity())) {
             result.setMessage(method+"失败，你输入的身份证号码不能为空！");
             return result;
         }
-        if(!Pattern.matches("^\\d{18}|\\d{15}|\\d{17}X$",user.getIdentity())){
+        if(!Validator.isCitizenId(user.getIdentity())){
             result.setStatus(2);
             result.setMessage(method+"失败，你输入的的身份证号码不是一个身份证号码！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getPhone())) {
+        if (ServiceUtil.isBlankValue(result, user.getPhone())) {
             result.setMessage(method+"失败，你输入的的联系电话不能为空！");
             return result;
         }
@@ -47,7 +48,7 @@ public class UserRegister {
             result.setMessage(method+"失败，你输入的的联系电话不是一个电话号码！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getPassword())) {
+        if (ServiceUtil.isBlankValue(result, user.getPassword())) {
             result.setMessage(method+"失败，你输入的密码不能为空！");
             return result;
         }
@@ -56,24 +57,24 @@ public class UserRegister {
             result.setMessage(method+"失败，你输入的密码长度不符合要求！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getUnit())) {
+        if (ServiceUtil.isBlankValue(result, user.getUnit())) {
             result.setMessage(method+"失败，你输入的单位不能为空！");
             return result;
         }
-        if(!Pattern.matches("^[\\u4e00-\\u9fa5]{1,20}$",user.getUnit())){
+        if(!Validator.isChinese(user.getUnit())){
             result.setStatus(2);
             result.setMessage(method+"失败，你输入的单位不是汉字名称！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getDepartment())) {
+        if (ServiceUtil.isBlankValue(result, user.getDepartment())) {
             result.setMessage(method+"失败，你输入的科室不能为空！");
             return result;
         }
-        if (ServiceUtils.isBlankValue(result, user.getTitle())) {
+        if (ServiceUtil.isBlankValue(result, user.getTitle())) {
             result.setMessage(method+"失败，你输入的职称不能为空！");
             return result;
         }
-        if(!Pattern.matches("^[\\u4e00-\\u9fa5]{1,20}$",user.getDepartment())){
+        if(!Validator.isChinese(user.getDepartment())){
             result.setStatus(2);
             result.setMessage(method+"失败，你输入的科室不是汉字名称！");
             return result;
