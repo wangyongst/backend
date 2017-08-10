@@ -9,7 +9,8 @@ import java.util.List;
 
 @Repository
 @RepositoryDefinition(domainClass = Lesson.class, idClass = Integer.class)
-public interface LessonRepository extends JpaRepository<Lesson,Integer> {
+public interface
+LessonRepository extends JpaRepository<Lesson,Integer> {
 
     public List<Lesson> findByCourse(int course);
 

@@ -2,10 +2,14 @@ group 'com.myweb'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
+apply plugin: 'war'
+war {
+    baseName = 'nxbjxh'
+    version =  '1.0'
+}
 
 repositories {
     maven {
@@ -47,11 +51,13 @@ dependencies {
 
     compile("javax.servlet.jsp:javax.servlet.jsp-api")
 
-    compile("com.framework:boot.spring:1.0-SNAPSHOT")
-
-    compile("com.framework:boot.login:1.0-SNAPSHOT")
+//    compile("com.framework:boot.spring:1.0-SNAPSHOT")
+//
+//    compile("com.framework:boot.login:1.0-SNAPSHOT")
 
     compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
 
     compile("com.framework:base.utils:1.0-SNAPSHOT")
+
+    compile("com.framework:boot.spring.boot:1.0-SNAPSHOT")
 }
