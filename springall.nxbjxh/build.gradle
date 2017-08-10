@@ -5,11 +5,11 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
 
-apply plugin: 'war'
-war {
-    baseName = 'nxbjxh'
-    version =  '1.0'
-}
+//apply plugin: 'war'
+//war {
+//    baseName = 'nxbjxh'
+//    version =  '1.0'
+//}
 
 repositories {
     maven {
@@ -21,15 +21,18 @@ repositories {
 
 buildscript {
     repositories {
+        maven { url 'https://repo.spring.io/libs-snapshot'}
         mavenLocal()
         mavenCentral()
     }
     dependencies {
         classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT"
     }
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
 
 dependencyManagement {
     imports {
