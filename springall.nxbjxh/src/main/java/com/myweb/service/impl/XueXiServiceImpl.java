@@ -23,7 +23,7 @@ import java.util.*;
 
 @Service("xueXiService")
 @SuppressWarnings("All")
-@Transactional(value = "myTM", readOnly = true)
+@Transactional(readOnly = true)
 public class XueXiServiceImpl implements XueXiService {
 
     @Autowired
@@ -60,7 +60,7 @@ public class XueXiServiceImpl implements XueXiService {
     private BandRepository bandRepository;
 
     @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result updateUser(HttpSession session, User user) {
         Result result = new Result();
         result = UserRegister.isUpdateOK(result, user);
@@ -136,7 +136,7 @@ public class XueXiServiceImpl implements XueXiService {
     }
 
     @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Map makeLesson(HttpSession session, Lesson lesson, Map map) {
         User user = (User) session.getAttribute("user");
         Lesson currentLesson = lessonRepository.findOne(lesson.getId());
@@ -165,7 +165,7 @@ public class XueXiServiceImpl implements XueXiService {
     }
 
     @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result postBand(HttpSession session, Number number, Integer course) {
         Result result = new Result();
         User user = (User) session.getAttribute("user");

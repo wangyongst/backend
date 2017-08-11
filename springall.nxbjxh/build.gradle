@@ -39,20 +39,35 @@ targetCompatibility = 1.7
 
 dependencies {
 
-    compile("mysql:mysql-connector-java")
-
-    compile("javax.servlet:jstl",
-            "javax.servlet:javax.servlet-api")
-
-    compile("javax.servlet.jsp:javax.servlet.jsp-api")
-
-    compile("com.framework:boot.spring:1.0-SNAPSHOT")
-
-    compile("com.framework:boot.login:1.0-SNAPSHOT")
-
-    compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
-
+   compile("mysql:mysql-connector-java")
+//
+//    compile("javax.servlet:jstl",
+//            "javax.servlet:javax.servlet-api")
+//
+//    compile("javax.servlet.jsp:javax.servlet.jsp-api")
+//
+//    compile("com.framework:boot.spring:1.0-SNAPSHOT")
+//
+//    compile("com.framework:boot.login:1.0-SNAPSHOT")
+//
+//    compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
+//
     compile("com.framework:base.utils:1.0-SNAPSHOT")
 
-//    compile("com.framework:boot.spring.boot:1.0-SNAPSHOT")
+//   compile("com.framework:boot.spring.boot:1.0-SNAPSHOT")
+
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+
+    compile('org.springframework.data:spring-data-jpa')
+
+    compile('org.hibernate:hibernate-entitymanager')
+
+    compile('org.apache.tomcat:tomcat-jdbc')
+
+    compile('com.fasterxml.jackson.core:jackson-databind', 'com.fasterxml.jackson.core:jackson-core')
+
+    compile("org.aspectj:aspectjweaver")
 }

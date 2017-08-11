@@ -23,7 +23,7 @@ import java.util.Map;
 
 @Service("frameWorkService")
 @SuppressWarnings("All")
-@Transactional(value = "myTM", readOnly = true)
+@Transactional(readOnly = true)
 public class FrameWorkServiceImpl implements FrameWorkService {
 
     @Autowired
@@ -58,7 +58,7 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     }
 
     @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result register(HttpSession session, User user, String authcode) {
         user.setTime(DateUtil.formatDateTime(new Date()));
         Result result = new Result();
