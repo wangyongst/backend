@@ -28,7 +28,7 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Brussels-SR3'
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR4'
     }
 }
 
@@ -39,11 +39,14 @@ targetCompatibility = 1.8
 
 dependencies {
 
-    compile('org.springframework:spring-webmvc')
+    compile("mysql:mysql-connector-java")
 
-    compile('org.apache.commons:commons-lang3')
+    compile("com.framework:boot.spring:1.0-SNAPSHOT")
 
-    compile("javax.servlet:javax.servlet-api")
+    compile("com.framework:boot.login:1.0-SNAPSHOT")
 
-    compile("com.myweb:dao.jpa.nxbjxh:1.0-SNAPSHOT")
+    compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
+
+    compile("com.framework:base.utils:1.0-SNAPSHOT")
+
 }

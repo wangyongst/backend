@@ -1,11 +1,10 @@
 group 'com.myweb'
 version '1.0-SNAPSHOT'
 
-//apply plugin: 'java'
-apply plugin: 'war'
+apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
-
+apply plugin: 'war'
 
 repositories {
     maven {
@@ -29,26 +28,19 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
     imports {
-        mavenBom 'io.spring.platform:platform-bom:Brussels-SR3'
+        mavenBom 'io.spring.platform:platform-bom:Brussels-SR4'
     }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 [compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
 
 dependencies {
 
-    compile("mysql:mysql-connector-java")
-
-    compile("javax.servlet:jstl")
-
-    compile("javax.servlet.jsp:javax.servlet.jsp-api")
-
-    compile("com.framework:boot.servlet3:1.0-SNAPSHOT")
+   // compile("com.framework:boot.spring.boot:1.0-SNAPSHOT")
 
     compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT")
-
 
 }
