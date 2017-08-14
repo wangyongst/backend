@@ -16,15 +16,18 @@ repositories {
 
 buildscript {
     repositories {
+        maven { url 'https://repo.spring.io/libs-snapshot' }
         mavenLocal()
         mavenCentral()
     }
     dependencies {
         classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT"
     }
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
 
 dependencyManagement {
     imports {
@@ -39,19 +42,12 @@ targetCompatibility = 1.8
 
 dependencies {
 
-    compile("mysql:mysql-connector-java")
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-logging"
+    }
+    compile("org.springframework.boot:spring-boot-starter-log4j2")
 
-    compile("javax.servlet:jstl",
-            "javax.servlet:javax.servlet-api")
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
 
-    compile("javax.servlet.jsp:javax.servlet.jsp-api")
-
-    compile("com.framework:boot.spring:1.0-SNAPSHOT")
-
-    compile("com.framework:boot.login:1.0-SNAPSHOT")
-
-    compile("com.framework:persistence.jpa.hibernate:1.0-SNAPSHOT")
-
-    compile("com.framework:base.utils:1.0-SNAPSHOT")
-
+    compile("org.aspectj:aspectjweaver")
 }
