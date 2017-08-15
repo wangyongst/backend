@@ -37,8 +37,6 @@ targetCompatibility = 1.7
 
 dependencies {
 
-    //compile("com.framework:spring.boot:1.0-SNAPSHOT")
-
-    //  compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT")
+       compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT")
 
 }
