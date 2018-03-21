@@ -43,7 +43,7 @@ public class FrameWorkServiceImpl implements FrameWorkService {
     public Result getMenus(HttpSession session, Menu menu) {
         Result result = new Result();
         User user = (User) session.getAttribute("user");
-        ServiceUtils.isReseachListOK(result, frameWorkDao.findMenusByParentAndRole(menu.getParent(), user.getRole()));
+        ServiceUtils.isReseachListOK(result, frameWorkDao.queryByParentAndShuxin(menu.getParent(), user.getShuxingroleid()));
         return result;
     }
 

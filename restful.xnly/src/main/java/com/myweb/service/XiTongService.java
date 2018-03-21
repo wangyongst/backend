@@ -39,10 +39,6 @@ public interface XiTongService {
 
     Result updateJiashu(HttpSession session, Jiashu jiashu);
 
-    Result updateLaorenTypebyId(HttpSession session, String id, String type);
-
-
-
     Result deleteJiashu(HttpSession session, String id);
 
     Result deleteLaoren(HttpSession session, String id);

@@ -1,9 +1,10 @@
-group 'com.framework'
+group 'com.myweb'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'maven'
+apply plugin: 'war'
 
 
 repositories {
@@ -39,7 +40,7 @@ targetCompatibility = 1.8
 
 dependencies {
 
-    compile("com.myweb:restful.nxbjxh:1.0-SNAPSHOT")
+    compile("com.myweb:restful.xnly:1.0-SNAPSHOT")
 }
 
 

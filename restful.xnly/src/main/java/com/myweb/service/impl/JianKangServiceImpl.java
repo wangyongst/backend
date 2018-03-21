@@ -41,9 +41,6 @@ public class JianKangServiceImpl implements JianKangService {
         caiji.setCreateuser(create.getId());
         caiji.setCreateusername(create.getName());
         caiji.setCreatetime(DateUtils.getCurrentTimeSecond());
-        if (caiji.getShengao() != null && caiji.getTizhong() != null) {
-            caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
-        }
         return ServiceUtils.isCRUDOK("create", new Result(), jianKangDao.saveCaiji(caiji));
     }
 
@@ -51,9 +48,6 @@ public class JianKangServiceImpl implements JianKangService {
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result updateCaiji(HttpSession session, Caiji caiji) {
-        if (caiji.getShengao() != null && caiji.getTizhong() != null) {
-            caiji.setBmi(new BigDecimal(caiji.getTizhong().longValue() / Math.pow(new Float(caiji.getShengao()) / 100, 2)));
-        }
         return ServiceUtils.isCRUDOK("update", new Result(), jianKangDao.updateCaijiById(caiji));
     }
 

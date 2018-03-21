@@ -61,24 +61,6 @@ public class XiTongServiceImpl implements XiTongService {
 
     @Override
     @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
-    public Result updateLaorenTypebyId(HttpSession session, String id, String type) {
-        Result result = new Result();
-        int count = 0;
-        if (ServiceUtils.isIds(result, id)) {
-            TreeSet<String> idSet = (TreeSet<String>) result.getData();
-            for (String ids : idSet) {
-                if (StringUtils.isNotBlank(ids)) {
-                    count += xiTongDao.updateLaorenTypeById(Integer.parseInt(type), Integer.parseInt(ids));
-                }
-            }
-            ServiceUtils.isCRUDOK("update", result, count);
-        }
-        return result;
-    }
-
-
-    @Override
-    @Transactional(value = "myTM", propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT, readOnly = false)
     public Result deleteJiashu(HttpSession session, String id) {
         Result result = new Result();
         if (ServiceUtils.isOnlyOneId(result, id)) {

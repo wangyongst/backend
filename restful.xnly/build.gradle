@@ -1,4 +1,4 @@
-group 'com.framework'
+group 'com.myweb'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -50,9 +50,9 @@ dependencies {
 
     compile("com.framework:boot.login:1.0-SNAPSHOT")
 
-    compile("com.framework:persistence.mybatis:1.0-SNAPSHOT")
-
     compile("com.framework:base.utils:1.0-SNAPSHOT")
+
+    compile("com.myweb:dao.mybatis.xnly:1.0-SNAPSHOT")
 
 }
 

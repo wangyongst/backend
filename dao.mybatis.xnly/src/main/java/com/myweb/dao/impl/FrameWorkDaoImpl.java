@@ -42,10 +42,10 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
     }
 
     @Override
-    public List<Menu> findMenusByParentAndRole(int parent, String role) {
+    public List<Menu> findMenusByParentAndShuxin(int parent, int shuxin) {
         MenuExample menuExample = new MenuExample();
         menuExample.createCriteria().andParentEqualTo(parent);
-        return myFrameWorkMapper.queryByParentAndRole(parent, role);
+        return myFrameWorkMapper.queryByParentAndRole(parent, shuxin);
     }
 
     @Override
@@ -70,9 +70,9 @@ public class FrameWorkDaoImpl implements FrameWorkDao {
     public List<Tableinfo> findTableinfosByDisable(String tablename, Integer tabledisable, Integer modaldisable) {
         TableinfoExample tableinfoExample = new TableinfoExample();
         if(tabledisable != null && tabledisable == 0){
-            tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andTabledisableEqualTo(0);
+            tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andTabledisableEqualTo("0");
         }else{
-            tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andModaldisableEqualTo(0);
+            tableinfoExample.createCriteria().andTablenameEqualTo(tablename).andModaldisableEqualTo("1");
         }
         tableinfoExample.setOrderByClause("shunxu");
         return tableinfoMapper.selectByExample(tableinfoExample);

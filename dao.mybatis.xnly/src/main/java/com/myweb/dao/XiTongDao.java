@@ -42,6 +42,4 @@ public interface XiTongDao {
     public int deleteLaorenById(int id);
 
     public int deleteUserById(int id);
-
-    public int updateLaorenTypeById(int type, int id);
 }

@@ -46,9 +46,6 @@ public class XiTongDaoImpl implements XiTongDao {
     public List<Laoren> findLaorens(Laoren laoren) {
         LaorenExample laorenExample = new LaorenExample();
         LaorenExample.Criteria criteria = laorenExample.createCriteria();
-        if(laoren.getType() != null){
-            criteria.andTypeEqualTo(laoren.getType());
-        }
         return laorenMapper.selectByExample(laorenExample);
     }
 
@@ -103,15 +100,6 @@ public class XiTongDaoImpl implements XiTongDao {
     }
 
     @Override
-    public int updateLaorenTypeById(int type, int id) {
-        Laoren laoren = new Laoren();
-        laoren.setId(id);
-        laoren.setType(type);
-        return laorenMapper.updateByPrimaryKeySelective(laoren);
-    }
-
-    @Override
-
     public int saveUser(User user) {
         return userMapper.insert(user);
 

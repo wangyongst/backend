@@ -1,6 +1,5 @@
 package com.myweb.dao.mybatis;
 
-import com.myweb.pojo.Caiji;
 import com.myweb.pojo.Menu;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,5 +10,5 @@ import java.util.List;
  */
 public interface MyFrameWorkMapper {
 
-    List<Menu> queryByParentAndRole(@Param("parent") int parent, @Param("role") String role);
+    List<Menu> queryByParent(@Param("parent") int parent);
 }
