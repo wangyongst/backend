@@ -20,7 +20,8 @@ public class JumiaAPI {
     private static final String HASH_ALGORITHM = "HmacSHA256";
     private static final String CHAR_UTF_8 = "UTF-8";
     private static final String CHAR_ASCII = "ASCII";
-    public static void main(String[] args) {
+
+    public static void update(String SKU, String number) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("Action", "ProductUpdate");
         params.put("Format", "JSON");
@@ -28,8 +29,8 @@ public class JumiaAPI {
         params.put("UserID", "421585547@QQ.COM");
         params.put("Version", "1.0");
         final String apiKey = "8c4c55f8abb921bd03b8daf94401d05ff5df34bc";
-        final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Request><Product><SellerSku>207435401E</SellerSku><Quantity>20</Quantity></Product></Request>";
-        final String out = getSellercenterApiResponse(params, apiKey, XML); // provide XML as an empty stringwhen not needed
+        final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Request><Product><SellerSku>" + SKU + "</SellerSku><Quantity>" + number + "</Quantity></Product></Request>";
+        final String out = getSellercenterApiResponse(params, apiKey, XML, "POST"); // provide XML as an empty stringwhen not needed
         System.out.println(out); // print out the XML response
     }
 
@@ -38,9 +39,9 @@ public class JumiaAPI {
      *
      * @param params Map - request parameters
      * @param apiKey String - user's API Key
-     * @param XML String - Request Body
+     * @param XML    String - Request Body
      */
-    public static String getSellercenterApiResponse(Map<String, String> params, String apiKey, String XML) {
+    public static String getSellercenterApiResponse(Map<String, String> params, String apiKey, String XML, String requestMothed) {
         String queryString = "";
         String Output = "";
         HttpURLConnection connection = null;
@@ -56,7 +57,7 @@ public class JumiaAPI {
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setInstanceFollowRedirects(false);
-            connection.setRequestMethod("POST");
+            connection.setRequestMethod(requestMothed);
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setRequestProperty("charset", CHAR_UTF_8);
             connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
@@ -122,7 +123,7 @@ public class JumiaAPI {
      */
     private static String toQueryString(Map<String, String> data) {
         String queryString = "";
-        try{
+        try {
             StringBuffer params = new StringBuffer();
             for (Map.Entry<String, String> pair : data.entrySet()) {
                 params.append(URLEncoder.encode((String) pair.getKey(), CHAR_UTF_8) + "=");
@@ -132,7 +133,7 @@ public class JumiaAPI {
                 params.deleteCharAt(params.length() - 1);
             }
             queryString = params.toString();
-        } catch(UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return queryString;
@@ -140,9 +141,10 @@ public class JumiaAPI {
 
     /**
      * returns the current timestamp
+     *
      * @return current timestamp in ISO 8601 format
      */
-    private static String getCurrentTimestamp(){
+    private static String getCurrentTimestamp() {
         final TimeZone tz = TimeZone.getTimeZone("UTC");
         final DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mmZ");
         df.setTimeZone(tz);

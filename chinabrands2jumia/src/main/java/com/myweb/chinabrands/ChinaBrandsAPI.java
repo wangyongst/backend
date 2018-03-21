@@ -20,6 +20,8 @@ public class ChinaBrandsAPI {
         httpClientUtil = new HttpClientUtil();
     }
 
+    //将命令打印到1.log上 java -jar weichi-1.0.0.jar > 1.log
+
     public Result getToken() throws IOException {
         String httpOrgCreateTest = url + "v2/user/login";
         Map<String, String> createMap = new HashMap<String, String>();
