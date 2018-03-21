@@ -15,7 +15,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SellercenterAPI {
+public class JumiaAPI {
     private static final String ScApiHost = "https://sellercenter-api.jumia.com.ng";
     private static final String HASH_ALGORITHM = "HmacSHA256";
     private static final String CHAR_UTF_8 = "UTF-8";

@@ -1,8 +1,8 @@
 package com.myweb.chinabrands;
 
-public class LoginResult {
+public class Result {
     private int status;
-    private String msg;
+    private Object msg;
     private int errcode;
 
     public int getStatus() {
@@ -13,11 +13,11 @@ public class LoginResult {
         this.status = status;
     }
 
-    public String getMsg() {
+    public Object getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
+    public void setMsg(Object msg) {
         this.msg = msg;
     }
 

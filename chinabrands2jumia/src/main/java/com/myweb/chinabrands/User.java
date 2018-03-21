@@ -1,6 +1,6 @@
 package com.myweb.chinabrands;
 
-public class ChinaBrandsUser {
+public class User {
     private String email;
     private String password;
     private String client_id;
