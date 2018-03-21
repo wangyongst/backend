@@ -20,7 +20,7 @@ public class JumiaAPI {
     private static final String HASH_ALGORITHM = "HmacSHA256";
     private static final String CHAR_UTF_8 = "UTF-8";
     private static final String CHAR_ASCII = "ASCII";
-    public static void main(String[] args) {
+    public static void update( String sku,String num) {
         Map<String, String> params = new HashMap<String, String>();
         params.put("Action", "ProductUpdate");
         params.put("Format", "JSON");
@@ -28,7 +28,7 @@ public class JumiaAPI {
         params.put("UserID", "421585547@QQ.COM");
         params.put("Version", "1.0");
         final String apiKey = "8c4c55f8abb921bd03b8daf94401d05ff5df34bc";
-        final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Request><Product><SellerSku>207435401E</SellerSku><Quantity>20</Quantity></Product></Request>";
+        final String XML = "<?xml version=\"1.0\" encoding=\"StringUTF-8\" ?><Request><Product><SellerSku>"+sku+"</SellerSku><Quantity>"+num+"</Quantity></Product></Request>";
         final String out = getSellercenterApiResponse(params, apiKey, XML); // provide XML as an empty stringwhen not needed
         System.out.println(out); // print out the XML response
     }
