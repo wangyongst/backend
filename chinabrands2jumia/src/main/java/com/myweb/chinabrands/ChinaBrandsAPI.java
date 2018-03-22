@@ -55,7 +55,7 @@ public class ChinaBrandsAPI {
     public static void main(String[] args) {
         ChinaBrandsAPI main = new ChinaBrandsAPI();
         try {
-            main.getToken();
+            System.out.println(main.getToken().getStatus());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
