@@ -48,6 +48,7 @@ public class Start {
             File skuFile = new File("C:\\C2J\\SKU\\sku.xlsx");
             List<Table> list = ObjectExcelRead.readExcelByFileForXlsx(skuFile, 1, 0, 0);
             System.out.println("C:\\C2J\\SKU\\sku.xlsx文件读取数据成功！");
+            int count = 1;
             for (Table table : list) {
                 table = chinaBrandsAPI.getStockTable(start.getToken(), table);
                 System.out.println("SKU为"+table.getSku()+"的商口读取库存数据成功！");
@@ -61,16 +62,16 @@ public class Start {
                     table.setJumia("Updated");
                     System.out.println("SKU为" + table.getSku() + "的商口更新库存成功！");
                 }
-                Thread.sleep(100);
+                File file = new File("C:\\C2J\\OUT\\out.xlsx");
+                ObjectExcelRead.writer(file,list,"Sheet1");
+                System.out.println("C:\\C2J\\OUT\\out.xlsx文件导出第"+ count++ +"数据成功！");
+                Thread.sleep(120000);
             }
-            File file = new File("C:\\C2J\\OUT\\out.xlsx");
-            ObjectExcelRead.writer(file,list,"导出数据");
-            System.out.println("C:\\C2J\\OUT\\out.xlsx文件导出数据成功！");
+            System.out.println("程序运行结束，已经完全数据更新及导出！");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("程序发生异常，无法继续运行，将自动停止！");
-        }
-        System.out.println("程序运行结束，已经完全数据更新及导出！");
+        }        ;
     }
 
     public String getToken() {
