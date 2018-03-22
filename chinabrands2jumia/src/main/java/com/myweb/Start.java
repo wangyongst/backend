@@ -70,6 +70,7 @@ public class Start {
             e.printStackTrace();
             System.out.println("程序发生异常，无法继续运行，将自动停止！");
         }
+        System.out.println("程序运行结束，已经完全数据更新及导出！");
     }
 
     public String getToken() {
