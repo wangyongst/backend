@@ -1,11 +1,11 @@
 package com.myweb.jumia;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.myweb.chinabrands.Result;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -21,7 +21,8 @@ public class JumiaAPI {
     private static final String CHAR_UTF_8 = "UTF-8";
     private static final String CHAR_ASCII = "ASCII";
 
-    public static void update(String SKU, String number) {
+    public static ErrorResponse update(String SKU, String number) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
         Map<String, String> params = new HashMap<String, String>();
         params.put("Action", "ProductUpdate");
         params.put("Format", "JSON");
@@ -31,7 +32,9 @@ public class JumiaAPI {
         final String apiKey = "8c4c55f8abb921bd03b8daf94401d05ff5df34bc";
         final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Request><Product><SellerSku>" + SKU + "</SellerSku><Quantity>" + number + "</Quantity></Product></Request>";
         final String out = getSellercenterApiResponse(params, apiKey, XML, "POST"); // provide XML as an empty stringwhen not needed
-        System.out.println(out); // print out the XML response
+        //System.out.println(out); // print out the XML response
+        ErrorResponse response = mapper.readValue(out, ErrorResponse.class);
+        return response;
     }
 
     /**

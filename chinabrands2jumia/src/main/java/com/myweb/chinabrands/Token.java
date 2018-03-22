@@ -1,5 +1,8 @@
 package com.myweb.chinabrands;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Token {
     private String token;
     private String expires;
