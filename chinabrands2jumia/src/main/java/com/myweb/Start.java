@@ -83,9 +83,8 @@ public class Start {
                         } else {
                             System.out.println("导出的最后" + map.size() + "条的商品在"+apiKey.getUserId()+"账号中更新库存成功！");
                         }
-                        Thread.sleep(10000);
+                        Thread.sleep(30000);
                     }
-                    Thread.sleep(120000);
                 }
                 Thread.sleep(500);
             }
