@@ -85,8 +85,8 @@ public class Start {
                         }
                         Thread.sleep(60000);
                     }
+                    map.clear();
                 }
-                map.clear();
                 Thread.sleep(500);
             }
             System.out.println("程序运行结束，已经完成SKU文件中的全部数据导出及JUMIA网站全部账号更新！");
