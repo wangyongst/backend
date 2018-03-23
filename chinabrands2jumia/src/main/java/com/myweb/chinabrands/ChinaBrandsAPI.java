@@ -93,7 +93,11 @@ public class ChinaBrandsAPI {
             for (Stock stock : stockMsg.getPage_result()) {
                 if (stock.getStatus() == 1) {
                     if(table.getGoods_number() != null) {
-                        table.setGoods_number(Integer.parseInt(table.getGoods_number()) + Integer.parseInt(stock.getGoods_number()) + "");
+                        if(table.getGoods_number() != null && !table.getGoods_number().equals("")) {
+                            table.setGoods_number(Integer.parseInt(table.getGoods_number()) + Integer.parseInt(stock.getGoods_number()) + "");
+                        }else{
+                            table.setGoods_number(stock.getGoods_number());
+                        }
                     }else{
                         table.setGoods_number(stock.getGoods_number());
                     }

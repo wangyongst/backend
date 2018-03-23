@@ -83,18 +83,19 @@ public class Start {
                         } else {
                             System.out.println("导出的最后" + map.size() + "条的商品在"+apiKey.getUserId()+"账号中更新库存成功！");
                         }
-                        Thread.sleep(30000);
+                        Thread.sleep(60000);
                     }
                 }
+                map.clear();
                 Thread.sleep(500);
             }
+            System.out.println("程序运行结束，已经完成SKU文件中的全部数据导出及JUMIA网站全部账号更新！");
+            System.out.println("你现在可以关闭程序窗口了！");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("程序发生异常，无法继续运行，将自动停止！");
             return;
         }
-        System.out.println("程序运行结束，已经完成SKU文件中的全部数据导出及JUMIA网站全部账号更新！");
-        System.out.println("你现在可以关闭程序窗口了！");
     }
 
     public String getToken() {
