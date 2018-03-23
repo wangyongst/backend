@@ -65,12 +65,12 @@ public class Start {
                 Table table = list.get(i);
                 table = chinaBrandsAPI.getStockTableYB(start.getToken(), table);
                 System.out.println("SKU为"+table.getSku()+"的商品读取CN1库存数据成功！");
-                table = chinaBrandsAPI.getStockTableYB(start.getToken(), table);
+                table = chinaBrandsAPI.getStockTableFXQHBSWH(start.getToken(), table);
                 System.out.println("SKU为"+table.getSku()+"的商品读取CN2库存数据成功！");
                 table = chinaBrandsAPI.getIndexTable(start.getToken(), table);
                 System.out.println("SKU为"+table.getSku()+"的商品读取重量及价格数据成功！");
                 map.put(table.getSku(),table.getGoods_number());
-                if(map.size() > 4 || i == list.size()-1) {
+                if(map.size() > 44 || i == list.size()-1) {
                     File file = new File("C:\\C2J\\OUT\\out.xlsx");
                     ObjectExcelRead.writer(file,list,"导出数据");
                     System.out.println("C:\\C2J\\OUT\\out.xlsx文件导出新获取到最后"+map.size()+"条的商品数据成功！");
@@ -83,7 +83,7 @@ public class Start {
                         } else {
                             System.out.println("导出的最后" + map.size() + "条的商品在"+apiKey.getUserId()+"账号中更新库存成功！");
                         }
-                        Thread.sleep(1000);
+                        Thread.sleep(10000);
                     }
                     Thread.sleep(120000);
                 }

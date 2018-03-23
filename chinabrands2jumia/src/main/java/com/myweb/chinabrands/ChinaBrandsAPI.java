@@ -66,7 +66,7 @@ public class ChinaBrandsAPI {
     public Table getStockTableYB(String token, Table table) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String stockString = this.getStock(token, table.getSku(), "YB");
-        System.out.println(stockString);
+        //System.out.println(stockString);
         Result stockResult = mapper.readValue(stockString, Result.class);
         if (stockResult.getStatus() == 1) {
             StockMsg stockMsg = mapper.readValue(mapper.writeValueAsString(stockResult.getMsg()), StockMsg.class);
@@ -86,13 +86,17 @@ public class ChinaBrandsAPI {
     public Table getStockTableFXQHBSWH(String token, Table table) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String stockString = this.getStock(token, table.getSku(), "FXQHBSWH");
-        System.out.println(stockString);
+       // System.out.println(stockString);
         Result stockResult = mapper.readValue(stockString, Result.class);
         if (stockResult.getStatus() == 1) {
             StockMsg stockMsg = mapper.readValue(mapper.writeValueAsString(stockResult.getMsg()), StockMsg.class);
             for (Stock stock : stockMsg.getPage_result()) {
                 if (stock.getStatus() == 1) {
-                    table.setGoods_number(Integer.parseInt(table.getGoods_number())+Integer.parseInt(stock.getGoods_number())+"");
+                    if(table.getGoods_number() != null) {
+                        table.setGoods_number(Integer.parseInt(table.getGoods_number()) + Integer.parseInt(stock.getGoods_number()) + "");
+                    }else{
+                        table.setGoods_number(stock.getGoods_number());
+                    }
                 }
             }
         }
@@ -102,7 +106,7 @@ public class ChinaBrandsAPI {
     public Table getIndexTable(String token, Table table) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String indexString = this.getIndex(token, table.getSku());
-        System.out.println(indexString);
+        //System.out.println(indexString);
         Result indexResult = mapper.readValue(indexString, Result.class);
         if (indexResult.getStatus() == 1) {
             JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, IndexMsg.class);
