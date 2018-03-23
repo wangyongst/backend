@@ -5,12 +5,15 @@ import com.myweb.chinabrands.ChinaBrandsAPI;
 import com.myweb.chinabrands.Result;
 import com.myweb.chinabrands.Token;
 import com.myweb.excel.ObjectExcelRead;
+import com.myweb.jumia.APIKey;
 import com.myweb.jumia.ErrorResponse;
+import com.myweb.jumia.Head;
 import com.myweb.jumia.JumiaAPI;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Start {
 
@@ -45,32 +48,54 @@ public class Start {
         }
         ChinaBrandsAPI chinaBrandsAPI = new ChinaBrandsAPI();
         try {
+            File apiFile = new File("C:\\C2J\\SKU\\apiKey.xlsx");
+            List<APIKey> apikeys = ObjectExcelRead.readAPIKeyByFileForXlsx(apiFile,0);
+            if(apikeys.size() == 0){
+                System.out.println("C:\\C2J\\SKU\\apiKey.xlsx文件读取APIKEY数据失败！");
+                return;
+            }else {
+                System.out.println("C:\\C2J\\SKU\\apiKey.xlsx文件读取APIKEY数据成功！");
+            }
             File skuFile = new File("C:\\C2J\\SKU\\sku.xlsx");
             List<Table> list = ObjectExcelRead.readExcelByFileForXlsx(skuFile, 1, 0, 0);
-            System.out.println("C:\\C2J\\SKU\\sku.xlsx文件读取数据成功！");
-            for (Table table : list) {
-                table = chinaBrandsAPI.getStockTable(start.getToken(), table);
-                System.out.println("SKU为"+table.getSku()+"的商口读取库存数据成功！");
+            System.out.println("C:\\C2J\\SKU\\sku.xlsx文件读取SKU数据成功！");
+
+            Map<String,String> map = new HashMap<String,String>();
+            for (int i = 0; i <list.size() ; i++) {
+                Table table = list.get(i);
+                table = chinaBrandsAPI.getStockTableYB(start.getToken(), table);
+                System.out.println("SKU为"+table.getSku()+"的商品读取CN1库存数据成功！");
+                table = chinaBrandsAPI.getStockTableYB(start.getToken(), table);
+                System.out.println("SKU为"+table.getSku()+"的商品读取CN2库存数据成功！");
                 table = chinaBrandsAPI.getIndexTable(start.getToken(), table);
-                System.out.println("SKU为"+table.getSku()+"的商口读取重量及价格数据成功！");
-                ErrorResponse response =  JumiaAPI.update(table.getSku(),table.getGoods_number());
-                if(response.getHead() != null){
-                    table.setJumia(response.getHead().getErrorMessage());
-                    System.out.println("SKU为"+table.getSku()+"的商口更新库存失败！");
-                }else {
-                    table.setJumia("Updated");
-                    System.out.println("SKU为" + table.getSku() + "的商口更新库存成功！");
+                System.out.println("SKU为"+table.getSku()+"的商品读取重量及价格数据成功！");
+                map.put(table.getSku(),table.getGoods_number());
+                if(map.size() > 4 || i == list.size()-1) {
+                    File file = new File("C:\\C2J\\OUT\\out.xlsx");
+                    ObjectExcelRead.writer(file,list,"导出数据");
+                    System.out.println("C:\\C2J\\OUT\\out.xlsx文件导出新获取到最后"+map.size()+"条的商品数据成功！");
+                    for(APIKey apiKey:apikeys) {
+                        ErrorResponse errorResponse = JumiaAPI.update(map, apiKey);
+                        if (errorResponse.getErrorResponse() != null) {
+                            System.out.println("导出的最后" + map.size() + "条的商品在"+apiKey.getUserId()+"账号中更新失败，失败原因:");
+                            System.out.println("ErrorCode"+errorResponse.getErrorResponse().getHead().getErrorCode()+"     ErrorMessage"+errorResponse.getErrorResponse().getHead().getErrorMessage());
+                            return;
+                        } else {
+                            System.out.println("导出的最后" + map.size() + "条的商品在"+apiKey.getUserId()+"账号中更新库存成功！");
+                        }
+                        Thread.sleep(1000);
+                    }
+                    Thread.sleep(120000);
                 }
-                Thread.sleep(100);
+                Thread.sleep(500);
             }
-            File file = new File("C:\\C2J\\OUT\\out.xlsx");
-            ObjectExcelRead.writer(file,list,"导出数据");
-            System.out.println("C:\\C2J\\OUT\\out.xlsx文件导出数据成功！");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("程序发生异常，无法继续运行，将自动停止！");
+            return;
         }
-        System.out.println("程序运行结束，已经完全数据更新及导出！");
+        System.out.println("程序运行结束，已经完成SKU文件中的全部数据导出及JUMIA网站全部账号更新！");
+        System.out.println("你现在可以关闭程序窗口了！");
     }
 
     public String getToken() {

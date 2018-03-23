@@ -1,7 +1,6 @@
 package com.myweb.jumia;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.myweb.chinabrands.Result;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -16,25 +15,56 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class JumiaAPI {
-    private static final String ScApiHost = "https://sellercenter-api.jumia.com.ng";
     private static final String HASH_ALGORITHM = "HmacSHA256";
     private static final String CHAR_UTF_8 = "UTF-8";
     private static final String CHAR_ASCII = "ASCII";
 
-    public static ErrorResponse update(String SKU, String number) throws IOException {
+    public static ErrorResponse update(Map<String,String> map, APIKey apiKey) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, String> params = new HashMap<String, String>();
         params.put("Action", "ProductUpdate");
         params.put("Format", "JSON");
         params.put("Timestamp", getCurrentTimestamp());
-        params.put("UserID", "421585547@QQ.COM");
+        //params.put("UserID", "421585547@QQ.COM");
+        params.put("UserID", apiKey.getUserId());
         params.put("Version", "1.0");
-        final String apiKey = "8c4c55f8abb921bd03b8daf94401d05ff5df34bc";
-        final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Request><Product><SellerSku>" + SKU + "</SellerSku><Quantity>" + number + "</Quantity></Product></Request>";
-        final String out = getSellercenterApiResponse(params, apiKey, XML, "POST"); // provide XML as an empty stringwhen not needed
+        //final String apiKey = "8c4c55f8abb921bd03b8daf94401d05ff5df34bc";
+        String products = "";
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            //System.out.println(entry.getKey() + ":" + entry.getValue());
+            products += "<Product><SellerSku>" + entry.getKey() + "</SellerSku><Quantity>" + entry.getValue() + "</Quantity></Product>";
+        }
+        final String XML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><Request>"+products+"</Request>";
+        final String out = getSellercenterApiResponse(params, apiKey.getApiKey(), XML, "POST",apiKey.getApiUrl()); // provide XML as an empty stringwhen not needed
         //System.out.println(out); // print out the XML response
         ErrorResponse response = mapper.readValue(out, ErrorResponse.class);
         return response;
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("Nokia105DSU-2","55");
+        map.put("170275301","15");
+
+        APIKey apiKey = new APIKey();
+
+        apiKey.setUserId("1661317838@qq.com");
+        apiKey.setApiKey("c9c206d2571d2d33cc01007e6c1ff3ab849766ef");
+        apiKey.setApiUrl("https://sellercenter-api.jumia.com.ng");
+
+//        apiKey.setUserId("421585547@qq.com");
+//        apiKey.setApiKey("248247b9aa88cdf2b27455364e9ee931f3de263c");
+//        apiKey.setApiUrl("https://sellercenter-api.jumia.co.ke");
+
+        String apiurl = "";
+        ErrorResponse errorResponse = update(map,apiKey);
+        if (errorResponse.getErrorResponse() != null) {
+            System.out.println(errorResponse.getErrorResponse().getHead().getErrorMessage());
+        } else {
+            System.out.println("新获取到最后45条的商口更新库存成功！");
+            return;
+        }
     }
 
     /**
@@ -44,7 +74,7 @@ public class JumiaAPI {
      * @param apiKey String - user's API Key
      * @param XML    String - Request Body
      */
-    public static String getSellercenterApiResponse(Map<String, String> params, String apiKey, String XML, String requestMothed) {
+    public static String getSellercenterApiResponse(Map<String, String> params, String apiKey, String XML, String requestMothed,String apiUrl) {
         String queryString = "";
         String Output = "";
         HttpURLConnection connection = null;
@@ -53,7 +83,7 @@ public class JumiaAPI {
         queryString = toQueryString(sortedParams);
         final String signature = hmacDigest(queryString, apiKey, HASH_ALGORITHM);
         queryString = queryString.concat("&Signature=".concat(signature));
-        final String request = ScApiHost.concat("?".concat(queryString));
+        final String request = apiUrl.concat("?".concat(queryString));
         try {
             url = new URL(request);
             connection = (HttpURLConnection) url.openConnection();

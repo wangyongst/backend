@@ -63,9 +63,10 @@ public class ChinaBrandsAPI {
         return httpOrgCreateTestRtn;
     }
 
-    public Table getStockTable(String token, Table table) throws IOException {
+    public Table getStockTableYB(String token, Table table) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String stockString = this.getStock(token, table.getSku(), "YB");
+        System.out.println(stockString);
         Result stockResult = mapper.readValue(stockString, Result.class);
         if (stockResult.getStatus() == 1) {
             StockMsg stockMsg = mapper.readValue(mapper.writeValueAsString(stockResult.getMsg()), StockMsg.class);
@@ -73,11 +74,27 @@ public class ChinaBrandsAPI {
                 if (stock.getStatus() == 1) {
                     table.setGoods_number(stock.getGoods_number());
                 } else if (stock.getStatus() == 0) {
-                    table.setMsg1(stock.getMsg().toString());
+                    table.setMsg1("CN1:"+stock.getMsg().toString());
                 }
             }
         } else if (stockResult.getStatus() == 0) {
-            table.setMsg1(stockResult.getMsg().toString());
+            table.setMsg1("CN1:"+stockResult.getMsg().toString());
+        }
+        return table;
+    }
+
+    public Table getStockTableFXQHBSWH(String token, Table table) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String stockString = this.getStock(token, table.getSku(), "FXQHBSWH");
+        System.out.println(stockString);
+        Result stockResult = mapper.readValue(stockString, Result.class);
+        if (stockResult.getStatus() == 1) {
+            StockMsg stockMsg = mapper.readValue(mapper.writeValueAsString(stockResult.getMsg()), StockMsg.class);
+            for (Stock stock : stockMsg.getPage_result()) {
+                if (stock.getStatus() == 1) {
+                    table.setGoods_number(Integer.parseInt(table.getGoods_number())+Integer.parseInt(stock.getGoods_number())+"");
+                }
+            }
         }
         return table;
     }
@@ -85,6 +102,7 @@ public class ChinaBrandsAPI {
     public Table getIndexTable(String token, Table table) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String indexString = this.getIndex(token, table.getSku());
+        System.out.println(indexString);
         Result indexResult = mapper.readValue(indexString, Result.class);
         if (indexResult.getStatus() == 1) {
             JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, IndexMsg.class);
@@ -123,7 +141,7 @@ public class ChinaBrandsAPI {
             if (tokenResult.getStatus() == 1) {
                 token = mapper.readValue(mapper.writeValueAsString(tokenResult.getMsg()), Token.class);
             }
-            String stockString = main.getStock(token.getToken(), "211614901", "YB");
+            String stockString = main.getStock(token.getToken(), "204529808", "YB");
             Result stockResult = mapper.readValue(stockString, Result.class);
             if (stockResult.getStatus() == 1) {
                 StockMsg stockMsg = mapper.readValue(mapper.writeValueAsString(stockResult.getMsg()), StockMsg.class);
@@ -135,17 +153,17 @@ public class ChinaBrandsAPI {
                     }
                 }
             } else if (stockResult.getStatus() == 0) {
-                System.out.println("184393402    " + stockResult.getMsg());
+                System.out.println("182350906    " + stockResult.getMsg());
             }
 
-            String indexString = main.getIndex(token.getToken(), "211614901");
+            String indexString = main.getIndex(token.getToken(), "204529808");
             Result indexResult = mapper.readValue(indexString, Result.class);
             System.out.println(indexString);
             if (indexResult.getStatus() == 1) {
                 JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, IndexMsg.class);
                 List<IndexMsg> indexMsgList = mapper.readValue(mapper.writeValueAsString(indexResult.getMsg()), javaType);
                 for (IndexMsg indexMsg : indexMsgList) {
-                    if (indexMsg.getSku().equals("211614901")) {
+                    if (indexMsg.getSku().equals("182350906")) {
                         if (indexMsg.getStatus() == 1) {
                             System.out.println(indexMsg.getSku() + "  ship_weight     " + indexMsg.getShip_weight());
                             System.out.println(indexMsg.getSku() + "  volume_weight     " + indexMsg.getVolume_weight());
@@ -162,7 +180,7 @@ public class ChinaBrandsAPI {
                     }
                 }
             } else if (indexResult.getStatus() == 0) {
-                System.out.println("209477801    " + stockResult.getMsg());
+                System.out.println("182350906    " + stockResult.getMsg());
             }
         } catch (IOException e) {
             e.printStackTrace();

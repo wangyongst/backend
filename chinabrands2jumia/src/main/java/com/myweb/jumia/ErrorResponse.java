@@ -1,16 +1,18 @@
 package com.myweb.jumia;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorResponse {
-    private Head Head;
+    @JsonProperty("ErrorResponse")
+    private Head ErrorResponse;
 
-    public com.myweb.jumia.Head getHead() {
-        return Head;
+    public Head getErrorResponse() {
+        return ErrorResponse;
     }
 
-    public void setHead(com.myweb.jumia.Head head) {
-        Head = head;
+    public void setErrorResponse(Head errorResponse) {
+        ErrorResponse = errorResponse;
     }
 }

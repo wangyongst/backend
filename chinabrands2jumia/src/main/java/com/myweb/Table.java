@@ -8,15 +8,6 @@ public class Table {
     private String volume_weight;
     private String msg1;
     private String msg2;
-    private String jumia;
-
-    public String getJumia() {
-        return jumia;
-    }
-
-    public void setJumia(String jumia) {
-        this.jumia = jumia;
-    }
 
     public String getMsg1() {
         return msg1;

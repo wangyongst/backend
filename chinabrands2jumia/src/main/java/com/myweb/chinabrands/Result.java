@@ -15,7 +15,6 @@ public class Result {
     public void setStatus(int status) {
         this.status = status;
     }
-
     public Object getMsg() {
         return msg;
     }
