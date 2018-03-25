@@ -43,9 +43,7 @@ public class Start {
 
     public static void main(String[] args) {
         Start start = new Start();
-        if (start.getExpires() < System.currentTimeMillis() / 1000 - 1800) {
-            start = new Start();
-        }
+
         ChinaBrandsAPI chinaBrandsAPI = new ChinaBrandsAPI();
         try {
             File apiFile = new File("C:\\C2J\\SKU\\apiKey.xlsx");
@@ -88,6 +86,23 @@ public class Start {
                     map.clear();
                 }
                 Thread.sleep(500);
+                if (start.getExpires() < System.currentTimeMillis() / 1000 + 1800) {
+                    try {
+                        ObjectMapper mapper = new ObjectMapper();
+                        String tokenString = chinaBrandsAPI.getToken("3461402854@qq.com", "3461402854@qq.com", "1490033636", "2a91efd6bde801a515bf95bc20cea17f");
+                        Result tokenResult = mapper.readValue(tokenString, Result.class);
+                        if (tokenResult.getStatus() == 1) {
+                            Token tokens = mapper.readValue(mapper.writeValueAsString(tokenResult.getMsg()), Token.class);
+                            start.setToken(tokens.getToken());
+                            start.setExpires(Integer.parseInt(tokens.getExpires()));
+                            System.out.println("ChinaBrands API 授权成功！！！！");
+                        } else {
+                            System.out.println("ChinaBrands API 授权失败！！！！");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("ChinaBrands API 授权失败！！！！");
+                    }
+                }
             }
             System.out.println("程序运行结束，已经完成SKU文件中的全部数据导出及JUMIA网站全部账号更新！");
             System.out.println("你现在可以关闭程序窗口了！");

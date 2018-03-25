@@ -149,7 +149,8 @@ public class ChinaBrandsAPI {
             if (tokenResult.getStatus() == 1) {
                 token = mapper.readValue(mapper.writeValueAsString(tokenResult.getMsg()), Token.class);
             }
-            String stockString = main.getStock(token.getToken(), "204529808", "YB");
+            String stockString = main.getStock(token.getToken(), "211598701", "YB");
+            System.out.println(stockString);
             Result stockResult = mapper.readValue(stockString, Result.class);
             if (stockResult.getStatus() == 1) {
                 StockMsg stockMsg = mapper.readValue(mapper.writeValueAsString(stockResult.getMsg()), StockMsg.class);
@@ -166,7 +167,7 @@ public class ChinaBrandsAPI {
 
             String indexString = main.getIndex(token.getToken(), "204529808");
             Result indexResult = mapper.readValue(indexString, Result.class);
-            System.out.println(indexString);
+            //System.out.println(indexString);
             if (indexResult.getStatus() == 1) {
                 JavaType javaType = mapper.getTypeFactory().constructParametricType(List.class, IndexMsg.class);
                 List<IndexMsg> indexMsgList = mapper.readValue(mapper.writeValueAsString(indexResult.getMsg()), javaType);
