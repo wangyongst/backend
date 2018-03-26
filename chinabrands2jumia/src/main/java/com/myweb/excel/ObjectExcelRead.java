@@ -1,6 +1,7 @@
 package com.myweb.excel;
 
 import com.myweb.Table;
+import com.myweb.chinabrands.CBAPIKey;
 import com.myweb.jumia.APIKey;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -29,7 +30,7 @@ public class ObjectExcelRead {
             XSSFRow row = sheet.getRow(i);                             //行
             XSSFCell cell = row.getCell(col);
             cell.setCellType(XSSFCell.CELL_TYPE_STRING);
-            if(row != null && cell.getStringCellValue() != null && !cell.getStringCellValue().equals("")&& !cell.getStringCellValue().equals("null")) {
+            if (row != null && cell.getStringCellValue() != null && !cell.getStringCellValue().equals("") && !cell.getStringCellValue().equals("null")) {
                 table.setSku(cell.getStringCellValue());
                 varList.add(table);
             }
@@ -39,7 +40,33 @@ public class ObjectExcelRead {
 
 
     /*读取xlsx文件*/
-    public static List<APIKey> readAPIKeyByFileForXlsx(File file,int sheetnum) throws Exception {
+    public static CBAPIKey readCBAPIKeyByFileForXlsx(File file, int sheetnum) throws Exception {
+        List<CBAPIKey> varList = new ArrayList<CBAPIKey>();
+        FileInputStream fi = new FileInputStream(file);
+        XSSFWorkbook wb = new XSSFWorkbook(fi);//xslx
+        XSSFSheet sheet = wb.getSheetAt(sheetnum); //sheet 从0开始
+        CBAPIKey cbapikey = new CBAPIKey();
+        XSSFRow row = sheet.getRow(1);                             //行
+        XSSFCell cell1 = row.getCell(0);
+        XSSFCell cell2 = row.getCell(1);
+        XSSFCell cell3 = row.getCell(2);
+        XSSFCell cell4 = row.getCell(3);
+        cell1.setCellType(XSSFCell.CELL_TYPE_STRING);
+        cell2.setCellType(XSSFCell.CELL_TYPE_STRING);
+        cell3.setCellType(XSSFCell.CELL_TYPE_STRING);
+        cell4.setCellType(XSSFCell.CELL_TYPE_STRING);
+        if (row != null && cell1.getStringCellValue() != null && !cell1.getStringCellValue().equals("") && !cell1.getStringCellValue().equals("null")) {
+            cbapikey.setEmail(cell1.getStringCellValue());
+            cbapikey.setPassword(cell2.getStringCellValue());
+            cbapikey.setClientid(cell3.getStringCellValue());
+            cbapikey.setApikey(cell4.getStringCellValue());
+        }
+        return cbapikey;
+    }
+
+
+    /*读取xlsx文件*/
+    public static List<APIKey> readAPIKeyByFileForXlsx(File file, int sheetnum) throws Exception {
         List<APIKey> varList = new ArrayList<APIKey>();
         FileInputStream fi = new FileInputStream(file);
         XSSFWorkbook wb = new XSSFWorkbook(fi);//xslx
@@ -52,7 +79,9 @@ public class ObjectExcelRead {
             XSSFCell cell2 = row.getCell(1);
             XSSFCell cell3 = row.getCell(2);
             cell1.setCellType(XSSFCell.CELL_TYPE_STRING);
-            if(row != null && cell1.getStringCellValue() != null && !cell1.getStringCellValue().equals("")&& !cell1.getStringCellValue().equals("null")) {
+            cell2.setCellType(XSSFCell.CELL_TYPE_STRING);
+            cell3.setCellType(XSSFCell.CELL_TYPE_STRING);
+            if (row != null && cell1.getStringCellValue() != null && !cell1.getStringCellValue().equals("") && !cell1.getStringCellValue().equals("null")) {
                 apikey.setUserId(cell1.getStringCellValue());
                 apikey.setApiKey(cell2.getStringCellValue());
                 apikey.setApiUrl(cell3.getStringCellValue());
@@ -95,11 +124,10 @@ public class ObjectExcelRead {
 
     public static void main(String[] args) {
         try {
-            File skuFile = new File("C:\\C2J\\SKU\\apiKey.xlsx");
-            List<APIKey> list = readAPIKeyByFileForXlsx(skuFile,0);
-            for (APIKey apiKey : list) {
-                System.out.println(apiKey.getUserId()+"|"+apiKey.getApiKey());
-            }
+            File file = new File("C:\\C2J\\SKU\\cbapikey.xlsx");
+            CBAPIKey cbapiKey = readCBAPIKeyByFileForXlsx(file,0);
+            System.out.println(cbapiKey.getEmail()+cbapiKey.getPassword());
+
 
         } catch (Exception e) {
             e.printStackTrace();
