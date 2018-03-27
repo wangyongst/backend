@@ -4,4 +4,5 @@
     <string name="start_button">开始</string>
     <string name="artificial_reception">人工介入</string>
     <string name="start_info">准备开始</string>
+    <string name="message">请在此处编辑你要发送的短信内容</string>
 </resources>

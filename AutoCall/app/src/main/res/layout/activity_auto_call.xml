@@ -11,6 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/start_button"
+            android:onClick="doClick"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
@@ -20,13 +21,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/artificial_reception"
-            android:layout_above="@+id/start_button" android:layout_alignParentLeft="true" android:layout_alignParentStart="true">
+            android:layout_above="@+id/start_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
     </Button>
     <EditText
-            android:id="@+id/widget34"
+            android:id="@+id/message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容短信内容"
+            android:text="@string/message"
             android:textSize="18sp"
             android:maxLines="6"
             android:layout_marginTop="15dp"
@@ -35,7 +38,7 @@
             android:layout_alignParentStart="true">
     </EditText>
     <TextView
-            android:id="@+id/widget33"
+            android:id="@+id/nothing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="秒以上发送短信"
@@ -71,7 +74,7 @@
             android:layout_toRightOf="@+id/send_message"
             android:layout_toEndOf="@+id/send_message">
     </TextView>
-    <RadioButton
+    <CheckBox
             android:id="@+id/send_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +83,7 @@
             android:layout_toRightOf="@+id/qiyong"
             android:layout_toEndOf="@+id/qiyong"
             android:layout_marginLeft="11dp">
-    </RadioButton>
+    </CheckBox>
     <TextView
             android:id="@+id/start_introducton"
             android:layout_width="match_parent"
