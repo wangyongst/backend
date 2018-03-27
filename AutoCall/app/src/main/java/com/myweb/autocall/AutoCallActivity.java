@@ -1,5 +1,7 @@
 package com.myweb.autocall;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,6 +32,8 @@ public class AutoCallActivity extends AppCompatActivity {
                 if (startButton.getText().equals("开始")) {
                     startInfo.setText("程序启动，开始自动拨号！"+ sendMessage.isChecked() + message.getText());
                     startButton.setText("停止");
+                    Intent intent=new Intent(Intent.ACTION_CALL, Uri.parse("tel:18119445588"));
+                    startActivity(intent);
                 } else {
                     startInfo.setText("程序停止，停止自动拨号！" + time.getText());
                     startButton.setText("开始");
