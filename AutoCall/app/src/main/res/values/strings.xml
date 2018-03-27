@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AutoCall</string>
+    <string name="start_introducton">使用说明：\n1）点击开始按钮，程序自动读取电话号码并开始自动拨打电话，同时按钮变成停止，可点击停止程序\n2)如需发送短信，请先编辑好短信内容并选择启用，设置时间后再点击开始\n3)在电话接通后可以点人工介入按钮开启人工通话</string>
+    <string name="start_button">开始</string>
+    <string name="artificial_reception">人工介入</string>
+    <string name="start_info">准备开始</string>
+</resources>
