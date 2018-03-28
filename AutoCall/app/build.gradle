@@ -35,5 +35,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:+'
     compile 'com.android.support:support-v4:+'
+    compile 'net.sourceforge.jexcelapi:jxl:2.6.12'
     testCompile 'junit:junit:4.12'
 }
