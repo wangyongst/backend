@@ -1,0 +1,12 @@
+group 'com.backend'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = "utf-8"
+
+
+
